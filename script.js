@@ -56,3 +56,17 @@ document.querySelectorAll('.project_item a').forEach(link => {
     link.addEventListener('mouseenter', showRandomImages);
     link.addEventListener('mouseleave', hideRandomImages);
 });
+
+const toggle = document.getElementById('light-dark-mode-toggle');
+const body = document.body;
+
+toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        toggle.textContent = 'Light Mode';
+    } else {
+        toggle.textContent = 'Dark Mode';
+    }
+    localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+}
+);

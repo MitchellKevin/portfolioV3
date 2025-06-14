@@ -1,10 +1,34 @@
 /* ...existing code... */
-:root{
-    --hero-bg: #f0f0f0; /* Adjust as needed */
-    --hero-border-color: #B3B3B3; /* Adjust as needed */
-    --accent-color: #A2F3CA; /* Adjust as needed */
-    --accent-text-color: #00520F; /* Adjust as needed */
-    --secondary-color: #345DCA;
+:root {
+    --hero-bg: #f0f0f0;
+    --hero-border-color: #B3B3B3;
+    --accent-color: #A2F3CA;
+    --accent-text-color: #00520F;
+    --secondary-color: black;
+    --text-color: #222;
+    --text-secondary-color: #666;
+    --bg-color: #fff;
+    --carousel-bg: #f0f0f0;
+}
+
+body.dark-mode {
+    --hero-bg: #181a20;
+    --hero-border-color: #444;
+    --accent-color: #2dd4bf;
+    --accent-text-color: #fff;
+    --secondary-color: #fff;
+    --text-color: #eee;
+    --text-secondary-color: #b3b8d0;
+    --bg-color: #101322;
+    --carousel-bg: #101322;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
 }
 
 *{
@@ -37,7 +61,7 @@ header {
     position: absolute;
     width: 32px;
     height: 32px;
-    border: 2px solid #222;
+    border: 2px solid var(--secondary-color);
 }
 
 .top-left {
@@ -101,13 +125,13 @@ header {
     font-size: 5em;
     margin: 0;
     line-height: 1.1em;
-    color: black; /* Adjust as needed */
+    color: var(--secondary-color); /* Adjust as needed */
 }
 
 .hero-text p {
     width: 60%;
     font-size: 1.1em;
-    color: #666; /* Adjust as needed */
+    color: var(--text-color); /* Adjust as needed */
 }
 
 .hero-text h2{
@@ -118,7 +142,7 @@ header {
     font-family: poppins, sans-serif;
     border-radius: 2em;
     background-color: var(--accent-color);
-    color: black; /* Adjust as needed */
+    color: var(--secondary-color); /* Adjust as needed */
 }
 
 #hero-border-wrapper button{
@@ -134,8 +158,8 @@ header {
 }
 
 #hero-border-wrapper button:first-of-type{
-    background-color: black;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--hero-bg);
 }
 #hero-border-wrapper button:hover{
     animation: both pulse .7s;
@@ -181,7 +205,7 @@ header {
     border: 1px solid var(--hero-border-color);
     overflow: hidden; /* Ensures carousel stays inside corners */
     margin: 0 auto;
-    background: #fff;
+    background: var(--carousel-bg);
 }
 
 #tools-corners{
@@ -234,7 +258,7 @@ header {
 }
 
 .features_header h2 {
-    color: var(--text-color);
+    color: var(--secondary-color);
     font-size: 2.4vw;
     margin-bottom: 1vw;
     font-weight: 600;
@@ -388,10 +412,10 @@ header {
 
 @keyframes carousel2-scroll {
     0% {
-        transform: translateX(0);
+        transform: translateX(-50%);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translateX(0%);
     }
 }
 
@@ -423,7 +447,7 @@ header {
 }
 
 .project_header h2 {
-    color: var(--text-color);
+    color: var(--secondary-color);
     font-size: 2.4vw;
     margin-bottom: 1vw;
     font-weight: 600;
@@ -462,7 +486,7 @@ header {
 .project_item h3 {
     font-size: 4vw;
     font-weight: lighter;
-    color: var(--text-color);
+    color: var(--secondary-color);
     margin: 0;
 }
 
