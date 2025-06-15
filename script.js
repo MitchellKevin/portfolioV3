@@ -70,3 +70,18 @@ toggle.addEventListener('click', () => {
     localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
 }
 );
+
+window.addEventListener('scroll', () => {
+  const timeline = document.querySelector('.timeline-container');
+  const dot = document.getElementById('timeline-dot');
+  const fill = document.querySelector('.timeline-fill');
+  const rect = timeline.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const timelineHeight = timeline.offsetHeight;
+
+  let progress = (windowHeight / 2 - rect.top) / timelineHeight;
+  progress = Math.max(0, Math.min(1, progress));
+
+  dot.style.top = `${progress * 130}%`;
+  fill.style.height = `${progress * 130}%`;
+});
