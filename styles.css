@@ -532,7 +532,7 @@ header {
     align-items: center;
     flex-direction: column;
     width: 80%;
-    height: 1700px;
+    height: 1500px;
     border: 1px solid var(--hero-border-color); /* Adjust color/thickness as needed */
     overflow: hidden; /* Ensures content stays within corners */
 
@@ -755,6 +755,139 @@ header {
   padding-top: 1em;
   margin-top: 1em;
 }
+
+.Licenses {
+  max-width: 700px;
+  margin: 3em auto 2em auto;
+  text-align: center;
+}
+
+.cert-carousel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cert-slide-track {
+  width: 100%;
+  max-width: 480px;
+  min-height: 340px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-slide {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: opacity 0.4s;
+}
+
+.cert-slide.active {
+  display: flex;
+}
+
+.cert-slide img {
+  width: 100%;
+  max-width: 420px;
+  border: 4px solid #2dd4bf;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+}
+
+.cert-info {
+  margin-top: 1em;
+}
+
+.cert-info h4 {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.cert-info span {
+  color: #666;
+  font-size: 1.1em;
+}
+
+.cert-arrow {
+  background: none;
+  border: none;
+  font-size: 2.5em;
+  color: #222;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: color 0.2s;
+  opacity: 0.7;
+  padding: 0 0.2em;
+}
+
+.cert-arrow-left {
+  left: 0;
+}
+
+.cert-arrow-right {
+  right: 0;
+}
+
+.cert-arrow:hover {
+  color: #2dd4bf;
+  opacity: 1;
+}
+
+.cert-dots {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+  gap: 0.7em;
+}
+
+.cert-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ddd;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cert-dot.active {
+  background: #2dd4bf;
+}
+
+#Licenses {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+#cert-corners {
+    position: relative;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 700px;
+    border: 1px solid var(--hero-border-color); /* Adjust color/thickness as needed */
+    overflow: hidden; /* Ensures content stays within corners */
+
+}
+
 
 @media (max-width: 700px) {
   .footer-content {

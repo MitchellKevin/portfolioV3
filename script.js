@@ -85,3 +85,44 @@ window.addEventListener('scroll', () => {
   dot.style.top = `${progress * 130}%`;
   fill.style.height = `${progress * 130}%`;
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('.cert-slide');
+  const left = document.querySelector('.cert-arrow-left');
+  const right = document.querySelector('.cert-arrow-right');
+  const dotsContainer = document.querySelector('.cert-dots');
+  let current = 0;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'cert-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => showSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+  const dots = document.querySelectorAll('.cert-dot');
+
+  function showSlide(idx) {
+    slides.forEach(slide => slide.className = 'cert-slide');
+    dots.forEach(dot => dot.className = 'cert-dot');
+
+    current = (idx + slides.length) % slides.length;
+
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+
+    // Previous slide
+    const prev = (current - 1 + slides.length) % slides.length;
+    slides[prev].classList.add('prev');
+
+    // Next slide
+    const next = (current + 1) % slides.length;
+    slides[next].classList.add('next');
+  }
+
+  left.addEventListener('click', () => showSlide(current - 1));
+  right.addEventListener('click', () => showSlide(current + 1));
+
+  // Show the first slide initially
+  showSlide(0);
+});
