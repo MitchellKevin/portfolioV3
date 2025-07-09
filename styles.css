@@ -193,7 +193,7 @@ header {
     width: max-content; /* Important for infinite scroll */
     gap: 2em;
     animation: carousel-scroll 20s linear infinite;
-    filter: saturate(0);
+    filter: saturate(1);
 }
 
 #tools-corners {
@@ -407,7 +407,7 @@ header {
     display: block;
     margin: auto;
     background: transparent;
-    filter: saturate(0);
+    filter: saturate(1);
 }
 
 @keyframes carousel2-scroll {
@@ -682,8 +682,8 @@ header {
 }
 
 .site-footer {
-  background: #181a20;
-  color: #b3b8d0;
+  background: #f3f3f3;
+  color: var(--accent-text-color);
   padding: 2em 0 1em 0;
   margin-top: 4em;
   font-size: 1em;
@@ -705,7 +705,7 @@ header {
   align-items: center;
   gap: 0.7em;
   font-weight: 600;
-  color: #fff;
+  color: black;
   font-size: 1.2em;
 }
 
@@ -721,7 +721,7 @@ header {
 }
 
 .footer-nav a {
-  color: #b3b8d0;
+  color: black;
   text-decoration: none;
   transition: color 0.2s;
   font-weight: 500;
@@ -749,7 +749,7 @@ header {
 
 .footer-bottom {
   text-align: center;
-  color: #666;
+  color: black;
   font-size: 0.95em;
   border-top: 1px solid #23263a;
   padding-top: 1em;
