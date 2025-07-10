@@ -129,24 +129,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const certs = [
   {
-    img: "image.png",
-    title: "Junior Software Developer",
+    img: "Certificates/Cybersecurity_101.png",
+    title: "Cyber Security 101",
+    org: "TryHackMe"
+  },
+  {
+    img: "Certificates/Web_Fundamentals.png",
+    title: "Web Fundamentals",
+    org: "TryHackMe"
+  },
+  {
+    img: "Certificates/Jr_Penetration_Tester.png",
+    title: "Jr Penetration Tester",
+    org: "TryHackMe"
+  },
+  {
+    img: "Certificates/Amazon_Introduction.png",
+    title: "Introduction to Software Development",
     org: "Amazon"
   },
   {
-    img: "image copy.png",
-    title: "Cloud Fundamentals",
-    org: "Google"
-  },
-  {
-    img: "image copy.png",
-    title: "Cloud Fundamentals",
-    org: "IBM"
-  },
-  {
-    img: "image copy.png",
-    title: "Cloud Fundamentals",
-    org: "Meta"
+    img: "Foundational_Csharp.png",
+    title: "Foundational C#",
+    org: "Microsoft"
   }
 ];
 

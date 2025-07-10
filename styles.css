@@ -808,6 +808,8 @@ header {
 }
 
 .cert-slide img {
+  border: var(--accent-text-color) .2em solid;
+  border-radius: .3em;
   width: 100%;
   box-shadow: 0 8px 40px rgba(0,0,0,0.13);
 }
