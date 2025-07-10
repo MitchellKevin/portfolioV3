@@ -126,3 +126,90 @@ document.addEventListener('DOMContentLoaded', function() {
   // Show the first slide initially
   showSlide(0);
 });
+
+const certs = [
+  {
+    img: "image.png",
+    title: "Junior Software Developer",
+    org: "Amazon"
+  },
+  {
+    img: "image copy.png",
+    title: "Cloud Fundamentals",
+    org: "Google"
+  },
+  {
+    img: "image copy.png",
+    title: "Cloud Fundamentals",
+    org: "IBM"
+  },
+  {
+    img: "image copy.png",
+    title: "Cloud Fundamentals",
+    org: "Meta"
+  }
+];
+
+let i = 0;
+
+function renderCarousel() {
+  const left = document.getElementById('cert-left');
+  const center = document.getElementById('cert-center');
+  const right = document.getElementById('cert-right');
+
+  // Helper for circular indexing
+  const mod = (n, m) => ((n % m) + m) % m;
+
+  // Fill placeholders
+  [left, center, right].forEach(el => el.innerHTML = '');
+
+  // Left
+  const leftIdx = mod(i - 1, certs.length);
+  left.innerHTML = `
+    <img src="${certs[leftIdx].img}" alt="${certs[leftIdx].title}">
+    <div class="cert-info">
+      <h4>${certs[leftIdx].title}</h4>
+      <span>${certs[leftIdx].org}</span>
+    </div>
+  `;
+
+  // Center
+  center.innerHTML = `
+    <img src="${certs[i].img}" alt="${certs[i].title}">
+    <div class="cert-info">
+      <h4>${certs[i].title}</h4>
+      <span>${certs[i].org}</span>
+    </div>
+  `;
+
+  // Right
+  const rightIdx = mod(i + 1, certs.length);
+  right.innerHTML = `
+    <img src="${certs[rightIdx].img}" alt="${certs[rightIdx].title}">
+    <div class="cert-info">
+      <h4>${certs[rightIdx].title}</h4>
+      <span>${certs[rightIdx].org}</span>
+    </div>
+  `;
+
+  // Dots
+  const dotsContainer = document.querySelector('.cert-dots');
+  dotsContainer.innerHTML = '';
+  certs.forEach((_, idx) => {
+    const dot = document.createElement('span');
+    dot.className = 'cert-dot' + (idx === i ? ' active' : '');
+    dot.onclick = () => { i = idx; renderCarousel(); };
+    dotsContainer.appendChild(dot);
+  });
+}
+
+document.querySelector('.cert-arrow-left').onclick = () => {
+  i = (i - 1 + certs.length) % certs.length;
+  renderCarousel();
+};
+document.querySelector('.cert-arrow-right').onclick = () => {
+  i = (i + 1) % certs.length;
+  renderCarousel();
+};
+
+renderCarousel();

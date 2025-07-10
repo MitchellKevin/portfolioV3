@@ -770,47 +770,56 @@ header {
 }
 
 .cert-slide-track {
-  width: 100%;
-  max-width: 480px;
-  min-height: 340px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  width: 100%;
+  max-width: 1000px;    /* Increased width */
+  min-height: 520px;    /* Increased height */
+  margin: 0 auto;
 }
 
 .cert-slide {
-  display: none;
+  width: 520px;         /* Larger certificates */
+  max-width: 98vw;
+  margin: 0 -60px;     /* More overlap for bigger slides */
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  transition: opacity 0.4s;
+  opacity: 0.7;
+  transform: scale(0.85);
+  transition: 
+    opacity 0.5s,
+    transform 0.5s;
+  z-index: 1;
+  pointer-events: none;
+  filter: grayscale(60%);
 }
 
-.cert-slide.active {
-  display: flex;
+#cert-center {
+  opacity: 1;
+  transform: scale(1.32); /* Larger center */
+  z-index: 2;
+  pointer-events: auto;
+  filter: none;
 }
 
 .cert-slide img {
   width: 100%;
-  max-width: 420px;
-  border: 4px solid #2dd4bf;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.13);
 }
 
 .cert-info {
   margin-top: 1em;
+  text-align: center;
 }
 
 .cert-info h4 {
   margin: 0;
   font-size: 1.3em;
-  font-weight: 600;
+  font-weight: 700;
+  color: #181a20;
 }
 
 .cert-info span {
@@ -882,7 +891,7 @@ header {
     align-items: center;
     flex-direction: column;
     width: 80%;
-    height: 700px;
+    height: 900px;
     border: 1px solid var(--hero-border-color); /* Adjust color/thickness as needed */
     overflow: hidden; /* Ensures content stays within corners */
 
