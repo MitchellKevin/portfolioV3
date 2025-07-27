@@ -57,35 +57,6 @@ document.querySelectorAll('.project_item a').forEach(link => {
     link.addEventListener('mouseleave', hideRandomImages);
 });
 
-const toggle = document.getElementById('light-dark-mode-toggle');
-const body = document.body;
-
-toggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-        toggle.textContent = 'Light Mode';
-    } else {
-        toggle.textContent = 'Dark Mode';
-    }
-    localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
-}
-);
-
-window.addEventListener('scroll', () => {
-  const timeline = document.querySelector('.timeline-container');
-  const dot = document.getElementById('timeline-dot');
-  const fill = document.querySelector('.timeline-fill');
-  const rect = timeline.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-  const timelineHeight = timeline.offsetHeight;
-
-  let progress = (windowHeight / 2 - rect.top) / timelineHeight;
-  progress = Math.max(0, Math.min(1, progress));
-
-  dot.style.top = `${progress * 130}%`;
-  fill.style.height = `${progress * 130}%`;
-});
-
 document.addEventListener('DOMContentLoaded', function() {
   const slides = document.querySelectorAll('.cert-slide');
   const left = document.querySelector('.cert-arrow-left');
@@ -125,6 +96,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Show the first slide initially
   showSlide(0);
+
+  // Dark mode toggle image swap
+  const toggle = document.getElementById('light-dark-mode-toggle');
+  const body = document.body;
+  let darkMode = body.classList.contains('dark-mode');
+
+  function updateToggleImg() {
+    toggle.src = darkMode ? 'img/DtoW.png' : 'img/WtoD.png';
+    toggle.alt = darkMode ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      darkMode = !darkMode;
+      body.classList.toggle('dark-mode', darkMode);
+      updateToggleImg();
+    });
+    updateToggleImg();
+  }
 });
 
 const certs = [
