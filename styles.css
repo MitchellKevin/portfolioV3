@@ -1153,94 +1153,19 @@ header {
   }
 }
 
-html, body {
+/* html, body {
   max-width: 100vw;
   overflow-x: hidden;
-}
+} */
 
 * {
   box-sizing: border-box;
 }
 
-/* Match section h3 and p font-size to the skills section under the h1 */
-.features_header h3,
-.features_header p,
-.project_header h3,
-project_header p,
-#Licenses h3,
-#Licenses p,
-#contact-corners h3,
-#contact-corners p,
-#tools-corners h3,
-#tools-corners p,
-#feature-corners h3,
-#feature-corners p,
-#timeline-corners h3,
-#timeline-corners p {
-  font-size: 1.1em; /* Adjust this value to match your skills section */
-  font-weight: 400;
-  color: var(--text-secondary-color, #666);
-  margin: 0.5em 0;
-}
 
-@media (max-width: 700px) {
-  .features_header h3,
-  .features_header p,
-  .project_header h3,
-  .project_header p,
-  #Licenses h3,
-  #Licenses p,
-  #contact-corners h3,
-  #contact-corners p,
-  #tools-corners h3,
-  #tools-corners p,
-  #feature-corners h3,
-  #feature-corners p,
-  #timeline-corners h3,
-  #timeline-corners p {
-    font-size: 1em;
-  }
-}
 
-@media (max-width: 700px) {
-  .hero-text h2 {
-    display: block;
-    width: 80%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1.2em;
-    margin-bottom: 1em;
-    margin-top: 0.5em;
-  }
-}
 
-@media (max-width: 700px) {
-  #light-dark-mode-toggle {
-    width: 4.2em;
-    height: 4.2em;
-    min-width: 0;
-    min-height: 0;
-    padding: 0.2em;
-  }
-}
 
-@media (max-width: 700px) {
-  .feature_card {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    box-shadow: none !important;
-    transition: none !important;
-  }
-  .feature_card.animate,
-  .feature_card:hover {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    box-shadow: none !important;
-    transition: none !important;
-  }
-}
+
 
 
