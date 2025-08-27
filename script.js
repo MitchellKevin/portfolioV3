@@ -134,8 +134,8 @@ const certs = [
     org: "TryHackMe"
   },
   {
-    img: "Certificates/Amazon_Introduction.png",
-    title: "Introduction to Software Development",
+    img: "Certificates/amazon_Junior_software_developer.png",
+    title: "Professional Certification in Junior Software Developer",
     org: "Amazon"
   },
   {

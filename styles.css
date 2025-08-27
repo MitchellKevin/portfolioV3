@@ -959,15 +959,24 @@ header {
 
 
 @media (max-width: 768px) {
+  .hero-text h2{
+    align-self: center;
+    font-size: 1.5em;
+  }
   #hero {
     flex-direction: column;
     text-align: center;
     padding: 2em 1em;
   }
 
-  .hero-text h1, .hero-text p {
+  .hero-text h1 {
     width: 100%;
-    font-size: 1.7em;
+    font-size: 3em;
+  }
+
+  .hero-text p {
+    width: 100%;
+    font-size: 1.5em;
   }
 
   .hero-img img {
@@ -983,13 +992,20 @@ header {
 
 
 @media (max-width: 768px) {
+  .feature_card.animate {
+    animation: featureFadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+  .feature_card.animate { animation-delay: 0s; }
   .features_grid {
-    grid-template-columns: 1fr;
-    gap: 1.5em;
-  }
+    display: grid;
+    grid-template-columns: repeat(2, 2fr); /* 3 kolommen */
+    gap: 4vw;
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
   .feature_card {
-    width: 90%;
+    width: 92%;
     margin: 0 auto;
   }
 
