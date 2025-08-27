@@ -1179,7 +1179,14 @@ header {
 } */
 
 
-
+.timeline-fill {
+  transition: height 0.3s cubic-bezier(.22,1,.36,1);
+  z-index: 2;
+}
+.timeline-dot {
+  transition: top 0.3s cubic-bezier(.22,1,.36,1);
+  z-index: 3;
+}
 
 
 

@@ -208,3 +208,18 @@ document.querySelector('.cert-arrow-right').onclick = () => {
 };
 
 renderCarousel();
+
+
+// Example only; adjust selectors as needed
+window.addEventListener('scroll', () => {
+  const timeline = document.querySelector('.timeline-container');
+  const fill = document.querySelector('.timeline-fill');
+  const dot = document.querySelector('.timeline-dot');
+  if (!timeline || !fill || !dot) return;
+
+  const rect = timeline.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const scrollPercent = Math.min(1, Math.max(0, (windowHeight - rect.top) / (rect.height)-1));
+  fill.style.height = `${scrollPercent * 150}%`;
+  dot.style.top = `${scrollPercent * 150}%`;
+});
