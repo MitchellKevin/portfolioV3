@@ -1,0 +1,136 @@
+:root {
+    --hero-bg: #f0f0f0;
+    --hero-border-color: #B3B3B3;
+    --accent-color: #A2F3CA;
+    --accent-text-color: #00520F;
+    --secondary-color: black;
+    --text-color: #222;
+    --text-secondary-color: #666;
+    --bg-color: #fff;
+    --carousel-bg: #ffffff;
+}
+
+body.dark-mode {
+    --hero-bg: #181a20;
+    --hero-border-color: #444;
+    --accent-color: #2dd4bf;
+    --accent-text-color: #fff;
+    --secondary-color: #fff;
+    --text-color: #eee;
+    --text-secondary-color: #b3b8d0;
+    --bg-color: #101322;
+    --carousel-bg: #101322;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+*{
+    font-family: poppins, sans-serif;
+}
+
+header {
+    font-weight:lighter;
+    font-family: poppins, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+
+#key-points{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+#divider{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1em;
+    flex-wrap: nowrap;
+}
+
+#project-title-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
+    height: 80vh;
+    width: 49%;
+}
+
+#project-title-info h1{
+    font-size: 4.5em;
+
+}
+
+#project-title-info h3{
+    font-size: 1em;
+    color: var(--text-secondary-color);
+    letter-spacing: 0.2em;
+    word-spacing: 0.5em;
+    margin-top: -5em;
+    text-transform: uppercase;
+}
+
+#project-title-info h4{
+    font-size: 2em;
+    color: var(--text-secondary-color);
+    letter-spacing: 0.2em;
+    word-spacing: 0.5em;
+    text-transform: uppercase;
+    margin-top: -2em;
+}
+
+#project-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 55vh;
+    width: 49%;
+    margin-left: 2em;
+}
+
+#project-details article{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 1em ;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 1em;
+    width: 90%;
+}
+
+#project-details h2 {
+    font-weight: bold;
+    font-size: 1em;
+    width: 50%;
+}
+
+#project-details h3{
+    width: 50%;
+    font-size: 1em;
+    font-weight: lighter;
+}
+
+#project-image{
+    width: 100%;
+    border: 1px solid pink;
+    margin: 0 !important;
+}
+
+#project-image img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
