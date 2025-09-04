@@ -601,7 +601,7 @@ header {
   font-size: 1.2vw;
 }
 
-.timeline-event:nth-of-type(11), .timeline-event:nth-of-type(12), .timeline-event:nth-of-type(13) {
+.timeline-event:nth-of-type(12){
     color: #a8a8a8;
 }
 
