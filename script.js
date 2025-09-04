@@ -313,7 +313,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.contact-form');
-  if (!form) return;
+  const notification = document.getElementById('notification');
+  if (!form || !notification) return;
 
   form.addEventListener('submit', function(e) {
     let valid = true;
@@ -329,18 +330,62 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     if (!valid) {
       e.preventDefault();
+      return;
     }
+
+    // Show notification with confetti
+    notification.textContent = "Form sent successfully!";
+    notification.style.display = "block";
+    notification.style.position = "fixed";
+    notification.style.top = "2em";
+    notification.style.left = "50%";
+    notification.style.transform = "translateX(-50%)";
+    notification.style.background = "#22c55e";
+    notification.style.color = "#fff";
+    notification.style.padding = "1em 2em";
+    notification.style.borderRadius = "1em";
+    notification.style.fontWeight = "bold";
+    notification.style.zIndex = "9999";
+    notification.style.boxShadow = "0 4px 24px rgba(0,0,0,0.15)";
+    showConfetti();
+
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
   });
 
-  form.querySelectorAll('input, textarea').forEach(field => {
-    field.addEventListener('input', function() {
-      if (field.value.trim()) {
-        field.classList.remove('input-error');
-        field.classList.add('input-success');
-      } else {
-        field.classList.remove('input-success');
-        field.classList.add('input-error');
-      }
-    });
-  });
+  // Confetti animation
+  function showConfetti() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    for (let i = 0; i < 80; i++) { // More confetti for full screen
+      const confetti = document.createElement('div');
+      confetti.style.position = 'fixed';
+      confetti.style.left = Math.random() * width + 'px';
+      confetti.style.top = '-40px';
+      confetti.style.width = '12px';
+      confetti.style.height = '12px';
+      confetti.style.background = `hsl(${Math.random()*360},80%,60%)`;
+      confetti.style.borderRadius = '50%';
+      confetti.style.zIndex = '10000';
+      confetti.style.pointerEvents = 'none';
+      confetti.style.opacity = '0.85';
+      confetti.style.boxShadow = `0 2px 8px rgba(0,0,0,0.10)`;
+      document.body.appendChild(confetti);
+
+      // Animate confetti to fall and scatter
+      const x = (Math.random() - 0.5) * width * 0.7;
+      const y = height + 80 + Math.random() * 200;
+      const rotate = Math.random() * 720;
+      confetti.animate([
+        { transform: `translateY(0) rotate(0deg)`, opacity: 0.85 },
+        { transform: `translateX(${x}px) translateY(${y}px) rotate(${rotate}deg)`, opacity: 0 }
+      ], {
+        duration: 1800 + Math.random() * 1200,
+        easing: 'cubic-bezier(.22,1,.36,1)'
+      });
+
+      setTimeout(() => confetti.remove(), 2500);
+    }
+  }
 });
