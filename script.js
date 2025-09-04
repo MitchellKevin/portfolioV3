@@ -223,3 +223,90 @@ window.addEventListener('scroll', () => {
   fill.style.height = `${scrollPercent * 150}%`;
   dot.style.top = `${scrollPercent * 150}%`;
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const heroImg = document.querySelector('.hero-img img');
+  const heroImgContainer = document.querySelector('.hero-img');
+
+  function parallax(e) {
+    const rect = heroImgContainer.getBoundingClientRect();
+    const x = ((e.clientX || (e.touches && e.touches[0].clientX)) - rect.left) / rect.width - 0.5;
+    const y = ((e.clientY || (e.touches && e.touches[0].clientY)) - rect.top) / rect.height - 0.5;
+    const rotateX = y * 20;
+    const rotateY = x * 20;
+    heroImg.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.07)`;
+  }
+
+  function resetParallax() {
+    heroImg.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  }
+
+  if (heroImg && heroImgContainer) {
+    heroImgContainer.addEventListener('mousemove', parallax);
+    heroImgContainer.addEventListener('mouseleave', resetParallax);
+    heroImgContainer.addEventListener('touchmove', parallax);
+    heroImgContainer.addEventListener('touchend', resetParallax);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // --- Project image preview on hover ---
+  const projects = [
+    {
+      id: "project1",
+      img: "project-images/nao.png"
+    },
+    {
+      id: "project2",
+      img: "img/projects/simplyradio.png"
+    },
+    {
+      id: "project3",
+      img: "img/projects/productivity_dashboard.png"
+    },
+    {
+      id: "project4",
+      img: "img/projects/nowaste_app.png"
+    },
+    {
+      id: "project5",
+      img: "img/projects/encrypted_file_transfer.png"
+    },
+    {
+      id: "project6",
+      img: "img/projects/cloud_file_storage.png"
+    }
+    // Add more as needed
+  ];
+
+  // Create preview element
+  const preview = document.createElement('img');
+  preview.style.position = 'fixed';
+  preview.style.top = '20%';
+  preview.style.left = '60%';
+  preview.style.maxWidth = '320px';
+  preview.style.maxHeight = '320px';
+  preview.style.borderRadius = '1em';
+  preview.style.boxShadow = '0 8px 32px rgba(0,0,0,0.18)';
+  preview.style.zIndex = '1000';
+  preview.style.pointerEvents = 'none';
+  preview.style.display = 'none';
+  document.body.appendChild(preview);
+
+  projects.forEach(project => {
+    const titleEl = document.getElementById(project.id);
+    if (titleEl) {
+      titleEl.addEventListener('mouseenter', () => {
+        preview.src = project.img;
+        preview.style.display = 'block';
+      });
+      titleEl.addEventListener('mousemove', (e) => {
+        preview.style.top = (e.clientY + 20) + 'px';
+        preview.style.left = (e.clientX + 30) + 'px';
+      });
+      titleEl.addEventListener('mouseleave', () => {
+        preview.style.display = 'none';
+      });
+    }
+  });
+});

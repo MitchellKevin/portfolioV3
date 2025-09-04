@@ -110,9 +110,20 @@ header {
     align-items: center;
 }
 
+.hero-img {
+  perspective: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .hero-img img {
-    height: 35em;
-    border-radius: 1em;
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+  will-change: transform;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  border-radius: 1em;
+  transform: rotateX(12deg) rotateY(-16deg) scale(1.07); /* 3D effect from start */
 }
 
 .hero-text{
