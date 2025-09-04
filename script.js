@@ -310,3 +310,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    let valid = true;
+    form.querySelectorAll('input, textarea').forEach(field => {
+      if (field.hasAttribute('required') && !field.value.trim()) {
+        valid = false;
+        field.classList.add('input-error');
+        field.classList.remove('input-success');
+      } else {
+        field.classList.remove('input-error');
+        field.classList.add('input-success');
+      }
+    });
+    if (!valid) {
+      e.preventDefault();
+    }
+  });
+
+  form.querySelectorAll('input, textarea').forEach(field => {
+    field.addEventListener('input', function() {
+      if (field.value.trim()) {
+        field.classList.remove('input-error');
+        field.classList.add('input-success');
+      } else {
+        field.classList.remove('input-success');
+        field.classList.add('input-error');
+      }
+    });
+  });
+});

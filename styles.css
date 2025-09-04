@@ -1198,6 +1198,25 @@ header {
   z-index: 3;
 }
 
+/* Add to your CSS file */
+.input-error {
+  border: 2px solid #ef4444;
+  animation: shake 0.3s;
+}
+
+.input-success {
+  border: 2px solid #22c55e;
+  transition: border-color 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
 
 
 
