@@ -258,23 +258,23 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: "project2",
-      img: "img/projects/simplyradio.png"
+      img: "project-images/mario.png"
     },
     {
       id: "project3",
-      img: "img/projects/productivity_dashboard.png"
+      img: "project-images/daytoday.png"
     },
     {
       id: "project4",
-      img: "img/projects/nowaste_app.png"
+      img: "project-images/McLaren.png"
     },
     {
       id: "project5",
-      img: "img/projects/encrypted_file_transfer.png"
+      img: "project-images/GardenCMD.png"
     },
     {
       id: "project6",
-      img: "img/projects/cloud_file_storage.png"
+      img: "project-images/UnderConstruction.png"
     }
     // Add more as needed
   ];
