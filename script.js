@@ -389,3 +389,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const hardBtn = document.getElementById('hard-skills-btn');
+  const softBtn = document.getElementById('soft-skills-btn');
+  const hardSkills = document.getElementById('hard-skills');
+  const softSkills = document.getElementById('soft-skills');
+
+  if (hardBtn && softBtn && hardSkills && softSkills) {
+    hardBtn.addEventListener('click', function() {
+      hardBtn.classList.add('active');
+      softBtn.classList.remove('active');
+      hardSkills.style.display = 'grid';
+      softSkills.style.display = 'none';
+    });
+    softBtn.addEventListener('click', function() {
+      softBtn.classList.add('active');
+      hardBtn.classList.remove('active');
+      softSkills.style.display = 'grid';
+      hardSkills.style.display = 'none';
+    });
+  }
+});
