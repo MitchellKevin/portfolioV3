@@ -34,10 +34,10 @@ const projects = [
     keywords: "Game Dev / Game Physics / JavaScript",
     number: "02",
     details: [
-      { title: "Category", value: "Health, Companionship, and Technology" },
+      { title: "Category", value: "Game Development, and Vanille JS" },
       { title: "Year", value: "2024" },
       { title: "Brief", value: "Create a visual identity for an upcoming exhibition about human nature and its struggles, including design assets for various needs of usage such as poster, social media etc. Looking for bold & cohesive visual presence." },
-      { title: "Link", value: '<a href="">GitLab</a>' }
+      { title: "Link", value: '<a href="">Github</a><a href=""Site"</a>' }
     ],
     image: "project-images/mario.png",
     attention: "Imagine being an elderly person, living alone, and having a friendly robot not only guide you through simple exercises but also chat with you to brighten your day. That’s what I wanted to achieve with FitBot, a mix of movement, companionship, and technology working together.",
@@ -59,7 +59,7 @@ const projects = [
     keywords: "UX-Design / Front-end / Sales",
     number: "03",
     details: [
-      { title: "Category", value: "Software, Sales, and Technology" },
+      { title: "Category", value: "Software, Sales, and Company" },
       { title: "Year", value: "2025" },
       { title: "Brief", value: "Create a visual identity for an upcoming exhibition about human nature and its struggles, including design assets for various needs of usage such as poster, social media etc. Looking for bold & cohesive visual presence." },
       { title: "Link", value: '<a href="www.day-to-day.nl">Site</a>' }
@@ -77,69 +77,19 @@ const projects = [
     This project brought together mobile development, robotics, and human-centered design, showing how technology can enrich daily life for the elderly.`
   },
     {
-    id: "mclaren",
-    school: "Hogeschool van Amsterdam",
-    year: "2022",
-    title: "FitBot - NAO Control App",
-    keywords: "ANDROID DEV / ROBOTICS / JAVA / MQQT",
-    number: "01",
-    details: [
-      { title: "Category", value: "Health, Companionship, and Technology" },
-      { title: "Year", value: "2022" },
-      { title: "Brief", value: "Create a visual identity for an upcoming exhibition about human nature and its struggles, including design assets for various needs of usage such as poster, social media etc. Looking for bold & cohesive visual presence." },
-      { title: "Link", value: '<a href="">GitLab</a>' }
-    ],
-    image: "project-images/nao.png",
-    attention: "Imagine being an elderly person, living alone, and having a friendly robot not only guide you through simple exercises but also chat with you to brighten your day. That’s what I wanted to achieve with FitBot, a mix of movement, companionship, and technology working together.",
-    description: `The NAO Control App was developed to help older adults stay physically active while also offering social interaction through the NAO humanoid robot (FitBot).<br><br>
-    Through the Android app, users could:
-    <ul>
-      <li>Select personalized training programs tailored to elderly mobility.</li>
-      <li>Exercise with NAO as it demonstrated routines in an engaging, motivating way.</li>
-      <li>Have conversations with the robot, reducing loneliness by providing a digital buddy.</li>
-    </ul>
-    On the technical side, I built the app in Android Studio (Java/XML) and set up communication between the app and the NAO robot using the MQTT protocol. This ensured real-time interaction: when users selected a training or conversational option, the NAO robot responded immediately.
-    This project brought together mobile development, robotics, and human-centered design, showing how technology can enrich daily life for the elderly.`
-  },
-    {
     id: "nachtnest",
     school: "Hogeschool van Amsterdam",
-    year: "2022",
-    title: "FitBot - NAO Control App",
-    keywords: "ANDROID DEV / ROBOTICS / JAVA / MQQT",
+    year: "2024",
+    title: "Nachtnest - Smart Lamp",
+    keywords: "RESEARCH / APP / EMBEDDED / MQQT",
     number: "01",
     details: [
-      { title: "Category", value: "Health, Companionship, and Technology" },
-      { title: "Year", value: "2022" },
+      { title: "Category", value: "Health, Sleep, and Technology" },
+      { title: "Year", value: "2024" },
       { title: "Brief", value: "Create a visual identity for an upcoming exhibition about human nature and its struggles, including design assets for various needs of usage such as poster, social media etc. Looking for bold & cohesive visual presence." },
-      { title: "Link", value: '<a href="">GitLab</a>' }
+      { title: "Link", value: '<a href="">Github</a>' }
     ],
-    image: "project-images/nao.png",
-    attention: "Imagine being an elderly person, living alone, and having a friendly robot not only guide you through simple exercises but also chat with you to brighten your day. That’s what I wanted to achieve with FitBot, a mix of movement, companionship, and technology working together.",
-    description: `The NAO Control App was developed to help older adults stay physically active while also offering social interaction through the NAO humanoid robot (FitBot).<br><br>
-    Through the Android app, users could:
-    <ul>
-      <li>Select personalized training programs tailored to elderly mobility.</li>
-      <li>Exercise with NAO as it demonstrated routines in an engaging, motivating way.</li>
-      <li>Have conversations with the robot, reducing loneliness by providing a digital buddy.</li>
-    </ul>
-    On the technical side, I built the app in Android Studio (Java/XML) and set up communication between the app and the NAO robot using the MQTT protocol. This ensured real-time interaction: when users selected a training or conversational option, the NAO robot responded immediately.
-    This project brought together mobile development, robotics, and human-centered design, showing how technology can enrich daily life for the elderly.`
-  },
-    {
-    id: "GardenCMD",
-    school: "Hogeschool van Amsterdam",
-    year: "2022",
-    title: "FitBot - NAO Control App",
-    keywords: "ANDROID DEV / ROBOTICS / JAVA / MQQT",
-    number: "01",
-    details: [
-      { title: "Category", value: "Health, Companionship, and Technology" },
-      { title: "Year", value: "2022" },
-      { title: "Brief", value: "Create a visual identity for an upcoming exhibition about human nature and its struggles, including design assets for various needs of usage such as poster, social media etc. Looking for bold & cohesive visual presence." },
-      { title: "Link", value: '<a href="">GitLab</a>' }
-    ],
-    image: "project-images/nao.png",
+    image: "",
     attention: "Imagine being an elderly person, living alone, and having a friendly robot not only guide you through simple exercises but also chat with you to brighten your day. That’s what I wanted to achieve with FitBot, a mix of movement, companionship, and technology working together.",
     description: `The NAO Control App was developed to help older adults stay physically active while also offering social interaction through the NAO humanoid robot (FitBot).<br><br>
     Through the Android app, users could:
