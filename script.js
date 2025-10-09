@@ -139,6 +139,11 @@ const certs = [
     org: "Amazon"
   },
   {
+    img: "Certificates/ethicalHacking.png",
+    title: "Ethical Hacking with Open Source Tools Specialization",
+    org: "IBM"
+  },
+  {
     img: "Foundational_Csharp.png",
     title: "Foundational C#",
     org: "Microsoft"
