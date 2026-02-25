@@ -143,6 +143,11 @@ const certs = [
     title: "Ethical Hacking with Open Source Tools Specialization",
     org: "IBM"
   },
+    {
+    img: "Certificates/londen_fullstack.png",
+    title: "Full-Stack Web Development",
+    org: "University of Londen"
+  },
   {
     img: "Foundational_Csharp.png",
     title: "Foundational C#",
