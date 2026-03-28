@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- STICKY NAVBAR -->
@@ -54,7 +54,11 @@
                 <section id="hero">
                     <div class="hero-text">
                         <h2 class="hero-badge">Available for Internship</h2>
-                        <h1>Full-Stack<br>Engineer</h1>
+                        <h1>
+                            <span class="hero-static">Full-Stack</span><br>
+                            <span class="hero-typed" id="hero-typed"></span>
+                            <span class="typed-cursor">|</span>
+                        </h1>
                         <p>Hi, I'm Mitchell. I build smart systems that connect code, people and purpose.
 Java · MERN Stack · Android · Pentesting. I turn creative ideas into functional software.</p>
                         <div class="hero-stack-pills">
@@ -260,53 +264,39 @@ Java · MERN Stack · Android · Pentesting. I turn creative ideas into function
                 </div>
                 <div class="project_list">
                     <article class="project_item" data-img="project-images/nao.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/nao.png')"></div>
-                        <p class="project-num">01</p>
-                        <h3><a href="project-structure.html?id=fitbot">NAO ROBOTICS — FitBot</a></h3>
+                        <p class="project-num">PROJECT #1</p>
+                        <h3 id="project1"><a href="project-structure.html?id=fitbot">NAO ROBOTICS | FitBot</a></h3>
                         <p class="project-tags">Robotics · Android Dev</p>
-                        <span class="project-arrow">↗</span>
                     </article>
                     <article class="project_item" data-img="project-images/mario.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/mario.png')"></div>
-                        <p class="project-num">02</p>
-                        <h3><a href="project-structure.html?id=mario">Mini-game — Super Mario</a></h3>
+                        <p class="project-num">PROJECT #2</p>
+                        <h3 id="project2"><a href="project-structure.html?id=mario">Mini-game | Super Mario</a></h3>
                         <p class="project-tags">Game · Vanilla JS</p>
-                        <span class="project-arrow">↗</span>
                     </article>
                     <article class="project_item" data-img="project-images/daytoday.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/daytoday.png')"></div>
-                        <p class="project-num">03</p>
-                        <h3><a href="project-structure.html?id=daytoday">Sales Site — Day-to-Day</a></h3>
+                        <p class="project-num">PROJECT #3</p>
+                        <h3 id="project3"><a href="project-structure.html?id=daytoday">Sales Site | Day-to-Day</a></h3>
                         <p class="project-tags">UX-Design · Front-end</p>
-                        <span class="project-arrow">↗</span>
                     </article>
                     <article class="project_item" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">04</p>
-                        <h3><a href="project-structure.html?id=nachtnest">Smart Lamp — NachtNest</a></h3>
+                        <p class="project-num">PROJECT #4</p>
+                        <h3 id="project6"><a href="project-structure.html?id=nachtnest">Smart Lamp | NachtNest</a></h3>
                         <p class="project-tags">Embedded · Research</p>
-                        <span class="project-arrow">↗</span>
                     </article>
                     <article class="project_item" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">05</p>
-                        <h3><a href="https://mitchellkevin.github.io/PersonalInfoSite/">About Me — MITCHOPOLY</a></h3>
+                        <p class="project-num">PROJECT #5</p>
+                        <h3 id="project7"><a href="https://mitchellkevin.github.io/PersonalInfoSite/">About Me | MITCHOPOLY</a></h3>
                         <p class="project-tags">3D Game · Three.js</p>
-                        <span class="project-arrow">↗</span>
                     </article>
                     <article class="project_item" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">06</p>
-                        <h3><a href="https://mitchellkevin.github.io/RubicsCube/">Rubik's Cube — Game</a></h3>
+                        <p class="project-num">PROJECT #6</p>
+                        <h3 id="project8"><a href="https://mitchellkevin.github.io/RubicsCube/">Rubik's Cube | Game</a></h3>
                         <p class="project-tags">Math · JavaScript</p>
-                        <span class="project-arrow">↗</span>
                     </article>
                     <article class="project_item project_item--wip" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">WIP</p>
-                        <h3><a href="#">The NoWaste App</a></h3>
+                        <p class="project-num">In Progress</p>
+                        <h3 id="project9"><a href="#">The NoWaste App</a></h3>
                         <p class="project-tags">Java · Android Dev</p>
-                        <span class="project-arrow">↗</span>
                     </article>
                 </div>
             </div>

@@ -1,53 +1,37 @@
 /* =============================================
-   CUSTOM ANIMATED CURSOR
+   TYPED.JS HERO EFFECT
    ============================================= */
-(function initCursor() {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-    const dot  = document.createElement('div');
-    const ring = document.createElement('div');
-    dot.id  = 'cursor-dot';
-    ring.id = 'cursor-ring';
-    document.body.appendChild(dot);
-    document.body.appendChild(ring);
-    let mx = -100, my = -100, rx = -100, ry = -100;
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.transform = `translate(${mx}px, ${my}px)`;
-    });
-    (function loop() {
-        rx += (mx - rx) * 0.12;
-        ry += (my - ry) * 0.12;
-        ring.style.transform = `translate(${rx}px, ${ry}px)`;
-        requestAnimationFrame(loop);
-    })();
-    document.addEventListener('mousedown', () => ring.classList.add('pressed'));
-    document.addEventListener('mouseup',   () => ring.classList.remove('pressed'));
-    document.querySelectorAll('a, button, .project_item, .feature_card, .cert-arrow, #light-dark-mode-toggle').forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-})();
+(function initTyped() {
+    const el = document.getElementById('hero-typed');
+    if (!el) return;
+    const words = ['Engineer', 'Developer', 'Pentester', 'App Builder', 'Problem Solver'];
+    let wordIdx = 0, charIdx = 0, deleting = false;
 
-/* =============================================
-   SCROLL REVEAL
-   ============================================= */
-(function initScrollReveal() {
-    const targets = document.querySelectorAll(
-        '#tools, #Features, #language, #projects, #Timeline, #Licenses, #contact, .project_item'
-    );
-    targets.forEach((el, i) => {
-        el.classList.add('reveal');
-        el.style.transitionDelay = (i % 4) * 0.07 + 's';
-    });
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                obs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08 });
-    targets.forEach(el => obs.observe(el));
+    function type() {
+        const word = words[wordIdx];
+        if (deleting) {
+            el.textContent = word.substring(0, charIdx - 1);
+            charIdx--;
+        } else {
+            el.textContent = word.substring(0, charIdx + 1);
+            charIdx++;
+        }
+
+        let delay = deleting ? 60 : 110;
+
+        if (!deleting && charIdx === word.length) {
+            delay = 1800;
+            deleting = true;
+        } else if (deleting && charIdx === 0) {
+            deleting = false;
+            wordIdx = (wordIdx + 1) % words.length;
+            delay = 300;
+        }
+
+        setTimeout(type, delay);
+    }
+
+    setTimeout(type, 600);
 })();
 
 /* =============================================
@@ -221,15 +205,34 @@
     });
 })();
 
-
 /* =============================================
-   PROJECT ROW — number highlight on hover
+   PROJECT IMAGE PREVIEW ON HOVER
    ============================================= */
-(function initProjectRows() {
-    document.querySelectorAll('.project_item').forEach(item => {
-        item.addEventListener('click', () => {
-            const link = item.querySelector('a');
-            if (link && link.href && link.href !== '#') window.location.href = link.href;
+(function initProjectPreview() {
+    const preview = document.createElement('img');
+    preview.className = 'project-preview-img';
+    document.body.appendChild(preview);
+
+    document.querySelectorAll('.project_item[data-img]').forEach(item => {
+        const imgSrc = item.dataset.img;
+
+        item.addEventListener('mouseenter', () => {
+            preview.src = imgSrc;
+            preview.style.display = 'block';
+        });
+
+        item.addEventListener('mousemove', (e) => {
+            const offset = 24;
+            let left = e.clientX + offset;
+            let top  = e.clientY + offset;
+            if (left + 270 > window.innerWidth)  left = e.clientX - 270 - offset;
+            if (top  + 210 > window.innerHeight) top  = e.clientY - 210 - offset;
+            preview.style.left = left + 'px';
+            preview.style.top  = top  + 'px';
+        });
+
+        item.addEventListener('mouseleave', () => {
+            preview.style.display = 'none';
         });
     });
 })();
