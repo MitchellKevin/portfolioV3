@@ -359,3 +359,30 @@ const certs = [
         }
     }
 })();
+
+// PARTICLE SLIDER BACKGROUND
+var init = function(){
+  var ps = new ParticleSlider({
+    ptlGap: 1,        // tweak density
+    ptlSize: 0,       // particle size
+    width: 1900,
+    height: 1900,
+    monochrome: false,
+    // color: '#008cff',
+  });
+
+  window.addEventListener('click', function(){
+    ps.init(true);
+  });
+};
+
+var initParticleSlider = function(){
+  var psScript = document.createElement('script');
+  psScript.onload = init;
+  psScript.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/23500/ps-0.9.js';
+  document.body.appendChild(psScript);
+};
+
+
+
+window.addEventListener('load', initParticleSlider);
