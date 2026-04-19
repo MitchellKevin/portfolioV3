@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- PAGE LOADER -->
+    <div id="page-loader" aria-hidden="true"><span id="loader-count">0</span></div>
+    <!-- FILM GRAIN OVERLAY -->
+    <div id="grain-overlay" aria-hidden="true"></div>
     <!-- STICKY NAVBAR -->
     <header id="main-header">
         <a href="#hero" class="header-logo-link">
@@ -55,7 +59,10 @@
                 <section id="hero">
                     <div class="hero-text">
                         <h2 class="hero-badge">Available for Internship</h2>
-                        <h1>Full-Stack<br>Engineer</h1>
+                        <h1>
+                            <span class="hero-line-mask"><span class="hero-line-inner">Full-Stack</span></span>
+                            <span class="hero-line-mask"><span class="hero-line-inner">Engineer</span></span>
+                        </h1>
                         <p>Hi, I'm Mitchell. I build smart systems that connect code, people and purpose.
 Java · Javascript · Hardware · Pentesting. I turn creative ideas into functional software.</p>
                         <div class="hero-stack-pills">
@@ -423,7 +430,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
 
     <div id="notification" style="display:none;"></div>
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function(){

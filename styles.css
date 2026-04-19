@@ -1478,3 +1478,112 @@ body.dark-mode .footer-social img {
     .timeline-header h2,
     .contact-container h2 { font-size: 1.4rem; }
 }
+
+/* =============================================
+   PAGE LOADER
+   ============================================= */
+#page-loader {
+    position: fixed;
+    inset: 0;
+    background: #111;
+    z-index: 999999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 3rem 4rem;
+    transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.1s;
+    will-change: transform;
+}
+
+#page-loader.done {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+#loader-count {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(5rem, 14vw, 11rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    user-select: none;
+}
+
+#loader-count::after {
+    content: '%';
+    font-size: 0.45em;
+    opacity: 0.5;
+    margin-left: 0.05em;
+    font-weight: 600;
+}
+
+/* =============================================
+   FILM GRAIN OVERLAY
+   ============================================= */
+@keyframes grain {
+    0%,100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -5%); }
+    20% { transform: translate(-10%, 5%); }
+    30% { transform: translate(5%, -10%); }
+    40% { transform: translate(-5%, 15%); }
+    50% { transform: translate(-10%, 5%); }
+    60% { transform: translate(15%, 0); }
+    70% { transform: translate(0, 10%); }
+    80% { transform: translate(-15%, 0); }
+    90% { transform: translate(10%, 5%); }
+}
+
+#grain-overlay {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    animation: grain 8s steps(10) infinite;
+}
+
+/* =============================================
+   HERO TEXT REVEAL
+   ============================================= */
+.hero-line-mask {
+    display: block;
+    overflow: hidden;
+    line-height: 1.05;
+    margin: 0;
+}
+
+.hero-line-inner {
+    display: block;
+    transform: translateY(112%);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-line-inner.is-visible {
+    transform: translateY(0);
+}
+
+.hero-badge,
+.hero-text > p,
+.hero-stack-pills,
+.hero-buttons,
+.hero-img {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-badge.is-visible,
+.hero-text > p.is-visible,
+.hero-stack-pills.is-visible,
+.hero-buttons.is-visible,
+.hero-img.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
