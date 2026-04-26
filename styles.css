@@ -66,51 +66,53 @@
    ROOT & DARK MODE
    ============================================= */
 :root {
-    --hero-bg: #f5f5f3;
-    --hero-border-color: #C8C8C4;
-    --accent-color: #a2c2f3;
-    --accent-text-color: #002a52;
-    --secondary-color: #111;
-    --text-color: #222;
-    --text-secondary-color: #666;
-    --bg-color: #fafafa;
-    --carousel-bg: #ffffff;
-    --footer-bg: #f0f0ee;
-    --footer-text: #111;
-    --footer-border: #ddd;
-    --card-bg: rgba(255,255,255,0.5);
-    --card-border: #e0e0dc;
-    --header-bg: rgba(250,250,250,0.85);
-    --contact-bg: #ffffff;
-    --contact-text: #222;
-    --contact-input-bg: #f5f5f3;
-    --contact-input-border: #ddd;
-    --pill-bg: #e8ecf5;
-    --pill-text: #002152;
+    /* ── LIGHT: warm cream + tangerine ── */
+    --hero-bg:              #f8f6f0;
+    --hero-border-color:    rgba(0,0,0,0.09);
+    --accent-color:         #FF6B35;
+    --accent-text-color:    #fff;
+    --secondary-color:      #0d0d0d;
+    --text-color:           #1a1a1a;
+    --text-secondary-color: #888;
+    --bg-color:             #f8f6f0;
+    --carousel-bg:          #f0ede6;
+    --footer-bg:            #0d0d0d;
+    --footer-text:          #666;
+    --footer-border:        rgba(255,255,255,0.07);
+    --card-bg:              #fff;
+    --card-border:          rgba(0,0,0,0.07);
+    --header-bg:            rgba(248,246,240,0.92);
+    --contact-bg:           #fff;
+    --contact-text:         #1a1a1a;
+    --contact-input-bg:     #f2f0ea;
+    --contact-input-border: rgba(0,0,0,0.1);
+    --pill-bg:              rgba(255,107,53,0.1);
+    --pill-text:            #c04a1a;
 }
 
 body.dark-mode {
-    --hero-bg: #000000;
-    --hero-border-color: #2e3142;
-    --accent-color: #d42d2d;
-    --accent-text-color: #fff;
-    --secondary-color: #f0f0f0;
-    --text-color: #dde1f0;
-    --text-secondary-color: #8890b0;
-    --bg-color: #000000;
-    --carousel-bg: #000000;
-    --footer-bg: #000000;
-    --footer-text: #c8ccd8;
-    --footer-border: #000000;
-    --card-bg: rgba(0, 0, 0, 0.6);
-    --card-border: #1a1a1a;
-    --header-bg: rgba(0, 0, 0, 0.88);
-    --contact-bg: #000000;
-    --contact-text: #dde1f0;
-    --contact-input-bg: #000000;
-    --contact-input-border: #2e3142;
-    --pill-bg: rgba(212, 45, 45, 0.12);
-    --pill-text: #d42d2d;
+    /* ── DARK: near-black + electric lime ── */
+    --hero-bg:              #0d0d0d;
+    --hero-border-color:    rgba(255,255,255,0.07);
+    --accent-color:         #c8ff14;
+    --accent-text-color:    #0d0d0d;
+    --secondary-color:      #f0f0e8;
+    --text-color:           #c0c0b8;
+    --text-secondary-color: #484840;
+    --bg-color:             #0d0d0d;
+    --carousel-bg:          #0d0d0d;
+    --footer-bg:            #080808;
+    --footer-text:          #484840;
+    --footer-border:        rgba(255,255,255,0.05);
+    --card-bg:              #141414;
+    --card-border:          rgba(255,255,255,0.06);
+    --header-bg:            rgba(13,13,13,0.94);
+    --contact-bg:           #0d0d0d;
+    --contact-text:         #c0c0b8;
+    --contact-input-bg:     #141414;
+    --contact-input-border: rgba(255,255,255,0.08);
+    --pill-bg:              rgba(200,255,20,0.08);
+    --pill-text:            #c8ff14;
 }
 
 /* =============================================
@@ -122,7 +124,13 @@ body.dark-mode {
 
 html {
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) transparent;
 }
+
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 1px; }
 
 body {
     font-family: 'Outfit', sans-serif;
@@ -425,12 +433,13 @@ h1, h2, h3 {
 .pill {
     padding: 0.3em 0.9em;
     font-size: 0.78em;
-    font-weight: 500;
-    border-radius: 99px;
+    font-weight: 600;
+    border-radius: 4px;
     background: var(--pill-bg);
     color: var(--pill-text);
-    letter-spacing: 0.02em;
-    border: 0.5px solid var(--accent-color);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent-color);
 }
 
 .hero-buttons {
@@ -572,11 +581,11 @@ h1, h2, h3 {
 
 .features_header h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
     color: var(--secondary-color);
-    margin: 0 0 0.6em;
-    letter-spacing: -0.02em;
+    margin: 0 0 0.5em;
+    letter-spacing: -0.03em;
 }
 
 .features_header p {
@@ -623,8 +632,8 @@ h1, h2, h3 {
 
 .feature_card {
     background: var(--card-bg);
-    border: 0.5px solid var(--card-border);
-    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
     padding: 1.6em 1.4em;
     display: flex;
     flex-direction: column;
@@ -641,7 +650,18 @@ h1, h2, h3 {
 }
 
 body.dark-mode .feature_card:hover {
-    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    box-shadow: 0 0 0 1px rgba(200,255,20,0.18), 0 20px 48px rgba(0,0,0,0.5);
+    border-color: rgba(200,255,20,0.22);
+}
+
+body.dark-mode #contact-button {
+    background: var(--accent-color);
+    color: var(--accent-text-color);
+    border-color: var(--accent-color);
+}
+
+body.dark-mode #hero-border-wrapper button:hover {
+    box-shadow: 0 6px 28px rgba(200,255,20,0.22);
 }
 
 .feature_icon {
@@ -771,11 +791,11 @@ body.dark-mode .feature_card:hover {
 
 .project_header h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
     color: var(--secondary-color);
-    margin: 0 0 0.5em;
-    letter-spacing: -0.02em;
+    margin: 0 0 0.4em;
+    letter-spacing: -0.03em;
 }
 
 .project_header p {
@@ -964,8 +984,9 @@ body.dark-mode .project_item:hover .project-bg-preview {
 
 .timeline-header h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     color: var(--secondary-color);
     letter-spacing: -0.02em;
 }
@@ -1074,8 +1095,9 @@ body.dark-mode .project_item:hover .project-bg-preview {
 
 #Licenses h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     color: var(--secondary-color);
     margin: 2em 0 1.5em;
     letter-spacing: -0.02em;
@@ -1233,8 +1255,9 @@ body.dark-mode .project_item:hover .project-bg-preview {
 
 .contact-container h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.8em;
-    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     margin: 0 0 0.2em;
     color: var(--contact-text);
     letter-spacing: -0.02em;
@@ -1345,6 +1368,7 @@ body.dark-mode .project_item:hover .project-bg-preview {
     width: 30px;
     height: 30px;
     object-fit: contain;
+    filter: invert(1) brightness(0.8);
 }
 
 .footer-nav {
@@ -1375,7 +1399,7 @@ body.dark-mode .project_item:hover .project-bg-preview {
     height: 24px;
     opacity: 0.7;
     transition: opacity 0.2s;
-    filter: var(--footer-icon-filter, none);
+    filter: invert(1) brightness(0.7);
 }
 
 body.dark-mode .footer-social img {
@@ -1485,7 +1509,7 @@ body.dark-mode .footer-social img {
 #page-loader {
     position: fixed;
     inset: 0;
-    background: #111;
+    background: #0d0d0d;
     z-index: 999999;
     display: flex;
     align-items: flex-end;
@@ -1504,7 +1528,7 @@ body.dark-mode .footer-social img {
     font-family: 'Outfit', sans-serif;
     font-size: clamp(5rem, 14vw, 11rem);
     font-weight: 800;
-    color: #fff;
+    color: #c8ff14;
     line-height: 1;
     letter-spacing: -0.04em;
     user-select: none;
@@ -1586,4 +1610,110 @@ body.dark-mode .footer-social img {
 .hero-img.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.hero-line--italic {
+    font-style: italic;
+}
+
+/* =============================================
+   SECTION LABELS
+   ============================================= */
+.section-label {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 0.9em;
+    opacity: 0.9;
+}
+
+/* =============================================
+   MARQUEE STRIP
+   ============================================= */
+.marquee-strip {
+    overflow: hidden;
+    border-top: 0.5px solid var(--hero-border-color);
+    border-bottom: 0.5px solid var(--hero-border-color);
+    padding: 1em 0;
+    background: var(--bg-color);
+    white-space: nowrap;
+}
+
+.marquee-strip:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5em;
+    animation: marquee-scroll 22s linear infinite;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.marquee-track span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82em;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary-color);
+    white-space: nowrap;
+}
+
+.marquee-sep {
+    color: var(--accent-color) !important;
+    font-size: 0.6em !important;
+    opacity: 0.8;
+}
+
+/* =============================================
+   ORBIT BADGE
+   ============================================= */
+@keyframes orbit-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.orbit-badge {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    width: 108px;
+    height: 108px;
+    z-index: 3;
+    color: var(--text-secondary-color);
+    animation: orbit-spin 18s linear infinite;
+    cursor: default;
+}
+
+.orbit-badge:hover {
+    animation-play-state: paused;
+}
+
+.orbit-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.orbit-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    animation: orbit-spin 18s linear infinite reverse;
+}
+
+@media (max-width: 1024px) {
+    .orbit-badge { display: none; }
 }
