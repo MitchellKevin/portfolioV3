@@ -1,4 +1,87 @@
 /* =============================================
+   TEXT SCRAMBLE HELPER
+   ============================================= */
+function scrambleText(el, finalText, delay) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234&@#!';
+    setTimeout(() => {
+        let iter = 0;
+        const total = finalText.length * 2.5;
+        const id = setInterval(() => {
+            el.textContent = finalText.split('').map((c, i) => {
+                if (c === ' ') return ' ';
+                if (i < iter / 2.5) return c;
+                return chars[Math.floor(Math.random() * chars.length)];
+            }).join('');
+            if (iter++ >= total) { el.textContent = finalText; clearInterval(id); }
+        }, 30);
+    }, delay || 0);
+}
+
+/* =============================================
+   PAGE LOADER + HERO REVEAL
+   ============================================= */
+(function initLoader() {
+    const loader = document.getElementById('page-loader');
+    const count  = document.getElementById('loader-count');
+
+    function revealHero(delay) {
+        document.querySelectorAll('.hero-line-inner').forEach((el, i) => {
+            setTimeout(() => el.classList.add('is-visible'), delay + i * 140);
+        });
+        const badge  = document.querySelector('.hero-badge');
+        const para   = document.querySelector('.hero-text > p');
+        const pills  = document.querySelector('.hero-stack-pills');
+        const btns   = document.querySelector('.hero-buttons');
+        const heroImg = document.querySelector('.hero-img');
+        [badge, para, pills, btns, heroImg].forEach((el, i) => {
+            if (!el) return;
+            setTimeout(() => {
+                el.classList.add('is-visible');
+                if (el === badge) scrambleText(el, 'Available for Internship', 80);
+            }, delay + i * 120);
+        });
+    }
+
+    if (!loader || !count) { revealHero(200); return; }
+
+    const duration = 1500;
+    const start = performance.now();
+
+    (function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 2.5);
+        count.textContent = Math.floor(eased * 100);
+        if (progress < 1) { requestAnimationFrame(tick); return; }
+        count.textContent = 100;
+        setTimeout(() => {
+            loader.classList.add('done');
+            loader.addEventListener('transitionend', () => { loader.style.display = 'none'; }, { once: true });
+            revealHero(400);
+        }, 150);
+    })(performance.now());
+})();
+
+/* =============================================
+   MAGNETIC BUTTONS
+   ============================================= */
+(function initMagneticBtns() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    document.querySelectorAll('#contact-button, #projects-button').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+            const r = btn.getBoundingClientRect();
+            const dx = (e.clientX - (r.left + r.width / 2)) * 0.32;
+            const dy = (e.clientY - (r.top  + r.height / 2)) * 0.32;
+            btn.style.transition = 'transform 0.1s ease, box-shadow 0.2s';
+            btn.style.transform  = `translate(${dx}px, ${dy}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s';
+            btn.style.transform  = 'translate(0, 0)';
+        });
+    });
+})();
+
+/* =============================================
    CUSTOM ANIMATED CURSOR
    ============================================= */
 (function initCursor() {

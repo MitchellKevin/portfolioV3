@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitchell Scholte — Full-Stack Developer</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="description" content="I am Mitchell Scholte, a full-stack developer specializing in building responsive and user-friendly web applications using Javascript and Java. With a focus on security and User Experience Design." />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- PAGE LOADER -->
+    <div id="page-loader" aria-hidden="true"><span id="loader-count">0</span></div>
+    <!-- FILM GRAIN OVERLAY -->
+    <div id="grain-overlay" aria-hidden="true"></div>
     <!-- STICKY NAVBAR -->
     <header id="main-header">
         <a href="#hero" class="header-logo-link">
@@ -54,7 +59,10 @@
                 <section id="hero">
                     <div class="hero-text">
                         <h2 class="hero-badge">Available for Internship</h2>
-                        <h1>Full-Stack<br>Engineer</h1>
+                        <h1>
+                            <span class="hero-line-mask"><span class="hero-line-inner">Full-Stack</span></span>
+                            <span class="hero-line-mask"><span class="hero-line-inner">Engineer</span></span>
+                        </h1>
                         <p>Hi, I'm Mitchell. I build smart systems that connect code, people and purpose.
 Java · Javascript · Hardware · Pentesting. I turn creative ideas into functional software.</p>
                         <div class="hero-stack-pills">
@@ -269,23 +277,16 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <p class="project-tags">Robotics · Android Dev</p>
                         <span class="project-arrow">↗</span>
                     </article>
-                    <article class="project_item" data-img="project-images/mario.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/mario.png')"></div>
-                        <p class="project-num">02</p>
-                        <h3><a href="project-structure.html?id=mario">Mini-game — Super Mario</a></h3>
-                        <p class="project-tags">Game · Vanilla JS</p>
-                        <span class="project-arrow">↗</span>
-                    </article>
                     <article class="project_item" data-img="project-images/daytoday.png">
                         <div class="project-bg-preview" style="background-image:url('project-images/daytoday.png')"></div>
-                        <p class="project-num">03</p>
+                        <p class="project-num">02</p>
                         <h3><a href="https://www.day-to-day.nl/">Sales Site — Day-to-Day</a></h3>
                         <p class="project-tags">UX-Design · Front-end</p>
                         <span class="project-arrow">↗</span>
                     </article>
                     <!-- <article class="project_item" data-img="project-images/UnderConstruction.png">
                         <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">04</p>
+                        <p class="project-num">03</p>
                         <h3><a href="project-structure.html?id=nachtnest">Smart Lamp — NachtNest</a></h3>
                         <p class="project-tags">Embedded · Research</p>
                         <span class="project-arrow">↗</span>
@@ -311,6 +312,13 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <p class="project-tags">Hackathon · Three.js</p>
                         <span class="project-arrow">↗</span>
                     </article>
+                    <article class="project_item" data-img="project-images/mario.png">
+                        <div class="project-bg-preview" style="background-image:url('project-images/mario.png')"></div>
+                        <p class="project-num">07</p>
+                        <h3><a href="https://wdd-api-scholte.onrender.com/">CMD Casino — Full Stack</a></h3>
+                        <p class="project-tags">Game · API</p>
+                        <span class="project-arrow">↗</span>
+                    </article>
                 </div>
             </div>
         </section>
@@ -332,7 +340,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <div class="timeline-dot" id="timeline-dot"></div>
                         <div class="timeline-event left" style="top:0%">Starting Technical Computer Science @AUAS</div>
                         <div class="timeline-event right" style="top:12%">Starting Communication &amp; Multimedia Design @AUAS</div>
-                        <div class="timeline-event left" style="top:24%">First Internship @Ecocharting</div>
+                        <div class="timeline-event left" style="top:24%">First UX/UI Internship @Ecocharting</div>
                         <div class="timeline-event right" style="top:36%">Starting a Software Company</div>
                         <div class="timeline-event left" style="top:48%">Amazon Junior Software Developer Professional Certification</div>
                         <div class="timeline-event right" style="top:60%">TA @AUAS: Front-end Development</div>
@@ -422,7 +430,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
 
     <div id="notification" style="display:none;"></div>
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function(){
