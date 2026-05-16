@@ -318,63 +318,73 @@ function scrambleText(el, finalText, delay) {
 })();
 
 /* =============================================
-   TIMELINE SCROLL ANIMATION
+   TIMELINE ANIMATION
    ============================================= */
 (function initTimeline() {
-    const timeline = document.querySelector('.timeline-container');
-    const fill     = document.querySelector('.timeline-fill');
-    const dot      = document.querySelector('.timeline-dot');
-    if (!timeline || !fill || !dot) return;
+    const track = document.querySelector('.timeline-track');
+    const fill  = document.querySelector('.tl-fill');
+    if (!track || !fill) return;
 
+    // Scroll-driven line fill
     window.addEventListener('scroll', () => {
-        const rect = timeline.getBoundingClientRect();
-        const winH  = window.innerHeight;
-        const progress = Math.min(1, Math.max(0, (winH - rect.top) / (rect.height + winH * 0.3)));
-        const pct = progress * 100;
-        fill.style.height = pct + '%';
-        dot.style.top     = pct + '%';
+        const rect    = track.getBoundingClientRect();
+        const winH    = window.innerHeight;
+        const progress = Math.min(1, Math.max(0, (winH - rect.top) / (rect.height + winH * 0.25)));
+        fill.style.height = (progress * 100) + '%';
     }, { passive: true });
+
+    // Cards fade in from the side
+    const cards = document.querySelectorAll('.tl-card');
+    if (!('IntersectionObserver' in window)) {
+        cards.forEach(c => c.classList.add('tl-visible'));
+        return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('tl-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.25 });
+    cards.forEach(c => observer.observe(c));
 })();
 
 /* =============================================
-   CERTIFICATIONS CAROUSEL
+   CERTIFICATIONS GRID
    ============================================= */
 const certs = [
-    { img: 'Certificates/Cybersecurity_101.png',                    title: 'Cyber Security 101',                                          org: 'TryHackMe' },
-    { img: 'Certificates/Web_Fundamentals.png',                     title: 'Web Fundamentals',                                            org: 'TryHackMe' },
-    { img: 'Certificates/Jr_Penetration_Tester.png',                title: 'Jr Penetration Tester',                                       org: 'TryHackMe' },
-    { img: 'Certificates/amazon_Junior_software_developer.png',     title: 'Professional Certification in Junior Software Developer',      org: 'Amazon' },
-    { img: 'Certificates/ethicalHacking.png',                       title: 'Ethical Hacking with Open Source Tools Specialization',       org: 'IBM' },
-    { img: 'Certificates/londen_fullstack.png',                     title: 'Full-Stack Web Development',                                  org: 'University of London' },
-    { img: 'Foundational_Csharp.png',                               title: 'Foundational C#',                                             org: 'Microsoft' }
+    { img: 'Certificates/Cybersecurity_101.png',                   title: 'Cyber Security 101',                       org: 'TryHackMe' },
+    { img: 'Certificates/Web_Fundamentals.png',                    title: 'Web Fundamentals',                         org: 'TryHackMe' },
+    { img: 'Certificates/Jr_Penetration_Tester.png',               title: 'Jr Penetration Tester',                    org: 'TryHackMe' },
+    { img: 'Certificates/amazon_Junior_software_developer.png',    title: 'Junior Software Developer',                org: 'Amazon' },
+    { img: 'Certificates/Amazon_Introduction.png',                 title: 'Introduction to Cloud Semester 1',         org: 'Amazon' },
+    { img: 'Certificates/ethicalHacking.png',                      title: 'Ethical Hacking Specialization',           org: 'IBM' },
+    { img: 'Certificates/londen_fullstack.png',                    title: 'Full-Stack Web Development',               org: 'University of London' },
 ];
 
-(function initCertCarousel() {
-    const leftEl   = document.getElementById('cert-left');
-    const centerEl = document.getElementById('cert-center');
-    const rightEl  = document.getElementById('cert-right');
+(function initCertViewer() {
+    const imgEl    = document.getElementById('cert-main-img');
+    const numEl    = document.getElementById('cert-big-num');
+    const orgEl    = document.getElementById('cert-org-tag');
+    const titleEl  = document.getElementById('cert-main-title');
+    const linkEl   = document.getElementById('cert-open-btn');
     const dotsEl   = document.querySelector('.cert-dots');
     const btnLeft  = document.querySelector('.cert-arrow-left');
     const btnRight = document.querySelector('.cert-arrow-right');
-    if (!leftEl || !centerEl || !rightEl) return;
+    if (!imgEl) return;
 
     let current = 0;
     const mod = (n, m) => ((n % m) + m) % m;
 
-    function buildSlide(el, idx) {
-        const c = certs[idx];
-        el.innerHTML = `
-            <img src="${c.img}" alt="${c.title}" loading="lazy">
-            <div class="cert-info">
-                <h4>${c.title}</h4>
-                <span>${c.org}</span>
-            </div>`;
-    }
-
     function render() {
-        buildSlide(leftEl,   mod(current - 1, certs.length));
-        buildSlide(centerEl, current);
-        buildSlide(rightEl,  mod(current + 1, certs.length));
+        const c = certs[current];
+        imgEl.src = c.img;
+        imgEl.alt = c.title;
+        if (numEl)   numEl.textContent  = String(current + 1).padStart(2, '0');
+        if (orgEl)   orgEl.textContent  = c.org;
+        if (titleEl) titleEl.textContent = c.title;
+        if (linkEl)  linkEl.href        = c.img;
 
         if (dotsEl) {
             dotsEl.innerHTML = '';
