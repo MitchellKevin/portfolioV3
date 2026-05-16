@@ -116,7 +116,7 @@ function scrambleText(el, finalText, delay) {
    ============================================= */
 (function initScrollReveal() {
     const targets = document.querySelectorAll(
-        '#tools, #Features, #language, #projects, #Timeline, #Licenses, #contact, .project_item'
+        '#tools, #Features, #language, #skill-graph, #projects, #Timeline, #Licenses, #contact, .project_item'
     );
     targets.forEach((el, i) => {
         el.classList.add('reveal');
@@ -124,10 +124,7 @@ function scrambleText(el, finalText, delay) {
     });
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                obs.unobserve(entry.target);
-            }
+            entry.target.classList.toggle('visible', entry.isIntersecting);
         });
     }, { threshold: 0.08 });
     targets.forEach(el => obs.observe(el));
@@ -228,25 +225,31 @@ function scrambleText(el, finalText, delay) {
     }
 })();
 
+/* Register GSAP plugins once */
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
+
 /* =============================================
-   FEATURE CARDS ANIMATION
+   FEATURE CARDS ANIMATION (GSAP)
    ============================================= */
 (function initFeatureCards() {
-    const featureSection = document.getElementById('Features');
-    if (!featureSection) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const cards = entry.target.querySelectorAll('.feature_card:not([style*="display: none"]) .feature_card, .feature_card');
-            if (entry.isIntersecting) {
-                featureSection.querySelectorAll('.feature_card').forEach(card => card.classList.add('animate'));
-            } else {
-                featureSection.querySelectorAll('.feature_card').forEach(card => card.classList.remove('animate'));
-            }
+    if (typeof gsap === 'undefined') return;
+    const grids = ['#hard-skills', '#soft-skills'];
+    grids.forEach(selector => {
+        const grid = document.querySelector(selector);
+        if (!grid) return;
+        const cards = grid.querySelectorAll('.feature_card');
+        gsap.set(cards, { opacity: 0, y: 28 });
+        ScrollTrigger.create({
+            trigger: grid,
+            start: 'top 82%',
+            onEnter:      () => gsap.to(cards, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out', stagger: 0.1 }),
+            onEnterBack:  () => gsap.to(cards, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out', stagger: 0.1 }),
+            onLeave:      () => gsap.set(cards, { opacity: 0, y: 28 }),
+            onLeaveBack:  () => gsap.set(cards, { opacity: 0, y: 28 }),
         });
-    }, { threshold: 0.15 });
-
-    observer.observe(featureSection);
+    });
 })();
 
 /* =============================================
@@ -259,16 +262,22 @@ function scrambleText(el, finalText, delay) {
     const softGrid = document.getElementById('soft-skills');
     if (!hardBtn || !softBtn || !hardGrid || !softGrid) return;
 
+    function revealCards(grid) {
+        const cards = grid.querySelectorAll('.feature_card');
+        if (typeof gsap !== 'undefined') {
+            gsap.fromTo(cards,
+                { opacity: 0, y: 22 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.08 }
+            );
+        }
+    }
+
     hardBtn.addEventListener('click', () => {
         hardBtn.classList.add('active');
         softBtn.classList.remove('active');
         hardGrid.style.display = 'grid';
         softGrid.style.display = 'none';
-        hardGrid.querySelectorAll('.feature_card').forEach(c => {
-            c.classList.remove('animate');
-            void c.offsetWidth;
-            c.classList.add('animate');
-        });
+        revealCards(hardGrid);
     });
 
     softBtn.addEventListener('click', () => {
@@ -276,11 +285,7 @@ function scrambleText(el, finalText, delay) {
         hardBtn.classList.remove('active');
         softGrid.style.display = 'grid';
         hardGrid.style.display = 'none';
-        softGrid.querySelectorAll('.feature_card').forEach(c => {
-            c.classList.remove('animate');
-            void c.offsetWidth;
-            c.classList.add('animate');
-        });
+        revealCards(softGrid);
     });
 })();
 
@@ -341,13 +346,279 @@ function scrambleText(el, finalText, delay) {
     }
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('tl-visible');
-                observer.unobserve(entry.target);
-            }
+            entry.target.classList.toggle('tl-visible', entry.isIntersecting);
         });
     }, { threshold: 0.25 });
     cards.forEach(c => observer.observe(c));
+})();
+
+/* =============================================
+   SKILL RADAR CHARTS
+   ============================================= */
+(function initRadarCharts() {
+    const NS = 'http://www.w3.org/2000/svg';
+
+    const CHARTS = [
+        {
+            id: 'radar-coding',
+            title: 'Coding',
+            skills: [
+                { label: 'Java',       value: 75 },
+                { label: 'JavaScript', value: 80 },
+                { label: 'HTML / CSS', value: 85 },
+                { label: 'Node.js',    value: 70 },
+                { label: 'Python',     value: 65 },
+            ]
+        },
+        {
+            id: 'radar-design',
+            title: 'Design',
+            skills: [
+                { label: 'Figma',      value: 80 },
+                { label: 'UX / UI',    value: 82 },
+                { label: 'Prototype',  value: 75 },
+                { label: 'Photoshop',  value: 60 },
+                { label: 'DaVinci',    value: 65 },
+            ]
+        },
+        {
+            id: 'radar-soft',
+            title: 'Soft Skills',
+            skills: [
+                { label: 'Solving',    value: 90 },
+                { label: 'Work Ethic', value: 95 },
+                { label: 'Teamwork',   value: 80 },
+                { label: 'Comms',      value: 75 },
+                { label: 'Adaptable',  value: 70 },
+            ]
+        }
+    ];
+
+    const W = 320, H = 300, CX = 160, CY = 158, R = 92, LEVELS = 4;
+
+    function svgEl(tag, attrs) {
+        const e = document.createElementNS(NS, tag);
+        Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+        return e;
+    }
+
+    function axisAngle(i, n) {
+        return (i / n) * 2 * Math.PI - Math.PI / 2;
+    }
+
+    function axisPoint(i, n, pct) {
+        const a = axisAngle(i, n);
+        return { x: CX + R * pct * Math.cos(a), y: CY + R * pct * Math.sin(a) };
+    }
+
+    function polyPoints(skills, pcts) {
+        return skills.map((_, i) => {
+            const p = axisPoint(i, skills.length, pcts[i] / 100);
+            return p.x.toFixed(2) + ',' + p.y.toFixed(2);
+        }).join(' ');
+    }
+
+    function buildChart(container, title, skills) {
+        const n = skills.length;
+        const svg = svgEl('svg', { viewBox: '0 0 ' + W + ' ' + H, width: '100%', height: '100%' });
+
+        // Grid rings
+        for (let l = LEVELS; l >= 1; l--) {
+            const pts = skills.map((_, i) => {
+                const p = axisPoint(i, n, l / LEVELS);
+                return p.x.toFixed(2) + ',' + p.y.toFixed(2);
+            }).join(' ');
+            svg.appendChild(svgEl('polygon', {
+                points: pts, fill: 'none',
+                stroke: 'currentColor', 'stroke-width': '0.8', opacity: '0.12'
+            }));
+        }
+
+        // Axis lines
+        skills.forEach((_, i) => {
+            const p = axisPoint(i, n, 1);
+            svg.appendChild(svgEl('line', {
+                x1: CX, y1: CY, x2: p.x.toFixed(2), y2: p.y.toFixed(2),
+                stroke: 'currentColor', 'stroke-width': '0.8', opacity: '0.12'
+            }));
+        });
+
+        // Data polygon
+        const poly = svgEl('polygon', {
+            points: polyPoints(skills, skills.map(() => 0)),
+            fill: 'var(--accent-color)', 'fill-opacity': '0.2',
+            stroke: 'var(--accent-color)', 'stroke-width': '1.8',
+            'stroke-linejoin': 'round'
+        });
+        svg.appendChild(poly);
+
+        // Axis dots
+        const dots = skills.map((_, i) => {
+            const p = axisPoint(i, n, 0);
+            const d = svgEl('circle', { cx: p.x, cy: p.y, r: '3', fill: 'var(--accent-color)' });
+            svg.appendChild(d);
+            return d;
+        });
+
+        // Labels
+        const labelR = R + 30;
+        skills.forEach((skill, i) => {
+            const a = axisAngle(i, n);
+            const x = CX + labelR * Math.cos(a);
+            const y = CY + labelR * Math.sin(a);
+            const t = svgEl('text', {
+                x: x.toFixed(2), y: y.toFixed(2),
+                'text-anchor': 'middle', 'dominant-baseline': 'middle',
+                'font-size': '9.5', 'font-family': 'Outfit, sans-serif',
+                fill: 'currentColor', opacity: '0.65'
+            });
+            t.textContent = skill.label;
+            svg.appendChild(t);
+        });
+
+        // Title
+        const titleEl = svgEl('text', {
+            x: CX, y: '14',
+            'text-anchor': 'middle', 'dominant-baseline': 'middle',
+            'font-size': '10', 'font-weight': '700', 'letter-spacing': '2',
+            'font-family': 'Outfit, sans-serif', fill: 'var(--accent-color)'
+        });
+        titleEl.textContent = title.toUpperCase();
+        svg.appendChild(titleEl);
+
+        container.appendChild(svg);
+        return { poly, dots, skills };
+    }
+
+    function animateChart(poly, dots, skills, duration) {
+        let active = true;
+        const start = performance.now();
+        function tick(now) {
+            if (!active) return;
+            const t = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            const pcts = skills.map(s => s.value * ease);
+            poly.setAttribute('points', polyPoints(skills, pcts));
+            dots.forEach((d, i) => {
+                const p = axisPoint(i, skills.length, pcts[i] / 100);
+                d.setAttribute('cx', p.x.toFixed(2));
+                d.setAttribute('cy', p.y.toFixed(2));
+            });
+            if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        return () => { active = false; };
+    }
+
+    function resetChart(c) {
+        c.poly.setAttribute('points', polyPoints(c.skills, c.skills.map(() => 0)));
+        c.dots.forEach((d, i) => {
+            const p = axisPoint(i, c.skills.length, 0);
+            d.setAttribute('cx', p.x.toFixed(2));
+            d.setAttribute('cy', p.y.toFixed(2));
+        });
+    }
+
+    const section = document.getElementById('skill-graph');
+    if (!section) return;
+
+    const built = CHARTS.map(c => {
+        const container = document.getElementById(c.id);
+        if (!container) return null;
+        return buildChart(container, c.title, c.skills);
+    }).filter(Boolean);
+
+    let cancels = [];
+    function cancelAll() {
+        cancels.forEach(fn => fn());
+        cancels = [];
+    }
+
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            cancelAll();
+            built.forEach((c, i) => {
+                let cancelAnim = () => {};
+                const timerId = setTimeout(() => {
+                    cancelAnim = animateChart(c.poly, c.dots, c.skills, 1100);
+                }, 350 + i * 220);
+                cancels.push(() => { clearTimeout(timerId); cancelAnim(); });
+            });
+        } else {
+            cancelAll();
+            built.forEach(resetChart);
+        }
+    }, { threshold: 0.2 });
+    obs.observe(section);
+})();
+
+/* =============================================
+   GSAP SCROLL ANIMATIONS
+   ============================================= */
+(function initGSAPAnimations() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    // Section header reveals
+    document.querySelectorAll(
+        '.features_header, .certs-header, .timeline-header, .contact-header'
+    ).forEach(header => {
+        const h2 = header.querySelector('h2');
+        const p  = header.querySelector('p');
+        const els = [h2, p].filter(Boolean);
+        if (!els.length) return;
+        gsap.set(els, { opacity: 0, y: 32 });
+        ScrollTrigger.create({
+            trigger: header,
+            start: 'top 85%',
+            onEnter:     () => gsap.to(els, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.12 }),
+            onEnterBack: () => gsap.to(els, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.12 }),
+            onLeave:     () => gsap.set(els, { opacity: 0, y: 32 }),
+            onLeaveBack: () => gsap.set(els, { opacity: 0, y: 32 }),
+        });
+    });
+
+    // Timeline node scale-in
+    document.querySelectorAll('.tl-node').forEach(node => {
+        gsap.set(node, { scale: 0 });
+        ScrollTrigger.create({
+            trigger: node,
+            start: 'top 80%',
+            onEnter:     () => gsap.to(node, { scale: 1, duration: 0.5, ease: 'back.out(2)' }),
+            onEnterBack: () => gsap.to(node, { scale: 1, duration: 0.5, ease: 'back.out(2)' }),
+            onLeave:     () => gsap.set(node, { scale: 0 }),
+            onLeaveBack: () => gsap.set(node, { scale: 0 }),
+        });
+    });
+
+    // Cert big number entrance
+    const certNum = document.getElementById('cert-big-num');
+    if (certNum) {
+        gsap.set(certNum, { opacity: 0, scale: 0.5 });
+        ScrollTrigger.create({
+            trigger: certNum,
+            start: 'top 85%',
+            onEnter:     () => gsap.to(certNum, { opacity: 0.15, scale: 1, duration: 0.7, ease: 'back.out(1.8)' }),
+            onEnterBack: () => gsap.to(certNum, { opacity: 0.15, scale: 1, duration: 0.7, ease: 'back.out(1.8)' }),
+            onLeave:     () => gsap.set(certNum, { opacity: 0, scale: 0.5 }),
+            onLeaveBack: () => gsap.set(certNum, { opacity: 0, scale: 0.5 }),
+        });
+    }
+
+    // Projects section label
+    const sliderHeader = document.querySelector('.slider__header');
+    if (sliderHeader) {
+        gsap.set(sliderHeader, { opacity: 0, y: -16 });
+        ScrollTrigger.create({
+            trigger: sliderHeader,
+            start: 'top 90%',
+            once: true,
+            onEnter: () => gsap.to(sliderHeader, {
+                opacity: 1, y: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            })
+        });
+    }
 })();
 
 /* =============================================
@@ -375,30 +646,55 @@ const certs = [
     if (!imgEl) return;
 
     let current = 0;
+    let busy = false;
     const mod = (n, m) => ((n % m) + m) % m;
+
+    function buildDots() {
+        if (!dotsEl) return;
+        dotsEl.innerHTML = '';
+        certs.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'cert-dot' + (i === current ? ' active' : '');
+            dot.addEventListener('click', () => navigate(i));
+            dotsEl.appendChild(dot);
+        });
+    }
 
     function render() {
         const c = certs[current];
         imgEl.src = c.img;
         imgEl.alt = c.title;
-        if (numEl)   numEl.textContent  = String(current + 1).padStart(2, '0');
-        if (orgEl)   orgEl.textContent  = c.org;
+        if (numEl)   numEl.textContent   = String(current + 1).padStart(2, '0');
+        if (orgEl)   orgEl.textContent   = c.org;
         if (titleEl) titleEl.textContent = c.title;
-        if (linkEl)  linkEl.href        = c.img;
+        if (linkEl)  linkEl.href         = c.img;
+        buildDots();
+    }
 
-        if (dotsEl) {
-            dotsEl.innerHTML = '';
-            certs.forEach((_, i) => {
-                const dot = document.createElement('span');
-                dot.className = 'cert-dot' + (i === current ? ' active' : '');
-                dot.addEventListener('click', () => { current = i; render(); });
-                dotsEl.appendChild(dot);
-            });
+    function navigate(toIdx) {
+        if (busy || toIdx === current) return;
+        busy = true;
+        const useGsap = typeof gsap !== 'undefined';
+        const dir = toIdx > current ? 1 : -1;
+
+        if (useGsap) {
+            const tl = gsap.timeline({ onComplete: () => { busy = false; } });
+            const textEls = [numEl, orgEl, titleEl].filter(Boolean);
+            tl.to(imgEl,    { opacity: 0, x: -30 * dir, duration: 0.3, ease: 'power2.in' }, 0);
+            tl.to(textEls,  { opacity: 0, y: -8,         duration: 0.2, ease: 'power2.in', stagger: 0.04 }, 0);
+            tl.call(() => { current = toIdx; render(); });
+            tl.fromTo(imgEl,   { opacity: 0, x: 30 * dir },  { opacity: 1, x: 0, duration: 0.45, ease: 'power3.out' });
+            tl.fromTo(textEls, { opacity: 0, y: 10 },        { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out', stagger: 0.06 }, '<0.05');
+            tl.fromTo(numEl,   { scale: 0.7 },               { scale: 1,         duration: 0.4,  ease: 'back.out(1.6)' }, '<');
+        } else {
+            current = toIdx;
+            render();
+            busy = false;
         }
     }
 
-    if (btnLeft)  btnLeft.addEventListener('click',  () => { current = mod(current - 1, certs.length); render(); });
-    if (btnRight) btnRight.addEventListener('click', () => { current = mod(current + 1, certs.length); render(); });
+    if (btnLeft)  btnLeft.addEventListener('click',  () => navigate(mod(current - 1, certs.length)));
+    if (btnRight) btnRight.addEventListener('click', () => navigate(mod(current + 1, certs.length)));
 
     render();
 })();

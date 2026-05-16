@@ -739,18 +739,6 @@ body.dark-mode .feature_card:hover {
     background: color-mix(in srgb, var(--accent-color) 20%, transparent);
 }
 
-@keyframes featureFadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-.feature_card.animate {
-    animation: featureFadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.feature_card.animate:nth-child(1) { animation-delay: 0.05s; }
-.feature_card.animate:nth-child(2) { animation-delay: 0.15s; }
-.feature_card.animate:nth-child(3) { animation-delay: 0.25s; }
 
 /* =============================================
    LANGUAGE CAROUSEL
@@ -789,6 +777,98 @@ body.dark-mode .feature_card:hover {
 @keyframes carousel2-scroll {
     0%   { transform: translateX(-50%); }
     100% { transform: translateX(0); }
+}
+
+/* =============================================
+   SKILL GRAPH
+   ============================================= */
+#skill-graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+}
+
+#skill-graph-corners {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 88%;
+    border: 0.5px solid var(--hero-border-color);
+    padding-bottom: 3.5em;
+}
+
+.sg-header {
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 2.5em;
+    padding: 0 2em;
+}
+
+.sg-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin: 0 0 0.5em;
+    letter-spacing: -0.02em;
+}
+
+.sg-header p {
+    color: var(--text-secondary-color);
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.sg-radar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    width: 100%;
+    padding: 0 2.5em;
+}
+
+.sg-radar-wrap {
+    background: var(--card-bg);
+    border: 0.5px solid var(--card-border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2em;
+    color: var(--text-color);
+    transition: border-color 0.25s, box-shadow 0.35s;
+}
+
+.sg-radar-wrap:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+}
+
+body.dark-mode .sg-radar-wrap:hover {
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.sg-radar-wrap svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+@media (max-width: 900px) {
+    .sg-radar-grid { grid-template-columns: 1fr; padding: 0 1.2em; }
+}
+
+@media (max-width: 640px) {
+    #skill-graph-corners {
+        width: 100% !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+    .sg-radar-grid { padding: 0 1em; }
 }
 
 /* =============================================
@@ -1241,7 +1321,6 @@ body.dark-mode .cert-viewer-img img {
     line-height: 1;
     letter-spacing: -0.04em;
     user-select: none;
-    transition: opacity 0.3s;
 }
 
 .cert-viewer-info:hover .cert-big-num {

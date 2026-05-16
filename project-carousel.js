@@ -28,41 +28,55 @@ const debounce = (func, wait, immediate) => {
 };
 
 const SLIDES = [
+  // {
+  //   name: "FitBot",
+  //   description: "Android app that controls a NAO humanoid robot to guide elderly users through exercises and provide companionship. Built with Java, XML, and MQTT for real-time communication.",
+  //   url: "project-structure.html?id=fitbot",
+  //   color: "#f5f2eb",
+  //   image: "project-images/nao.png"
+  // },
   {
-    name: "FitBot",
-    description: "Android app that controls a NAO humanoid robot to guide elderly users through exercises and provide companionship. Built with Java, XML, and MQTT for real-time communication.",
-    url: "project-structure.html?id=fitbot",
+    name: "Mitchopoly",
+    description: "Kennismaking met de minor, leerdoelen bepalen en een persoonlijke website maken. Heb hier Three.js voor gebruikt en heb leren 3d modelen te importeren en te gebruiken.",
+    url: "https://mitchellkevin.github.io/PersonalInfoSite/",
     color: "#f5f2eb",
-    image: "project-images/nao.png"
-  },
-  {
-    name: "Super Mario",
-    description: "Vanilla JavaScript mini-game with custom physics engine — collision detection, gravity, momentum, and sprite animation. No libraries, pure browser APIs.",
-    url: "project-structure.html?id=mario",
-    color: "#f5f2eb",
-    image: "project-images/mario.png"
+    image: "project-images/mitchopoly.png"
   },
   {
     name: "Day-to-Day",
     description: "Sales website for a software startup. Focused on conversion-driven UX design, clean front-end build, and a clear brand identity to communicate the product value.",
-    url: "project-structure.html?id=daytoday",
+    url: "https://www.day-to-day.nl/",
     color: "#f5f2eb",
-    image: "project-images/daytoday.png"
+    image: "project-images/d2d.png"
   },
   {
-    name: "NachtNest",
-    description: "Smart bedside lamp prototype combining embedded hardware (Raspberry Pi), a mobile app, and MQTT messaging to create a sleep-aware ambient light system.",
-    url: "project-structure.html?id=nachtnest",
+    name: "Hackathon-2nd-place",
+    description: "Samenwerken onder tijdsdruk, van concept tot werkend prototype. De grootste dingen die ik dit project gemaakt heb zijn de 3D globe animatie/parallax met three.js gemaakt en 3D sateliet component uitleg.",
+    url: "https://mitchellkevin.github.io/Space/",
     color: "#f5f2eb",
-    image: "project-images/GardenCMD.png"
+    image: "project-images/hackathon.png"
   },
   {
-    name: "MITCHOPOLY",
-    description: "Personal info site built with Three.js — imports and renders a custom 3D board game model in the browser, with interactive camera and animated elements.",
-    url: "https://mitchellkevin.github.io/PersonalInfoSite/",
+    name: "CMD Casino",
+    description: "Voor het eerst een volledig full-stack applicatie van een casino site gemaakt met REST API's, Mollie API voor payment en een MongoDB database erachter.",
+    url: "https://wdd-api-scholte.onrender.com/",
     color: "#f5f2eb",
-    image: "project-images/McLaren.png"
-  }
+    image: "project-images/CMD-casino.png"
+  },
+  {
+    name: "HCD",
+    description: "Ontwerpen vanuit 1 gebruiker, leren om goed te luisteren naar problemen van een unieke gebruiker en verder geleerd om chrome extensions te maken en TTS api's te gebruiken.",
+    url: "https://mitchellkevin.github.io/HCD/",
+    color: "#f5f2eb",
+    image: "project-images/HCD.png"
+  },
+  //   {
+  //   name: "WasteLess",
+  //   description: "Ontwerpen om voedselverspilling tegen te gaan, door een app te maken die gebruikers helpt bij het plannen van maaltijden en het beheren van hun voorraad.",
+  //   url: "https://wasteless-pppv.onrender.com/",
+  //   color: "#f5f2eb",
+  //   image: "projects-img/HCD.png"
+  // }
 ];
 
 const AUTOPLAY_DELAY = 4000;
