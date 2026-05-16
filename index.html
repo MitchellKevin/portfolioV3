@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitchell Scholte — Full-Stack Developer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-carousel.css">
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <meta name="description" content="I am Mitchell Scholte, a full-stack developer specializing in building responsive and user-friendly web applications using Javascript and Java. With a focus on security and User Experience Design." />
@@ -258,69 +259,30 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
             </div>
         </section>
 
+
         <!-- PROJECTS -->
         <section id="projects">
-            <div id="project-corners">
-                <span class="corner top-left"></span>
-                <span class="corner top-right"></span>
-                <span class="corner bottom-left"></span>
-                <span class="corner bottom-right"></span>
-                <div class="project_header">
-                    <h2>Turning Vision Into Reality</h2>
-                    <p>Each project reflects my ability to merge design, strategy, and execution into solutions that make a difference.</p>
-                </div>
-                <div class="project_list">
-                    <article class="project_item" data-img="project-images/nao.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/nao.png')"></div>
-                        <p class="project-num">01</p>
-                        <h3><a href="project-structure.html?id=fitbot">NAO ROBOTICS — FitBot</a></h3>
-                        <p class="project-tags">Robotics · Android Dev</p>
-                        <span class="project-arrow">↗</span>
-                    </article>
-                    <article class="project_item" data-img="project-images/daytoday.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/daytoday.png')"></div>
-                        <p class="project-num">02</p>
-                        <h3><a href="https://www.day-to-day.nl/">Sales Site — Day-to-Day</a></h3>
-                        <p class="project-tags">UX-Design · Front-end</p>
-                        <span class="project-arrow">↗</span>
-                    </article>
-                    <!-- <article class="project_item" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">03</p>
-                        <h3><a href="project-structure.html?id=nachtnest">Smart Lamp — NachtNest</a></h3>
-                        <p class="project-tags">Embedded · Research</p>
-                        <span class="project-arrow">↗</span>
-                    </article> -->
-                    <article class="project_item" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">03</p>
-                        <h3><a href="https://mitchellkevin.github.io/PersonalInfoSite/">About Me — MITCHOPOLY</a></h3>
-                        <p class="project-tags">3D Game · Three.js</p>
-                        <span class="project-arrow">↗</span>
-                    </article>
-                    <article class="project_item" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">04</p>
-                        <h3><a href="https://mitchellkevin.github.io/RubicsCube/">Rubik's Cube — Game</a></h3>
-                        <p class="project-tags">Math · JavaScript</p>
-                        <span class="project-arrow">↗</span>
-                    </article>
-                    <article class="project_item project_item--wip" data-img="project-images/UnderConstruction.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/UnderConstruction.png')"></div>
-                        <p class="project-num">05</p>
-                        <h3><a href="https://mitchellkevin.github.io/Space/">SRON | 2nd place Hackathon</a></h3>
-                        <p class="project-tags">Hackathon · Three.js</p>
-                        <span class="project-arrow">↗</span>
-                    </article>
-                    <article class="project_item" data-img="project-images/mario.png">
-                        <div class="project-bg-preview" style="background-image:url('project-images/mario.png')"></div>
-                        <p class="project-num">06</p>
-                        <h3><a href="https://wdd-api-scholte.onrender.com/">CMD Casino — Full Stack</a></h3>
-                        <p class="project-tags">Game · API</p>
-                        <span class="project-arrow">↗</span>
-                    </article>
-                </div>
+          <div class="slider">
+            <span class="corner top-left"></span>
+            <span class="corner top-right"></span>
+            <span class="corner bottom-left"></span>
+            <span class="corner bottom-right"></span>
+            <div class="slider__header">
+              <span class="slider__label">Projects</span>
             </div>
+            <div class="slider__body">
+              <div class="slider__left">
+                <h2 class="slider__title" aria-live="polite"></h2>
+                <div class="slider__footer">
+                  <p class="slider__subtitle"></p>
+                  <a class="slider__cta" href="#" target="_blank" rel="noopener">View project →</a>
+                </div>
+              </div>
+              <div class="slider__right">
+                <div class="slider__images"></div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- TIMELINE -->
@@ -439,5 +401,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
     </script>
     <script src="emailjs-contact.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="project-carousel.js"></script>
 </body>
 </html>
