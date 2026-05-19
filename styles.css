@@ -243,6 +243,7 @@ h1, h2, h3 {
 }
 
 .theme-toggle-track {
+    filter: grayscale(1.2);
     position: relative;
     display: block;
     width: 100%;
