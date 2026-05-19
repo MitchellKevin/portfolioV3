@@ -2051,3 +2051,111 @@ body.a11y-reduce-motion #particle-slider .hero-img-static {
 body.a11y-reduce-motion #particle-slider:hover canvas.draw {
     transform: none;
 }
+
+/* =============================================
+   ACCESSIBILITY — VISUALLY HIDDEN HELPER
+   For ARIA live regions and screen-reader-only text
+   ============================================= */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* =============================================
+   ACCESSIBILITY — EXTENDED PREFERENCES
+   New options: dyslexia font, spacing, grayscale,
+   strong focus, highlight links, pause animations.
+   ============================================= */
+
+/* Dyslexia-friendly font — Atkinson Hyperlegible has high character
+   distinction (no mirrored b/d/p/q confusion). Applies to everything. */
+body.a11y-dyslexia-font,
+body.a11y-dyslexia-font * {
+    font-family: 'Atkinson Hyperlegible', 'Outfit', sans-serif !important;
+}
+body.a11y-dyslexia-font h1,
+body.a11y-dyslexia-font h2,
+body.a11y-dyslexia-font h3 {
+    font-family: 'Atkinson Hyperlegible', 'Outfit', sans-serif !important;
+}
+
+/* Wider letter + line spacing — recommended by WCAG 1.4.12 (Text Spacing).
+   line-height ≥ 1.5, letter-spacing ≥ 0.12 em, word-spacing ≥ 0.16 em. */
+body.a11y-spacing {
+    line-height: 1.75 !important;
+    letter-spacing: 0.04em !important;
+    word-spacing: 0.16em !important;
+}
+body.a11y-spacing h1,
+body.a11y-spacing h2,
+body.a11y-spacing h3 {
+    line-height: 1.4 !important;
+}
+body.a11y-spacing p,
+body.a11y-spacing li,
+body.a11y-spacing label,
+body.a11y-spacing .feature_card p,
+body.a11y-spacing .tl-text {
+    line-height: 1.85 !important;
+}
+
+/* Reduce color saturation — for migraine/photosensitive users.
+   Applied via filter on the body so it doesn't break individual colors. */
+body.a11y-grayscale {
+    filter: grayscale(0.85);
+}
+
+/* Strong focus ring — bigger, brighter, dual-color so it's visible on
+   any background (works for both light + dark mode). */
+body.a11y-strong-focus a:focus-visible,
+body.a11y-strong-focus button:focus-visible,
+body.a11y-strong-focus input:focus-visible,
+body.a11y-strong-focus textarea:focus-visible,
+body.a11y-strong-focus select:focus-visible,
+body.a11y-strong-focus [tabindex]:focus-visible {
+    outline: 4px solid #ffd60a !important;
+    outline-offset: 4px !important;
+    box-shadow:
+        0 0 0 6px rgba(0, 0, 0, 0.6),
+        0 0 0 8px #ffd60a !important;
+    border-radius: 4px;
+    z-index: 100000;
+    position: relative;
+}
+
+/* Highlight links — yellow background behind every text link so they
+   stand out from regular text. */
+body.a11y-highlight-links a:not(.nav-link):not(.mobile-nav-link):not(.header-logo-link):not(.skip-link) {
+    background: #fff3a3 !important;
+    color: #000 !important;
+    padding: 0 0.25em !important;
+    border-radius: 3px !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+}
+body.a11y-highlight-links a:not(.nav-link):not(.mobile-nav-link):not(.header-logo-link):not(.skip-link):hover,
+body.a11y-highlight-links a:not(.nav-link):not(.mobile-nav-link):not(.header-logo-link):not(.skip-link):focus-visible {
+    background: #ffd60a !important;
+}
+
+/* Pause animations — stops infinite/looping animations without removing
+   transitions (which power UI feedback). Distinct from reduce-motion. */
+body.a11y-pause-anim *,
+body.a11y-pause-anim *::before,
+body.a11y-pause-anim *::after {
+    animation-play-state: paused !important;
+}
+body.a11y-pause-anim .carosel,
+body.a11y-pause-anim .carosel_language {
+    animation: none !important;
+}
+body.a11y-pause-anim #webgl-bg {
+    display: none !important;
+}

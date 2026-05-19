@@ -27,6 +27,12 @@
         largeText: false,
         noCursor: false,
         underlineLinks: false,
+        dyslexiaFont: false,
+        spacing: false,
+        grayscale: false,
+        strongFocus: false,
+        highlightLinks: false,
+        pauseAnim: false,
     };
 
     function loadSettings() {
@@ -54,6 +60,12 @@
         body.classList.toggle('a11y-large-text', settings.largeText);
         body.classList.toggle('a11y-no-cursor', settings.noCursor);
         body.classList.toggle('a11y-underline-links', settings.underlineLinks);
+        body.classList.toggle('a11y-dyslexia-font', settings.dyslexiaFont);
+        body.classList.toggle('a11y-spacing', settings.spacing);
+        body.classList.toggle('a11y-grayscale', settings.grayscale);
+        body.classList.toggle('a11y-strong-focus', settings.strongFocus);
+        body.classList.toggle('a11y-highlight-links', settings.highlightLinks);
+        body.classList.toggle('a11y-pause-anim', settings.pauseAnim);
 
         /* Mirror reduce-motion onto the projects fallback grid so screen
            readers see the correct content as active. */
@@ -88,6 +100,12 @@
             largeText:      document.getElementById('a11y-large-text'),
             noCursor:       document.getElementById('a11y-no-cursor'),
             underlineLinks: document.getElementById('a11y-underline-links'),
+            dyslexiaFont:   document.getElementById('a11y-dyslexia-font'),
+            spacing:        document.getElementById('a11y-spacing'),
+            grayscale:      document.getElementById('a11y-grayscale'),
+            strongFocus:    document.getElementById('a11y-strong-focus'),
+            highlightLinks: document.getElementById('a11y-highlight-links'),
+            pauseAnim:      document.getElementById('a11y-pause-anim'),
         };
 
         function syncInputs() {
@@ -99,10 +117,30 @@
 
         function isOpen() { return panel.classList.contains('is-open'); }
 
+        /* Focus trap helpers */
+        const focusableSelector =
+            'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+        function focusableEls() {
+            return [...panel.querySelectorAll(focusableSelector)].filter(el => el.offsetParent !== null);
+        }
+        function onPanelKeydown(e) {
+            if (e.key !== 'Tab') return;
+            const els = focusableEls();
+            if (!els.length) return;
+            const first = els[0];
+            const last  = els[els.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault(); last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault(); first.focus();
+            }
+        }
+
         function open() {
             panel.classList.add('is-open');
             panel.setAttribute('aria-hidden', 'false');
             toggleBtn.setAttribute('aria-expanded', 'true');
+            panel.addEventListener('keydown', onPanelKeydown);
             /* Focus first checkbox for keyboard users */
             const firstInput = panel.querySelector('input[type="checkbox"]');
             if (firstInput) firstInput.focus();
@@ -111,6 +149,7 @@
             panel.classList.remove('is-open');
             panel.setAttribute('aria-hidden', 'true');
             toggleBtn.setAttribute('aria-expanded', 'false');
+            panel.removeEventListener('keydown', onPanelKeydown);
             toggleBtn.focus();
         }
 
@@ -327,9 +366,16 @@
         const gridEl = document.getElementById('projects-grid');
         if (!gridEl) return;
 
+        function currentLang() { return (window.I18N && window.I18N.current) || 'en'; }
+        function ctaText() {
+            const dict = window.I18N && window.I18N.T && window.I18N.T[currentLang()];
+            return (dict && dict['projects.cta']) || 'View project →';
+        }
+
         function render() {
             const slides = window.PROJECT_SLIDES || [];
             if (!slides.length) return;
+            const lang = currentLang();
             gridEl.innerHTML = '';
             slides.forEach(s => {
                 const a = document.createElement('a');
@@ -348,15 +394,15 @@
 
                 const title = document.createElement('h3');
                 title.className = 'project-grid-card__title';
-                title.textContent = s.name || 'Untitled';
+                title.textContent = (lang === 'nl' && s.name_nl) ? s.name_nl : (s.name || 'Untitled');
 
                 const desc = document.createElement('p');
                 desc.className = 'project-grid-card__desc';
-                desc.textContent = s.description || '';
+                desc.textContent = (lang === 'nl' && s.description_nl) ? s.description_nl : (s.description || '');
 
                 const cta = document.createElement('span');
                 cta.className = 'project-grid-card__cta';
-                cta.textContent = 'View project →';
+                cta.textContent = ctaText();
 
                 body.appendChild(title);
                 body.appendChild(desc);
@@ -380,6 +426,9 @@
                 }
             }, 100);
         }
+
+        /* Re-render when language changes */
+        document.addEventListener('langchange', render);
 
         /* Apply correct aria-hidden state now that grid exists. */
         applySettings();

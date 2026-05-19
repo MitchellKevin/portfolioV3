@@ -10,11 +10,11 @@
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <meta name="description" content="I am Mitchell Scholte, a full-stack developer specializing in building responsive and user-friendly web applications using Javascript and Java. With a focus on security and User Experience Design." />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="dark-mode">
     <!-- SKIP TO CONTENT (keyboard accessibility) -->
-    <a href="#hero" class="skip-link">Skip to content</a>
+    <a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to content</a>
 
     <!-- CINEMATIC WEBGL BG + OVERLAYS (injected by cinematic.js as failsafe) -->
     <canvas id="webgl-bg" aria-hidden="true"></canvas>
@@ -33,15 +33,20 @@
             <span class="header-name">Mitchell Scholte</span>
         </a>
         <nav class="header-nav" id="header-nav">
-            <a href="#hero" class="nav-link" data-section="hero">Home</a>
-            <a href="#Features" class="nav-link" data-section="Features">Skills</a>
-            <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-            <a href="#Timeline" class="nav-link" data-section="Timeline">Timeline</a>
-            <a href="#Licenses" class="nav-link" data-section="Licenses">Certs</a>
-            <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            <a href="#hero" class="nav-link" data-section="hero" data-i18n="nav.home">Home</a>
+            <a href="#Features" class="nav-link" data-section="Features" data-i18n="nav.skills">Skills</a>
+            <a href="#projects" class="nav-link" data-section="projects" data-i18n="nav.projects">Projects</a>
+            <a href="#Timeline" class="nav-link" data-section="Timeline" data-i18n="nav.timeline">Timeline</a>
+            <a href="#Licenses" class="nav-link" data-section="Licenses" data-i18n="nav.certs">Certs</a>
+            <a href="#contact" class="nav-link" data-section="contact" data-i18n="nav.contact">Contact</a>
         </nav>
         <div class="header-right">
-            <button id="light-dark-mode-toggle" type="button" role="switch" aria-checked="true" aria-label="Toggle dark and light mode" class="theme-toggle">
+            <div id="lang-toggle" class="lang-pill" role="group" aria-label="Switch language">
+                <button type="button" class="lang-pill-opt is-active" data-lang="en">EN</button>
+                <button type="button" class="lang-pill-opt" data-lang="nl">NL</button>
+                <span class="lang-pill-thumb" aria-hidden="true"></span>
+            </div>
+            <button id="light-dark-mode-toggle" type="button" role="switch" aria-checked="true" data-i18n-attr="aria-label:theme.aria" aria-label="Toggle dark and light mode" class="theme-toggle">
                 <span class="theme-toggle-track" aria-hidden="true">
                     <span class="theme-toggle-stars">
                         <span class="star"></span>
@@ -56,7 +61,7 @@
                     <span class="theme-toggle-thumb"></span>
                 </span>
             </button>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" data-i18n-attr="aria-label:menu.aria" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -65,15 +70,15 @@
     <!-- MOBILE NAV DRAWER -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
     <nav class="mobile-nav" id="mobile-nav">
-        <a href="#hero" class="mobile-nav-link">Home</a>
-        <a href="#Features" class="mobile-nav-link">Skills</a>
-        <a href="#projects" class="mobile-nav-link">Projects</a>
-        <a href="#Timeline" class="mobile-nav-link">Timeline</a>
-        <a href="#Licenses" class="mobile-nav-link">Certs</a>
-        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a href="#hero" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+        <a href="#Features" class="mobile-nav-link" data-i18n="nav.skills">Skills</a>
+        <a href="#projects" class="mobile-nav-link" data-i18n="nav.projects">Projects</a>
+        <a href="#Timeline" class="mobile-nav-link" data-i18n="nav.timeline">Timeline</a>
+        <a href="#Licenses" class="mobile-nav-link" data-i18n="nav.certs">Certs</a>
+        <a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
     </nav>
 
-    <main>
+    <main id="main-content" tabindex="-1">
         <!-- HERO -->
         <section id="hero-border-wrapper">
             <div id="hero-corners">
@@ -83,12 +88,12 @@
                 <span class="corner bottom-right"></span>
                 <section id="hero">
                     <div class="hero-text">
-                        <h2 class="hero-badge">Available for Internship</h2>
+                        <h2 class="hero-badge" data-i18n="hero.badge">Available for Internship</h2>
                         <h1>
-                            <span class="hero-line-mask"><span class="hero-line-inner">Full-Stack</span></span>
-                            <span class="hero-line-mask"><span class="hero-line-inner">Engineer</span></span>
+                            <span class="hero-line-mask"><span class="hero-line-inner" data-i18n="hero.line1">Full-Stack</span></span>
+                            <span class="hero-line-mask"><span class="hero-line-inner" data-i18n="hero.line2">Engineer</span></span>
                         </h1>
-                        <p>Hi, I'm Mitchell. I build smart systems that connect code, people and purpose.
+                        <p data-i18n="hero.desc">Hi, I'm Mitchell. I build smart systems that connect code, people and purpose.
 Java · Javascript · Hardware · Pentesting. I turn creative ideas into functional software.</p>
                         <div class="hero-stack-pills">
                             <span class="pill">Java</span>
@@ -99,8 +104,8 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="pill">Node.js</span>
                         </div>
                         <div class="hero-buttons">
-                            <a href="#contact"><button id="contact-button">Contact Me</button></a>
-                            <a href="#projects"><button id="projects-button">Projects</button></a>
+                            <a href="#contact"><button id="contact-button" data-i18n="hero.btn.contact">Contact Me</button></a>
+                            <a href="#projects"><button id="projects-button" data-i18n="hero.btn.projects">Projects</button></a>
                         </div>
                     </div>
                     <div class="hero-img" id="particle-slider">
@@ -167,12 +172,12 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                 <span class="corner bottom-left"></span>
                 <span class="corner bottom-right"></span>
                 <div class="features_header">
-                    <h2>What I Bring to the Table</h2>
-                    <p>From concept to execution — I blend creativity with technical depth to build things that actually work.</p>
+                    <h2 data-i18n="skills.title">What I Bring to the Table</h2>
+                    <p data-i18n="skills.subtitle">From concept to execution — I blend creativity with technical depth to build things that actually work.</p>
                 </div>
                 <div class="skills-toggle">
-                    <button id="hard-skills-btn" class="active">Hard Skills</button>
-                    <button id="soft-skills-btn">Soft Skills</button>
+                    <button id="hard-skills-btn" class="active" data-i18n="skills.tab.hard">Hard Skills</button>
+                    <button id="soft-skills-btn" data-i18n="skills.tab.soft">Soft Skills</button>
                 </div>
                 <div class="features_grid" id="hard-skills">
                     <div class="feature_card">
@@ -180,8 +185,8 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="feature-num">01</span>
                             <div class="feature_icon"><img src="img/icons/webDev.png" alt="Web Dev"></div>
                         </div>
-                        <h3>Full-Stack Development</h3>
-                        <p>I build modern, scalable websites and apps — from clean front-ends to complete back-end systems with databases and APIs.</p>
+                        <h3 data-i18n="hard.1.title">Full-Stack Development</h3>
+                        <p data-i18n="hard.1.desc">I build modern, scalable websites and apps — from clean front-ends to complete back-end systems with databases and APIs.</p>
                         <div class="feature-pills">
                             <span class="fpill">JavaScript</span>
                             <span class="fpill">Node.js</span>
@@ -194,8 +199,8 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="feature-num">02</span>
                             <div class="feature_icon"><img src="img/icons/prototyping.png" alt="Design"></div>
                         </div>
-                        <h3>Design &amp; Prototyping</h3>
-                        <p>I turn rough ideas into polished, interactive prototypes — bridging the gap between concept and working product.</p>
+                        <h3 data-i18n="hard.3.title">Design &amp; Prototyping</h3>
+                        <p data-i18n="hard.3.desc">I turn rough ideas into polished, interactive prototypes — bridging the gap between concept and working product.</p>
                         <div class="feature-pills">
                             <span class="fpill">Figma</span>
                             <span class="fpill">UX/UI</span>
@@ -208,8 +213,8 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="feature-num">03</span>
                             <div class="feature_icon"><img src="img/icons/hardware.png" alt="Embedded Systems"></div>
                         </div>
-                        <h3>Embedded Systems Engineering</h3>
-                        <p>I design hardware-meets-software systems — bridging actuators, sensors, and real-time firmware to bring the physical and digital worlds together.</p>
+                        <h3 data-i18n="hard.2.title">Embedded Systems Engineering</h3>
+                        <p data-i18n="hard.2.desc">I design hardware-meets-software systems — bridging actuators, sensors, and real-time firmware to bring the physical and digital worlds together.</p>
                         <div class="feature-pills">
                             <span class="fpill">C / Python</span>
                             <span class="fpill">Arduino</span>
@@ -224,12 +229,12 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="feature-num">01</span>
                             <div class="feature_icon"><img src="img/icons/problem-solving.png" alt="Problem Solving"></div>
                         </div>
-                        <h3>Problem Solving</h3>
-                        <p>I break down complex challenges from multiple angles and build practical solutions that move things forward — not just workarounds.</p>
+                        <h3 data-i18n="soft.1.title">Problem Solving</h3>
+                        <p data-i18n="soft.1.desc">I break down complex challenges from multiple angles and build practical solutions that move things forward — not just workarounds.</p>
                         <div class="feature-pills">
-                            <span class="fpill">Critical Thinking</span>
-                            <span class="fpill">Analytical</span>
-                            <span class="fpill">Creative</span>
+                            <span class="fpill" data-i18n="soft.1.pill1">Critical Thinking</span>
+                            <span class="fpill" data-i18n="soft.1.pill2">Analytical</span>
+                            <span class="fpill" data-i18n="soft.1.pill3">Creative</span>
                         </div>
                     </div>
                     <div class="feature_card">
@@ -237,12 +242,12 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="feature-num">02</span>
                             <div class="feature_icon"><img src="img/icons/work-etic.png" alt="Work Ethic"></div>
                         </div>
-                        <h3>Work Ethic</h3>
-                        <p>I show up, stay consistent, and deliver — reliable on deadlines, organized under pressure, and committed to doing quality work.</p>
+                        <h3 data-i18n="soft.2.title">Work Ethic</h3>
+                        <p data-i18n="soft.2.desc">I show up, stay consistent, and deliver — reliable on deadlines, organized under pressure, and committed to doing quality work.</p>
                         <div class="feature-pills">
-                            <span class="fpill">Reliable</span>
-                            <span class="fpill">Organized</span>
-                            <span class="fpill">Deadline-Driven</span>
+                            <span class="fpill" data-i18n="soft.2.pill1">Reliable</span>
+                            <span class="fpill" data-i18n="soft.2.pill2">Organized</span>
+                            <span class="fpill" data-i18n="soft.2.pill3">Deadline-Driven</span>
                         </div>
                     </div>
                     <div class="feature_card">
@@ -250,12 +255,12 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="feature-num">03</span>
                             <div class="feature_icon"><img src="img/icons/teamwork.png" alt="Teamwork"></div>
                         </div>
-                        <h3>Collaboration</h3>
-                        <p>I work openly with teams, share knowledge freely, and adapt my communication style to whoever I'm building with.</p>
+                        <h3 data-i18n="soft.3.title">Collaboration</h3>
+                        <p data-i18n="soft.3.desc">I work openly with teams, share knowledge freely, and adapt my communication style to whoever I'm building with.</p>
                         <div class="feature-pills">
-                            <span class="fpill">Team Player</span>
-                            <span class="fpill">Communication</span>
-                            <span class="fpill">Adaptable</span>
+                            <span class="fpill" data-i18n="soft.3.pill1">Team Player</span>
+                            <span class="fpill" data-i18n="soft.3.pill2">Communication</span>
+                            <span class="fpill" data-i18n="soft.3.pill3">Adaptable</span>
                         </div>
                     </div>
                 </div>
@@ -302,8 +307,8 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                 <span class="corner bottom-left"></span>
                 <span class="corner bottom-right"></span>
                 <div class="sg-header">
-                    <h2>Skill Proficiency</h2>
-                    <p>A snapshot of where I stand across code, design, and collaboration.</p>
+                    <h2 data-i18n="sg.title">Skill Proficiency</h2>
+                    <p data-i18n="sg.subtitle">A snapshot of where I stand across code, design, and collaboration.</p>
                 </div>
                 <div class="sg-radar-grid">
                     <div class="sg-radar-wrap" id="radar-coding"></div>
@@ -323,14 +328,14 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
             <span class="corner bottom-left"></span>
             <span class="corner bottom-right"></span>
             <div class="slider__header">
-              <span class="slider__label">Projects</span>
+              <span class="slider__label" data-i18n="projects.label">Projects</span>
             </div>
             <div class="slider__body">
               <div class="slider__left">
                 <h2 class="slider__title" aria-live="polite"></h2>
                 <div class="slider__footer">
                   <p class="slider__subtitle"></p>
-                  <a class="slider__cta" href="#" target="_blank" rel="noopener">View project →</a>
+                  <a class="slider__cta" href="#" target="_blank" rel="noopener" data-i18n="projects.cta">View project →</a>
                 </div>
               </div>
               <div class="slider__right">
@@ -348,8 +353,8 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                 <span class="corner bottom-left"></span>
                 <span class="corner bottom-right"></span>
                 <div class="timeline-header">
-                    <h2>My Journey</h2>
-                    <p>From curiosity to craft — each step shaped who I am as a developer.</p>
+                    <h2 data-i18n="timeline.title">My Journey</h2>
+                    <p data-i18n="timeline.subtitle">From curiosity to craft — each step shaped who I am as a developer.</p>
                 </div>
                 <div class="timeline-track">
                     <div class="tl-line"><div class="tl-fill"></div></div>
@@ -357,7 +362,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                     <div class="tl-item tl-left">
                         <div class="tl-card">
                             <span class="tl-year">2021</span>
-                            <p class="tl-text">Technical Computer Science</p>
+                            <p class="tl-text" data-i18n="tl.1.text">Technical Computer Science</p>
                             <span class="tl-org">@AUAS</span>
                         </div>
                         <div class="tl-node"></div>
@@ -367,7 +372,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <div class="tl-node"></div>
                         <div class="tl-card">
                             <span class="tl-year">2023</span>
-                            <p class="tl-text">Communication &amp; Multimedia Design</p>
+                            <p class="tl-text" data-i18n="tl.2.text">Communication &amp; Multimedia Design</p>
                             <span class="tl-org">@AUAS</span>
                         </div>
                     </div>
@@ -375,7 +380,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                     <div class="tl-item tl-left">
                         <div class="tl-card">
                             <span class="tl-year">2025</span>
-                            <p class="tl-text">First UX/UI Internship</p>
+                            <p class="tl-text" data-i18n="tl.3.text">First UX/UI Internship</p>
                             <span class="tl-org">@Ecocharting</span>
                         </div>
                         <div class="tl-node"></div>
@@ -385,7 +390,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <div class="tl-node"></div>
                         <div class="tl-card">
                             <span class="tl-year">2025</span>
-                            <p class="tl-text">Founded a Software Company</p>
+                            <p class="tl-text" data-i18n="tl.4.text">Founded a Software Company</p>
                             <span class="tl-org">Day-to-Day</span>
                         </div>
                     </div>
@@ -393,7 +398,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                     <div class="tl-item tl-left">
                         <div class="tl-card">
                             <span class="tl-year">2025</span>
-                            <p class="tl-text">Junior Software Developer Certification</p>
+                            <p class="tl-text" data-i18n="tl.5.text">Junior Software Developer Certification</p>
                             <span class="tl-org">Amazon</span>
                         </div>
                         <div class="tl-node"></div>
@@ -403,7 +408,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <div class="tl-node"></div>
                         <div class="tl-card">
                             <span class="tl-year">2025</span>
-                            <p class="tl-text">Teaching Assistant — Front-end Development</p>
+                            <p class="tl-text" data-i18n="tl.6.text">Teaching Assistant — Front-end Development</p>
                             <span class="tl-org">@AUAS</span>
                         </div>
                     </div>
@@ -411,7 +416,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                     <div class="tl-item tl-left">
                         <div class="tl-card">
                             <span class="tl-year">2025</span>
-                            <p class="tl-text">Ethical Hacking with Open Source Tools</p>
+                            <p class="tl-text" data-i18n="tl.7.text">Ethical Hacking with Open Source Tools</p>
                             <span class="tl-org">IBM Specialization</span>
                         </div>
                         <div class="tl-node"></div>
@@ -421,7 +426,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <div class="tl-node"></div>
                         <div class="tl-card">
                             <span class="tl-year">2025</span>
-                            <p class="tl-text">Minor Business Law</p>
+                            <p class="tl-text" data-i18n="tl.8.text">Minor Business Law</p>
                             <span class="tl-org">@AUAS</span>
                         </div>
                     </div>
@@ -429,7 +434,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                     <div class="tl-item tl-left tl-upcoming">
                         <div class="tl-card">
                             <span class="tl-year">2026</span>
-                            <p class="tl-text">Minor Web Design & Development</p>
+                            <p class="tl-text" data-i18n="tl.9.text">Minor Web Design & Development</p>
                             <span class="tl-org">@AUAS</span>
                         </div>
                         <div class="tl-node"></div>
@@ -455,11 +460,11 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="cert-org-tag" id="cert-org-tag"></span>
                             <h3 class="cert-main-title" id="cert-main-title"></h3>
                         </div>
-                        <a class="cert-open-btn" id="cert-open-btn" href="#" target="_blank" rel="noopener">View Certificate ↗</a>
+                        <a class="cert-open-btn" id="cert-open-btn" href="#" target="_blank" rel="noopener" data-i18n="cert.cta">View Certificate ↗</a>
                         <div class="cert-nav">
-                            <button class="cert-arrow-left" aria-label="Previous">&#8592;</button>
+                            <button class="cert-arrow-left" data-i18n-attr="aria-label:cert.prev" aria-label="Previous">&#8592;</button>
                             <div class="cert-dots"></div>
-                            <button class="cert-arrow-right" aria-label="Next">&#8594;</button>
+                            <button class="cert-arrow-right" data-i18n-attr="aria-label:cert.next" aria-label="Next">&#8594;</button>
                         </div>
                     </div>
                 </div>
@@ -474,17 +479,17 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                 <span class="corner bottom-left"></span>
                 <span class="corner bottom-right"></span>
                 <div class="contact-container">
-                    <h2>Let's Work Together</h2>
-                    <p class="contact-sub">Available for internships and freelance projects.</p>
+                    <h2 data-i18n="contact.title">Let's Work Together</h2>
+                    <p class="contact-sub" data-i18n="contact.subtitle">Available for internships and freelance projects.</p>
                     <form class="contact-form" id="contact-form">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" placeholder="Your name" required>
-                        <label for="email">Email</label>
+                        <label for="name" data-i18n="form.name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Your name" data-i18n-attr="placeholder:form.placeholder.name" required>
+                        <label for="email" data-i18n="form.email">Email</label>
                         <input type="email" name="email" id="email" placeholder="your@email.com" required>
-                        <label for="message">Message</label>
-                        <textarea name="message" id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                        <label for="message" data-i18n="form.message">Message</label>
+                        <textarea name="message" id="message" rows="5" placeholder="Tell me about your project..." data-i18n-attr="placeholder:form.placeholder.message" required></textarea>
                         <div class="g-recaptcha" data-sitekey="6LcDRrQrAAAAAFSsSydhgPvsaQ0w3uLOM-DPjdZJ"></div>
-                        <button type="submit">Send Message</button>
+                        <button type="submit" data-i18n="form.submit">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -501,11 +506,11 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                 <span>Mitchell Scholte</span>
             </div>
             <nav class="footer-nav">
-                <a href="#hero">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#Features">Skills</a>
-                <a href="#Timeline">Timeline</a>
-                <a href="#contact">Contact</a>
+                <a href="#hero" data-i18n="nav.home">Home</a>
+                <a href="#projects" data-i18n="nav.projects">Projects</a>
+                <a href="#Features" data-i18n="nav.skills">Skills</a>
+                <a href="#Timeline" data-i18n="nav.timeline">Timeline</a>
+                <a href="#contact" data-i18n="nav.contact">Contact</a>
             </nav>
             <div class="footer-social">
                 <a href="https://github.com/MitchellKevin" target="_blank" aria-label="GitHub">
@@ -516,15 +521,16 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                 </a>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="footer-bottom" data-i18n="footer.copyright">
             &copy; 2025 Mitchell Scholte. All rights reserved.
         </div>
     </footer>
 
     <div id="notification" style="display:none;"></div>
+    <div id="a11y-announce" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 
     <!-- ACCESSIBILITY PANEL -->
-    <button id="a11y-toggle" type="button" aria-label="Open accessibility settings" aria-controls="a11y-panel" aria-expanded="false">
+    <button id="a11y-toggle" type="button" data-i18n-attr="aria-label:a11y.open" aria-label="Open accessibility settings" aria-controls="a11y-panel" aria-expanded="false">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="4" r="2"/>
             <path d="M19 13H5"/>
@@ -535,52 +541,100 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
     <div id="a11y-panel" role="dialog" aria-modal="true" aria-labelledby="a11y-title" aria-hidden="true">
         <div class="a11y-panel-inner">
             <div class="a11y-panel-header">
-                <h3 id="a11y-title">Accessibility</h3>
-                <button id="a11y-close" type="button" aria-label="Close accessibility settings">&times;</button>
+                <h3 id="a11y-title" data-i18n="a11y.title">Accessibility</h3>
+                <button id="a11y-close" type="button" data-i18n-attr="aria-label:a11y.close" aria-label="Close accessibility settings">&times;</button>
             </div>
             <div class="a11y-options">
                 <label class="a11y-option">
                     <span class="a11y-option-text">
-                        <strong>Reduce motion</strong>
-                        <small>Disables parallax, tilt, and reveal animations</small>
+                        <strong data-i18n="a11y.reduceMotion">Reduce motion</strong>
+                        <small data-i18n="a11y.reduceMotion.desc">Disables parallax, tilt, and reveal animations</small>
                     </span>
                     <input type="checkbox" id="a11y-reduce-motion">
                     <span class="a11y-switch"></span>
                 </label>
                 <label class="a11y-option">
                     <span class="a11y-option-text">
-                        <strong>High contrast</strong>
-                        <small>Stronger borders and text contrast</small>
+                        <strong data-i18n="a11y.highContrast">High contrast</strong>
+                        <small data-i18n="a11y.highContrast.desc">Stronger borders and text contrast</small>
                     </span>
                     <input type="checkbox" id="a11y-high-contrast">
                     <span class="a11y-switch"></span>
                 </label>
                 <label class="a11y-option">
                     <span class="a11y-option-text">
-                        <strong>Larger text</strong>
-                        <small>Increases base font size by 15%</small>
+                        <strong data-i18n="a11y.largeText">Larger text</strong>
+                        <small data-i18n="a11y.largeText.desc">Increases base font size by 15%</small>
                     </span>
                     <input type="checkbox" id="a11y-large-text">
                     <span class="a11y-switch"></span>
                 </label>
                 <label class="a11y-option">
                     <span class="a11y-option-text">
-                        <strong>Disable custom cursor</strong>
-                        <small>Use the system cursor instead</small>
+                        <strong data-i18n="a11y.noCursor">Disable custom cursor</strong>
+                        <small data-i18n="a11y.noCursor.desc">Use the system cursor instead</small>
                     </span>
                     <input type="checkbox" id="a11y-no-cursor">
                     <span class="a11y-switch"></span>
                 </label>
                 <label class="a11y-option">
                     <span class="a11y-option-text">
-                        <strong>Underline links</strong>
-                        <small>Always show link underlines</small>
+                        <strong data-i18n="a11y.underlineLinks">Underline links</strong>
+                        <small data-i18n="a11y.underlineLinks.desc">Always show link underlines</small>
                     </span>
                     <input type="checkbox" id="a11y-underline-links">
                     <span class="a11y-switch"></span>
                 </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.dyslexiaFont">Dyslexia-friendly font</strong>
+                        <small data-i18n="a11y.dyslexiaFont.desc">Switch to Atkinson Hyperlegible for easier reading</small>
+                    </span>
+                    <input type="checkbox" id="a11y-dyslexia-font">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.spacing">Wider spacing</strong>
+                        <small data-i18n="a11y.spacing.desc">Increase line height and letter spacing</small>
+                    </span>
+                    <input type="checkbox" id="a11y-spacing">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.grayscale">Reduce color</strong>
+                        <small data-i18n="a11y.grayscale.desc">Desaturate the page (helpful for migraines)</small>
+                    </span>
+                    <input type="checkbox" id="a11y-grayscale">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.strongFocus">Strong focus indicator</strong>
+                        <small data-i18n="a11y.strongFocus.desc">Larger, high-contrast focus outlines</small>
+                    </span>
+                    <input type="checkbox" id="a11y-strong-focus">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.highlightLinks">Highlight links</strong>
+                        <small data-i18n="a11y.highlightLinks.desc">Yellow background behind every link</small>
+                    </span>
+                    <input type="checkbox" id="a11y-highlight-links">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.pauseAnim">Pause animations</strong>
+                        <small data-i18n="a11y.pauseAnim.desc">Stop all looping animations (twinkles, carousels)</small>
+                    </span>
+                    <input type="checkbox" id="a11y-pause-anim">
+                    <span class="a11y-switch"></span>
+                </label>
             </div>
-            <button id="a11y-reset" type="button">Reset to defaults</button>
+            <button id="a11y-reset" type="button" data-i18n="a11y.reset">Reset to defaults</button>
         </div>
     </div>
 
@@ -594,6 +648,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
     <script src="emailjs-contact.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
     <script src="project-carousel.js"></script>
     <script src="cinematic.js"></script>

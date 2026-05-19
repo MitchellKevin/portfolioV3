@@ -39,35 +39,45 @@ SLIDES.push(...[
   // },
   {
     name: "Mitchopoly",
-    description: "Kennismaking met de minor, leerdoelen bepalen en een persoonlijke website maken. Heb hier Three.js voor gebruikt en heb leren 3d modelen te importeren en te gebruiken.",
+    name_nl: "Mitchopoly",
+    description: "Introduction to the minor — setting learning goals and building a personal website. Used Three.js to learn how to import and work with 3D models.",
+    description_nl: "Kennismaking met de minor, leerdoelen bepalen en een persoonlijke website maken. Heb hier Three.js voor gebruikt en heb leren 3D-modellen te importeren en te gebruiken.",
     url: "https://mitchellkevin.github.io/PersonalInfoSite/",
     color: "#f5f2eb",
     image: "project-images/mitchopoly.png"
   },
   {
     name: "Day-to-Day",
+    name_nl: "Day-to-Day",
     description: "Sales website for a software startup. Focused on conversion-driven UX design, clean front-end build, and a clear brand identity to communicate the product value.",
+    description_nl: "Verkoopwebsite voor een softwarestartup. Gericht op conversiegedreven UX-design, een strakke front-end en een duidelijke merkidentiteit om de productwaarde te communiceren.",
     url: "https://www.day-to-day.nl/",
     color: "#f5f2eb",
     image: "project-images/d2d.png"
   },
   {
     name: "Hackathon-2nd-place",
-    description: "Samenwerken onder tijdsdruk, van concept tot werkend prototype. De grootste dingen die ik dit project gemaakt heb zijn de 3D globe animatie/parallax met three.js gemaakt en 3D sateliet component uitleg.",
+    name_nl: "Hackathon — 2e plaats",
+    description: "Collaborating under time pressure, from concept to working prototype. My biggest contributions were a 3D globe animation/parallax built with Three.js and a 3D satellite component explainer.",
+    description_nl: "Samenwerken onder tijdsdruk, van concept tot werkend prototype. De grootste dingen die ik in dit project gemaakt heb zijn de 3D-globe animatie/parallax met Three.js en de uitleg van een 3D-sateliet component.",
     url: "https://mitchellkevin.github.io/Space/",
     color: "#f5f2eb",
     image: "project-images/hackathon.png"
   },
   {
     name: "CMD Casino",
-    description: "Voor het eerst een volledig full-stack applicatie van een casino site gemaakt met REST API's, Mollie API voor payment en een MongoDB database erachter.",
+    name_nl: "CMD Casino",
+    description: "My first full-stack application — a casino site built with REST APIs, the Mollie payments API, and a MongoDB database.",
+    description_nl: "Voor het eerst een volledige full-stack applicatie gemaakt — een casino site met REST API's, Mollie API voor payments en een MongoDB database erachter.",
     url: "https://wdd-api-scholte.onrender.com/",
     color: "#f5f2eb",
     image: "project-images/CMD-casino.png"
   },
   {
     name: "HCD",
-    description: "Ontwerpen vanuit 1 gebruiker, leren om goed te luisteren naar problemen van een unieke gebruiker en verder geleerd om chrome extensions te maken en TTS api's te gebruiken.",
+    name_nl: "HCD",
+    description: "Designing for a single user — learning to listen carefully to the problems of one unique user, plus building Chrome extensions and integrating TTS APIs.",
+    description_nl: "Ontwerpen vanuit 1 gebruiker, leren om goed te luisteren naar problemen van een unieke gebruiker en verder geleerd om Chrome-extensions te maken en TTS API's te gebruiken.",
     url: "https://mitchellkevin.github.io/HCD/",
     color: "#f5f2eb",
     image: "project-images/HCD.png"
@@ -101,12 +111,24 @@ class Slider {
     ).matches;
 
     this.preload();
-    this.setTitle(SLIDES[0].name);
-    if (this.subtitleEl) this.subtitleEl.textContent = SLIDES[0].description;
+    this.setTitle(this.slideName(0));
+    if (this.subtitleEl) this.subtitleEl.textContent = this.slideDesc(0);
     if (this.ctaEl) this.ctaEl.href = SLIDES[0].url;
     this.buildCarousel();
     this.bind();
     this.startAutoPlay();
+  }
+
+  currentLang() {
+    return (window.I18N && window.I18N.current) || 'en';
+  }
+  slideName(idx) {
+    const s = SLIDES[idx];
+    return (this.currentLang() === 'nl' && s.name_nl) ? s.name_nl : s.name;
+  }
+  slideDesc(idx) {
+    const s = SLIDES[idx];
+    return (this.currentLang() === 'nl' && s.description_nl) ? s.description_nl : s.description;
   }
 
   preload() {
@@ -353,10 +375,16 @@ class Slider {
       }
     });
 
-    master.add(this.animateTitle(SLIDES[nextIdx].name, direction), 0);
-    master.add(this.animateSubtitle(SLIDES[nextIdx].description), 0);
+    master.add(this.animateTitle(this.slideName(nextIdx), direction), 0);
+    master.add(this.animateSubtitle(this.slideDesc(nextIdx)), 0);
     master.add(this.animateCarousel(direction), 0);
     if (this.ctaEl) this.ctaEl.href = SLIDES[nextIdx].url;
+  }
+
+  /* Called when language toggle fires — re-render current slide text without animation */
+  refreshLang() {
+    this.setTitle(this.slideName(this.current));
+    if (this.subtitleEl) this.subtitleEl.textContent = this.slideDesc(this.current);
   }
 
   bind() {
@@ -410,5 +438,9 @@ class Slider {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  new Slider();
+  const slider = new Slider();
+  window['__projectSlider'] = slider;
+  document.addEventListener('langchange', () => {
+    if (slider && typeof slider.refreshLang === 'function') slider.refreshLang();
+  });
 });

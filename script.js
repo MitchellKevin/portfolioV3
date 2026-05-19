@@ -361,38 +361,46 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const CHARTS = [
         {
             id: 'radar-coding',
-            title: 'Coding',
+            title:    { en: 'Coding', nl: 'Coderen' },
             skills: [
-                { label: 'Java',       value: 75 },
-                { label: 'JavaScript', value: 80 },
-                { label: 'HTML / CSS', value: 85 },
-                { label: 'Node.js',    value: 70 },
-                { label: 'Python',     value: 65 },
+                { label: { en: 'Java',       nl: 'Java'       }, value: 75 },
+                { label: { en: 'JavaScript', nl: 'JavaScript' }, value: 80 },
+                { label: { en: 'HTML / CSS', nl: 'HTML / CSS' }, value: 85 },
+                { label: { en: 'Node.js',    nl: 'Node.js'    }, value: 70 },
+                { label: { en: 'Python',     nl: 'Python'     }, value: 65 },
             ]
         },
         {
             id: 'radar-design',
-            title: 'Design',
+            title:    { en: 'Design', nl: 'Design' },
             skills: [
-                { label: 'Figma',      value: 80 },
-                { label: 'UX / UI',    value: 82 },
-                { label: 'Prototype',  value: 75 },
-                { label: 'Photoshop',  value: 60 },
-                { label: 'DaVinci',    value: 65 },
+                { label: { en: 'Figma',      nl: 'Figma'         }, value: 80 },
+                { label: { en: 'UX / UI',    nl: 'UX / UI'       }, value: 82 },
+                { label: { en: 'Prototype',  nl: 'Prototype'     }, value: 75 },
+                { label: { en: 'Photoshop',  nl: 'Photoshop'     }, value: 60 },
+                { label: { en: 'DaVinci',    nl: 'DaVinci'       }, value: 65 },
             ]
         },
         {
             id: 'radar-soft',
-            title: 'Soft Skills',
+            title:    { en: 'Soft Skills', nl: 'Sociale Skills' },
             skills: [
-                { label: 'Solving',    value: 90 },
-                { label: 'Work Ethic', value: 95 },
-                { label: 'Teamwork',   value: 80 },
-                { label: 'Comms',      value: 75 },
-                { label: 'Adaptable',  value: 70 },
+                { label: { en: 'Solving',    nl: 'Oplossen'      }, value: 90 },
+                { label: { en: 'Work Ethic', nl: 'Werkethos'     }, value: 95 },
+                { label: { en: 'Teamwork',   nl: 'Samenwerking'  }, value: 80 },
+                { label: { en: 'Comms',      nl: 'Comm.'         }, value: 75 },
+                { label: { en: 'Adaptable',  nl: 'Flexibel'      }, value: 70 },
             ]
         }
     ];
+
+    function currentLang() {
+        return (window.I18N && window.I18N.current) || 'en';
+    }
+    function t(field) {
+        if (field && typeof field === 'object') return field[currentLang()] || field.en;
+        return field;
+    }
 
     const W = 320, H = 300, CX = 160, CY = 158, R = 92, LEVELS = 4;
 
@@ -462,18 +470,20 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 
         // Labels
         const labelR = R + 30;
+        const labelEls = [];
         skills.forEach((skill, i) => {
             const a = axisAngle(i, n);
             const x = CX + labelR * Math.cos(a);
             const y = CY + labelR * Math.sin(a);
-            const t = svgEl('text', {
+            const lbl = svgEl('text', {
                 x: x.toFixed(2), y: y.toFixed(2),
                 'text-anchor': 'middle', 'dominant-baseline': 'middle',
                 'font-size': '9.5', 'font-family': 'Outfit, sans-serif',
                 fill: 'currentColor', opacity: '0.65'
             });
-            t.textContent = skill.label;
-            svg.appendChild(t);
+            lbl.textContent = t(skill.label);
+            svg.appendChild(lbl);
+            labelEls.push(lbl);
         });
 
         // Title
@@ -483,11 +493,11 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             'font-size': '10', 'font-weight': '700', 'letter-spacing': '2',
             'font-family': 'Outfit, sans-serif', fill: 'var(--accent-color)'
         });
-        titleEl.textContent = title.toUpperCase();
+        titleEl.textContent = t(title).toUpperCase();
         svg.appendChild(titleEl);
 
         container.appendChild(svg);
-        return { poly, dots, skills };
+        return { poly, dots, skills, titleEl, labelEls, titleRaw: title };
     }
 
     function animateChart(poly, dots, skills, duration) {
@@ -527,6 +537,16 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         if (!container) return null;
         return buildChart(container, c.title, c.skills);
     }).filter(Boolean);
+
+    /* Live-update labels + title on language change */
+    document.addEventListener('langchange', () => {
+        built.forEach(c => {
+            if (c.titleEl) c.titleEl.textContent = t(c.titleRaw).toUpperCase();
+            c.labelEls.forEach((lbl, i) => {
+                lbl.textContent = t(c.skills[i].label);
+            });
+        });
+    });
 
     let cancels = [];
     function cancelAll() {
