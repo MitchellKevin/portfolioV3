@@ -209,8 +209,8 @@ function scrambleText(el, finalText, delay) {
     function applyMode() {
         body.classList.toggle('dark-mode', darkMode);
         if (toggle) {
-            toggle.src = darkMode ? 'img/DtoW.png' : 'img/WtoD.png';
-            toggle.alt = darkMode ? 'Switch to light mode' : 'Switch to dark mode';
+            toggle.setAttribute('aria-checked', darkMode ? 'true' : 'false');
+            toggle.setAttribute('aria-label', darkMode ? 'Switch to light mode' : 'Switch to dark mode');
         }
     }
 

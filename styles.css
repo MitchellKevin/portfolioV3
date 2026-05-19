@@ -225,17 +225,144 @@ h1, h2, h3 {
     gap: 1em;
 }
 
-#light-dark-mode-toggle {
-    width: 28px;
-    height: 28px;
+/* Theme slide toggle — day/night */
+.theme-toggle {
+    --w: 60px;
+    --h: 30px;
+    --pad: 3px;
+    --thumb: calc(var(--h) - var(--pad) * 2);
+
+    width: var(--w);
+    height: var(--h);
+    padding: 0;
+    border: none;
+    background: transparent;
     cursor: pointer;
-    object-fit: contain;
-    transition: transform 0.2s;
+    position: relative;
+    flex-shrink: 0;
 }
 
-#light-dark-mode-toggle:hover {
-    transform: rotate(20deg);
+.theme-toggle-track {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    overflow: hidden;
+    /* Day gradient by default — slides to night when body has .dark-mode */
+    background: linear-gradient(135deg, #ffd86a 0%, #71c8ff 65%, #a4d8ff 100%);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.18);
+    transition: background 0.7s ease;
 }
+
+body.dark-mode .theme-toggle-track {
+    background: linear-gradient(135deg, #0a0f24 0%, #1c2756 60%, #2a1b4e 100%);
+}
+
+/* Thumb (sun in light mode, moon in dark mode) */
+.theme-toggle-thumb {
+    position: absolute;
+    top: var(--pad);
+    left: var(--pad);
+    width: var(--thumb);
+    height: var(--thumb);
+    border-radius: 50%;
+    background: #fff5b8;
+    box-shadow:
+        0 0 8px rgba(255, 213, 74, 0.85),
+        0 0 16px rgba(255, 230, 120, 0.45),
+        inset 0 -2px 4px rgba(255, 184, 0, 0.35);
+    transition:
+        left 0.6s cubic-bezier(0.68, -0.45, 0.27, 1.45),
+        background 0.5s ease,
+        box-shadow 0.5s ease,
+        transform 0.2s ease;
+}
+.theme-toggle:active .theme-toggle-thumb {
+    transform: scale(0.92);
+}
+
+body.dark-mode .theme-toggle-thumb {
+    left: calc(100% - var(--thumb) - var(--pad));
+    background: #e8e8ee;
+    /* Inset shadow creates the moon crater silhouette */
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.25),
+        inset -6px -3px 0 -1px #aab0c0;
+}
+
+/* Stars — only visible in dark mode */
+.theme-toggle-stars {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+body.dark-mode .theme-toggle-stars {
+    opacity: 1;
+    transition-delay: 0.15s;
+}
+.theme-toggle-stars .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(255,255,255,0.8);
+    animation: theme-twinkle 2.2s ease-in-out infinite;
+}
+.theme-toggle-stars .star:nth-child(1) { top: 22%; left: 18%; animation-delay: 0s;   }
+.theme-toggle-stars .star:nth-child(2) { top: 55%; left: 26%; animation-delay: 0.4s; width:1.5px; height:1.5px; }
+.theme-toggle-stars .star:nth-child(3) { top: 30%; left: 38%; animation-delay: 0.8s; }
+.theme-toggle-stars .star:nth-child(4) { top: 65%; left: 44%; animation-delay: 1.2s; width:1.5px; height:1.5px; }
+
+@keyframes theme-twinkle {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.4); }
+}
+
+/* Clouds — only visible in light mode */
+.theme-toggle-clouds {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+body.dark-mode .theme-toggle-clouds { opacity: 0; }
+.theme-toggle-clouds .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.85);
+    border-radius: 999px;
+    box-shadow:
+        4px 0 0 -1px rgba(255,255,255,0.85),
+        -4px 0 0 -1px rgba(255,255,255,0.85);
+}
+.theme-toggle-clouds .cloud:nth-child(1) {
+    bottom: 5px;
+    right: 8px;
+    width: 10px;
+    height: 4px;
+}
+.theme-toggle-clouds .cloud:nth-child(2) {
+    top: 7px;
+    right: 18px;
+    width: 7px;
+    height: 3px;
+    opacity: 0.75;
+}
+
+/* Focus ring */
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-color, #d42d2d);
+    outline-offset: 3px;
+    border-radius: 999px;
+}
+
+/* Respect reduce-motion: kill twinkle + smooth slide */
+body.a11y-reduce-motion .theme-toggle-thumb { transition: left 0.01ms, background 0.01ms; }
+body.a11y-reduce-motion .theme-toggle-stars .star { animation: none; }
 
 /* Mobile menu button */
 .mobile-menu-btn {
