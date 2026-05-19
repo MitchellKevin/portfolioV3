@@ -158,6 +158,7 @@
         targets.forEach(el => {
             let raf = null;
             let pendingX = 0, pendingY = 0;
+            let hovering = false;
 
             function update() {
                 el.style.transform =
@@ -165,8 +166,16 @@
                 raf = null;
             }
 
-            el.addEventListener('mousemove', (e) => {
+            el.addEventListener('mouseenter', () => {
                 if (effectiveReduceMotion()) return;
+                hovering = true;
+                /* Suppress slow CSS transform-transitions so tilt feels snappy.
+                   We preserve other property transitions by listing them explicitly. */
+                el.style.transition = 'transform 80ms linear, box-shadow 0.35s ease, border-color 0.25s ease';
+            });
+
+            el.addEventListener('mousemove', (e) => {
+                if (effectiveReduceMotion() || !hovering) return;
                 const r = el.getBoundingClientRect();
                 const px = (e.clientX - r.left) / r.width;
                 const py = (e.clientY - r.top) / r.height;
@@ -176,8 +185,15 @@
             });
 
             el.addEventListener('mouseleave', () => {
+                hovering = false;
                 if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
+                /* Smooth return: give transform a slower ease for the snap-back. */
+                el.style.transition = 'transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.25s ease';
                 el.style.transform = '';
+                /* After return completes, clear the inline transition so CSS resumes. */
+                setTimeout(() => {
+                    if (!hovering) el.style.transition = '';
+                }, 500);
             });
         });
     })();
@@ -189,10 +205,10 @@
     (function initReveals() {
         if (!('IntersectionObserver' in window)) return;
 
-        /* Mark groups for stagger */
+        /* Mark groups for stagger.
+           Note: .feature_card already has its own GSAP reveal in script.js
+           so we skip it here to avoid conflicting transitions. */
         const groups = [
-            { sel: '.features_grid .feature_card',          stagger: 0.08 },
-            { sel: '.carosel .carousel-item',               stagger: 0.02, skip: true /* infinite marquee */ },
             { sel: '.sg-radar-grid .sg-radar-wrap',         stagger: 0.12 },
             { sel: '.timeline-track .tl-item',              stagger: 0.06 },
             { sel: '.hero-stack-pills .pill',               stagger: 0.05 },
@@ -219,6 +235,27 @@
                 el.style.transform = 'translateY(0)';
                 el.style.filter = 'blur(0)';
                 io.unobserve(el);
+
+                /* Clear inline transition once reveal completes — otherwise
+                   the lingering transform-transition + stagger delay makes
+                   downstream effects (tilt, hover) feel laggy on later cards. */
+                const cleanup = () => {
+                    el.style.transition = '';
+                    el.style.transitionDelay = '';
+                    el.style.transform = '';
+                    el.style.filter = '';
+                    el.classList.remove('reveal-stagger');
+                    el.removeEventListener('transitionend', onEnd);
+                };
+                let done = false;
+                const onEnd = (e) => {
+                    if (done || e.target !== el || e.propertyName !== 'opacity') return;
+                    done = true;
+                    cleanup();
+                };
+                el.addEventListener('transitionend', onEnd);
+                /* Fallback: also clear after expected duration in case transitionend doesn't fire */
+                setTimeout(() => { if (!done) { done = true; cleanup(); } }, 1500);
             });
         }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
