@@ -6,12 +6,19 @@
     <title>Mitchell Scholte — Full-Stack Developer</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="project-carousel.css">
+    <link rel="stylesheet" href="premium.css">
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <meta name="description" content="I am Mitchell Scholte, a full-stack developer specializing in building responsive and user-friendly web applications using Javascript and Java. With a focus on security and User Experience Design." />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-mode">
+    <!-- CINEMATIC WEBGL BG + OVERLAYS (injected by cinematic.js as failsafe) -->
+    <canvas id="webgl-bg" aria-hidden="true"></canvas>
+    <div id="vignette" aria-hidden="true"></div>
+    <div id="spotlight" aria-hidden="true"></div>
+    <div id="scanlines" aria-hidden="true"></div>
+
     <!-- PAGE LOADER -->
     <div id="page-loader" aria-hidden="true"><span id="loader-count">0</span></div>
     <!-- FILM GRAIN OVERLAY -->
@@ -508,5 +515,6 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script src="project-carousel.js"></script>
+    <script src="cinematic.js"></script>
 </body>
 </html>
