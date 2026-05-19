@@ -760,9 +760,8 @@ var init = function(){
     // color: '#008cff',
   });
 
-  window.addEventListener('click', function(){
-    ps.init(true);
-  });
+  // Expose for effects.js so it can re-form particles on interaction.
+  window['__particleSlider'] = ps;
 };
 
 var initParticleSlider = function(){

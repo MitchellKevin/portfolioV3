@@ -27,7 +27,9 @@ const debounce = (func, wait, immediate) => {
   };
 };
 
-const SLIDES = [
+window.PROJECT_SLIDES = window.PROJECT_SLIDES || [];
+const SLIDES = window.PROJECT_SLIDES;
+SLIDES.push(...[
   // {
   //   name: "FitBot",
   //   description: "Android app that controls a NAO humanoid robot to guide elderly users through exercises and provide companionship. Built with Java, XML, and MQTT for real-time communication.",
@@ -77,7 +79,7 @@ const SLIDES = [
   //   color: "#f5f2eb",
   //   image: "projects-img/HCD.png"
   // }
-];
+]);
 
 const AUTOPLAY_DELAY = 4000;
 

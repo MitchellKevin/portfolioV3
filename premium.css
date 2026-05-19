@@ -1934,3 +1934,120 @@ textarea:focus-visible,
     #a11y-toggle { width: 44px; height: 44px; right: 1rem; bottom: 1rem; }
     #a11y-panel { right: 1rem; bottom: 4.25rem; }
 }
+
+/* =============================================
+   REDUCE-MOTION PROJECT GRID
+   Replaces the autoplay slider when motion is reduced.
+   ============================================= */
+.projects-grid {
+    display: none;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding: 2.5em 2.5em;
+    max-width: 1280px;
+    margin: 0 auto;
+    justify-content: center;
+}
+body.a11y-reduce-motion #projects .slider {
+    display: none !important;
+}
+body.a11y-reduce-motion .projects-grid {
+    display: flex;
+}
+
+.project-grid-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 280px;
+    max-width: 360px;
+    min-width: 0;
+    background: var(--card-bg, rgba(20,20,20,0.55));
+    border: 1px solid var(--card-border, rgba(255,255,255,0.08));
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.project-grid-card:hover,
+.project-grid-card:focus-visible {
+    border-color: var(--accent-color, #fff);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    outline: none;
+}
+.project-grid-card__img {
+    aspect-ratio: 16 / 10;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--card-bg);
+}
+.project-grid-card__body {
+    padding: 1rem 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+.project-grid-card__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+.project-grid-card__desc {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.75;
+    flex: 1;
+}
+.project-grid-card__cta {
+    margin-top: 0.25rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-color, #fff);
+}
+
+@media (max-width: 640px) {
+    .projects-grid { padding: 2em 1.25em; gap: 1rem; }
+}
+
+/* =============================================
+   PARTICLE HERO — INTERACTIVE HOVER STATE
+   ============================================= */
+#particle-slider {
+    cursor: pointer;
+}
+#particle-slider canvas.draw {
+    transition: filter 0.3s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+#particle-slider:hover canvas.draw {
+    transform: scale(1.02);
+}
+body.a11y-no-cursor #particle-slider { cursor: pointer; }
+
+/* Static fallback image — hidden by default, shown in reduce-motion mode */
+.hero-img-static {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+body.a11y-reduce-motion #particle-slider {
+    cursor: default;
+}
+body.a11y-reduce-motion #particle-slider canvas.draw {
+    display: none;
+}
+body.a11y-reduce-motion #particle-slider .hero-img-static {
+    display: block;
+}
+body.a11y-reduce-motion #particle-slider:hover canvas.draw {
+    transform: none;
+}

@@ -48,11 +48,21 @@
     }
 
     function applySettings() {
-        body.classList.toggle('a11y-reduce-motion', effectiveReduceMotion());
+        const reduced = effectiveReduceMotion();
+        body.classList.toggle('a11y-reduce-motion', reduced);
         body.classList.toggle('a11y-high-contrast', settings.highContrast);
         body.classList.toggle('a11y-large-text', settings.largeText);
         body.classList.toggle('a11y-no-cursor', settings.noCursor);
         body.classList.toggle('a11y-underline-links', settings.underlineLinks);
+
+        /* Mirror reduce-motion onto the projects fallback grid so screen
+           readers see the correct content as active. */
+        const slider = document.querySelector('#projects .slider');
+        const grid   = document.getElementById('projects-grid');
+        if (slider && grid) {
+            slider.setAttribute('aria-hidden', reduced ? 'true' : 'false');
+            grid.setAttribute('aria-hidden',   reduced ? 'false' : 'true');
+        }
     }
 
     applySettings();
@@ -307,6 +317,128 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onScroll);
         update();
+    })();
+
+    /* =============================================
+       PROJECTS FALLBACK GRID
+       Built once from window.PROJECT_SLIDES, shown when reduce-motion is on.
+       ============================================= */
+    (function buildProjectsGrid() {
+        const gridEl = document.getElementById('projects-grid');
+        if (!gridEl) return;
+
+        function render() {
+            const slides = window.PROJECT_SLIDES || [];
+            if (!slides.length) return;
+            gridEl.innerHTML = '';
+            slides.forEach(s => {
+                const a = document.createElement('a');
+                a.className = 'project-grid-card';
+                a.href = s.url || '#';
+                a.target = '_blank';
+                a.rel = 'noopener';
+
+                const img = document.createElement('div');
+                img.className = 'project-grid-card__img';
+                if (s.image) img.style.backgroundImage = `url("${s.image}")`;
+                if (s.color) img.style.backgroundColor = s.color;
+
+                const body = document.createElement('div');
+                body.className = 'project-grid-card__body';
+
+                const title = document.createElement('h3');
+                title.className = 'project-grid-card__title';
+                title.textContent = s.name || 'Untitled';
+
+                const desc = document.createElement('p');
+                desc.className = 'project-grid-card__desc';
+                desc.textContent = s.description || '';
+
+                const cta = document.createElement('span');
+                cta.className = 'project-grid-card__cta';
+                cta.textContent = 'View project →';
+
+                body.appendChild(title);
+                body.appendChild(desc);
+                body.appendChild(cta);
+                a.appendChild(img);
+                a.appendChild(body);
+                gridEl.appendChild(a);
+            });
+        }
+
+        /* SLIDES may not exist yet at script-load order — retry briefly. */
+        if (window.PROJECT_SLIDES && window.PROJECT_SLIDES.length) {
+            render();
+        } else {
+            let tries = 0;
+            const id = setInterval(() => {
+                tries++;
+                if ((window.PROJECT_SLIDES && window.PROJECT_SLIDES.length) || tries > 20) {
+                    clearInterval(id);
+                    render();
+                }
+            }, 100);
+        }
+
+        /* Apply correct aria-hidden state now that grid exists. */
+        applySettings();
+    })();
+
+    /* =============================================
+       PARTICLE HERO INTERACTION
+       The third-party ParticleSlider exposes ps.init(true) which dramatically
+       re-forms the image. We trigger it on click + on mouseenter (throttled),
+       and scope the click reset to the image instead of the whole window.
+       ============================================= */
+    (function initParticleInteraction() {
+        const host = document.getElementById('particle-slider');
+        if (!host) return;
+
+        let lastReform = 0;
+        const COOLDOWN = 1200; // ms — avoid spamming re-init
+
+        function reform() {
+            if (effectiveReduceMotion()) return;
+            const now = Date.now();
+            if (now - lastReform < COOLDOWN) return;
+            const ps = window['__particleSlider'];
+            if (ps && typeof ps.init === 'function') {
+                try { ps.init(true); lastReform = now; } catch (e) { /* noop */ }
+            }
+        }
+
+        host.addEventListener('mouseenter', reform);
+        host.addEventListener('click', (e) => {
+            if (effectiveReduceMotion()) return;
+            e.stopPropagation();
+            reform();
+        });
+
+        /* Keyboard: focus + Enter reforms the particles too. */
+        function syncA11yAttrs() {
+            if (effectiveReduceMotion()) {
+                host.removeAttribute('tabindex');
+                host.removeAttribute('role');
+                host.removeAttribute('aria-label');
+            } else {
+                host.setAttribute('tabindex', '0');
+                host.setAttribute('role', 'button');
+                host.setAttribute('aria-label', 'Reform particle portrait');
+            }
+        }
+        syncA11yAttrs();
+        /* Re-sync whenever settings change (panel toggle / OS pref change). */
+        const a11yObserver = new MutationObserver(syncA11yAttrs);
+        a11yObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+        host.addEventListener('keydown', (e) => {
+            if (effectiveReduceMotion()) return;
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                reform();
+            }
+        });
     })();
 
 })();
