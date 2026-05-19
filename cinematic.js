@@ -241,7 +241,7 @@
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
     const targets = document.querySelectorAll(
-        '.feature_card, .cert-arrow-left, .cert-arrow-right, .cert-open-btn, .slider__cta'
+        '.cert-arrow-left, .cert-arrow-right, .cert-open-btn, .slider__cta'
     );
 
     targets.forEach(el => {
