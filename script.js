@@ -23,6 +23,7 @@ function scrambleText(el, finalText, delay) {
 (function initLoader() {
     const loader = document.getElementById('page-loader');
     const count  = document.getElementById('loader-count');
+    const phraseEl = document.getElementById('loader-phrase');
 
     function revealHero(delay) {
         document.querySelectorAll('.hero-line-inner').forEach((el, i) => {
@@ -44,6 +45,25 @@ function scrambleText(el, finalText, delay) {
 
     if (!loader || !count) { revealHero(200); return; }
 
+    /* rotating loader phrases (language-aware, character) */
+    const loaderLang = (function () {
+        try { return localStorage.getItem('site-lang-v1') === 'nl' ? 'nl' : 'en'; }
+        catch (e) { return 'en'; }
+    })();
+    const LOADER_PHRASES = {
+        en: ['waking up the pixels…', 'brewing coffee…', 'soldering the layout…', 'summoning three.js…', "pretending the bugs aren't there…", 'almost there…'],
+        nl: ['de pixels wakker maken…', 'koffie zetten…', 'de layout solderen…', 'three.js oproepen…', 'doen alsof de bugs er niet zijn…', 'bijna klaar…'],
+    }[loaderLang];
+    let phraseTimer = null;
+    if (phraseEl) {
+        let pIdx = 0;
+        phraseEl.textContent = LOADER_PHRASES[0];
+        phraseTimer = setInterval(() => {
+            pIdx = (pIdx + 1) % LOADER_PHRASES.length;
+            phraseEl.textContent = LOADER_PHRASES[pIdx];
+        }, 380);
+    }
+
     const duration = 1500;
     const start = performance.now();
 
@@ -53,6 +73,8 @@ function scrambleText(el, finalText, delay) {
         count.textContent = Math.floor(eased * 100);
         if (progress < 1) { requestAnimationFrame(tick); return; }
         count.textContent = 100;
+        if (phraseTimer) clearInterval(phraseTimer);
+        if (phraseEl) phraseEl.textContent = loaderLang === 'nl' ? 'welkom 👋' : 'welcome 👋';
         setTimeout(() => {
             loader.classList.add('done');
             loader.addEventListener('transitionend', () => { loader.style.display = 'none'; }, { once: true });
@@ -90,6 +112,9 @@ function scrambleText(el, finalText, delay) {
     const ring = document.createElement('div');
     dot.id  = 'cursor-dot';
     ring.id = 'cursor-ring';
+    const label = document.createElement('span');
+    label.className = 'cursor-label';
+    ring.appendChild(label);
     document.body.appendChild(dot);
     document.body.appendChild(ring);
     let mx = -100, my = -100, rx = -100, ry = -100;
@@ -109,6 +134,26 @@ function scrambleText(el, finalText, delay) {
         el.addEventListener('mouseenter', () => ring.classList.add('hover'));
         el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
     });
+
+    /* Contextual labels: elements with data-cursor (+ optional data-cursor-nl) */
+    function cursorIsNL() {
+        try { return localStorage.getItem('site-lang-v1') === 'nl'; } catch (e) { return false; }
+    }
+    document.addEventListener('mouseover', (e) => {
+        const t = e.target.closest('[data-cursor]');
+        if (!t) return;
+        label.textContent = (cursorIsNL() && t.dataset.cursorNl) ? t.dataset.cursorNl : t.dataset.cursor;
+        ring.classList.add('has-label');
+        dot.classList.add('hidden');
+    });
+    document.addEventListener('mouseout', (e) => {
+        const t = e.target.closest('[data-cursor]');
+        if (!t) return;
+        const to = e.relatedTarget;
+        if (to && to.closest && to.closest('[data-cursor]')) return; // moved onto another labeled element
+        ring.classList.remove('has-label');
+        dot.classList.remove('hidden');
+    });
 })();
 
 /* =============================================
@@ -116,7 +161,7 @@ function scrambleText(el, finalText, delay) {
    ============================================= */
 (function initScrollReveal() {
     const targets = document.querySelectorAll(
-        '#tools, #Features, #language, #skill-graph, #projects, #Timeline, #Licenses, #terminal-cta, #contact, .project_item'
+        '#tools, #about, #Features, #language, #skill-graph, #projects, #Timeline, #Licenses, #globe, #terminal-cta, #contact, .project_item'
     );
     targets.forEach((el, i) => {
         el.classList.add('reveal');

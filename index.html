@@ -23,7 +23,7 @@
     <div id="scanlines" aria-hidden="true"></div>
 
     <!-- PAGE LOADER -->
-    <div id="page-loader" aria-hidden="true"><span id="loader-count">0</span></div>
+    <div id="page-loader" aria-hidden="true"><span id="loader-phrase"></span><span id="loader-count">0</span></div>
     <!-- FILM GRAIN OVERLAY -->
     <div id="grain-overlay" aria-hidden="true"></div>
     <!-- STICKY NAVBAR -->
@@ -101,12 +101,14 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                             <span class="pill">Java</span>
                             <span class="pill">HTML</span>
                             <span class="pill">CSS</span>
+                            <span class="pill">MERN</span>
                             <span class="pill">Javascript</span>
-                            <span class="pill">MongoDB</span>
-                            <span class="pill">Node.js</span>
+                            <span class="pill">GSAP</span>
+                            <span class="pill">Three.js</span>
+                            <span class="pill">D3</span>
                         </div>
                         <div class="hero-buttons">
-                            <a href="#contact"><button id="contact-button" data-i18n="hero.btn.contact">Contact Me</button></a>
+                            <a href="#contact"><button id="contact-button" data-i18n="hero.btn.contact" data-cursor="hi" data-cursor-nl="hoi">Contact Me</button></a>
                             <a href="#projects"><button id="projects-button" data-i18n="hero.btn.projects">Projects</button></a>
                         </div>
                     </div>
@@ -162,6 +164,46 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                     <div class="carousel-item"><img src="img/tools/Kali_Linux.png" alt="Kali Linux"></div>
                     <div class="carousel-item"><img src="img/tools/Figma.png" alt="Figma"></div>
                     <div class="carousel-item"><img src="img/tools/IntelliJ.png" alt="IntelliJ IDEA"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div id="about-corners">
+                <span class="corner top-left"></span>
+                <span class="corner top-right"></span>
+                <span class="corner bottom-left"></span>
+                <span class="corner bottom-right"></span>
+                <div class="about-inner">
+                    <div class="about-text">
+                        <span class="about-eyebrow" data-i18n="about.eyebrow">The human behind the code</span>
+                        <h2 data-i18n-html="about.title">I bridge <em>hardware</em><br>and the web</h2>
+                        <p data-i18n="about.p1">I'm Mitchell — a full-stack developer from Amsterdam. I started out in Technical Computer Science, soldering circuits and chasing bugs in C, before falling for the web and the craft of building things people actually enjoy using.</p>
+                        <p data-i18n="about.p2">That mix never left me: I love the point where hardware meets software, where a security mindset meets clean UX, and where a wild idea turns into something that genuinely works.</p>
+                        <p data-i18n="about.p3">When I'm not building, I'm probably behind a camera, in a game, or taking something apart just to see how it ticks.</p>
+                    </div>
+                    <div class="about-side">
+                        <div class="about-photo">
+                            <img src="img/header_img.png" alt="Mitchell Scholte" loading="lazy">
+                        </div>
+                        <div class="about-now">
+                            <span class="about-now-title">
+                                <span class="now-dot" aria-hidden="true"></span>
+                                <span data-i18n="about.now.title">Right now</span>
+                            </span>
+                            <dl class="now-list">
+                                <dt data-i18n="about.now.learning">Learning</dt>
+                                <dd data-i18n="about.now.learning.v">React — Meta</dd>
+                                <dt data-i18n="about.now.building">Building</dt>
+                                <dd data-i18n="about.now.building.v">Making a visualization site for the Visdeurbel.nl</dd>
+                                <dt data-i18n="about.now.status">Status</dt>
+                                <dd data-i18n="about.now.status.v">available for an internship</dd>
+                                <dt data-i18n="about.now.fuel">Fuel</dt>
+                                <dd data-i18n="about.now.fuel.v">probably coffee ☕</dd>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -341,7 +383,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                 </div>
               </div>
               <div class="slider__right">
-                <div class="slider__images"></div>
+                <div class="slider__images" data-cursor="view" data-cursor-nl="kijk"></div>
               </div>
             </div>
           </div>
@@ -473,6 +515,31 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
             </div>
         </section>
 
+        <!-- 3D GLOBE -->
+        <section id="globe">
+            <div id="globe-corners">
+                <span class="corner top-left"></span>
+                <span class="corner top-right"></span>
+                <span class="corner bottom-left"></span>
+                <span class="corner bottom-right"></span>
+                <div class="globe-inner">
+                    <div class="globe-text">
+                        <span class="globe-eyebrow" data-i18n="globe.eyebrow">Where I'm at</span>
+                        <h2 data-i18n-html="globe.title">Based in <em>Amsterdam</em><br>open to the world</h2>
+                        <p data-i18n="globe.desc">Available for internships and freelance work — remote or on-site. This little wireframe globe is a nod to the 3D globe I built for a hackathon with Three.js.</p>
+                        <div class="globe-meta">
+                            <span class="globe-pin">📍 <span data-i18n="globe.location">Amsterdam, NL</span></span>
+                            <a href="#contact" class="globe-cta" data-i18n="globe.cta" data-cursor="hi" data-cursor-nl="hoi">Let's talk →</a>
+                        </div>
+                    </div>
+                    <div class="globe-canvas-wrap">
+                        <canvas id="globe-canvas" aria-label="Interactive 3D globe" role="img" data-cursor="drag" data-cursor-nl="sleep"></canvas>
+                        <span class="globe-hint" data-i18n="globe.hint">drag to spin</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- TERMINAL TEASER -->
         <section id="terminal-cta">
             <div id="terminal-cta-corners">
@@ -487,7 +554,7 @@ Java · Javascript · Hardware · Pentesting. I turn creative ideas into functio
                         <p data-i18n-html="tcta.desc">Prefer typing over scrolling? Open the interactive terminal and explore my skills, projects and contact details by running commands. Start with <code>help</code>.</p>
                         <a href="terminal.html" class="tcta-btn" data-i18n="tcta.btn">Launch terminal →</a>
                     </div>
-                    <div class="tcta-window" aria-hidden="true">
+                    <div class="tcta-window" aria-hidden="true" data-cursor="open" data-cursor-nl="open">
                         <div class="tcta-bar">
                             <span class="tcta-dot"></span>
                             <span class="tcta-dot"></span>
@@ -519,7 +586,7 @@ Mitchell Scholte — Full-Stack Developer
                         <label for="message" data-i18n="form.message">Message</label>
                         <textarea name="message" id="message" rows="5" placeholder="Tell me about your project..." data-i18n-attr="placeholder:form.placeholder.message" required></textarea>
                         <div class="g-recaptcha" data-sitekey="6LcDRrQrAAAAAFSsSydhgPvsaQ0w3uLOM-DPjdZJ"></div>
-                        <button type="submit" data-i18n="form.submit">Send Message</button>
+                        <button type="submit" data-i18n="form.submit" data-cursor="send" data-cursor-nl="stuur">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -679,10 +746,12 @@ Mitchell Scholte — Full-Stack Developer
     <script src="emailjs-contact.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="i18n.js"></script>
     <script src="script.js"></script>
     <script src="project-carousel.js"></script>
     <script src="cinematic.js"></script>
     <script src="effects.js"></script>
+    <script src="globe.js"></script>
 </body>
 </html>

@@ -132,6 +132,9 @@ main, footer, header {
     background: transparent;
     opacity: 0.8;
     backdrop-filter: invert(0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #cursor-ring.hover {
@@ -142,6 +145,38 @@ main, footer, header {
     background: rgba(255, 255, 255, 0.08);
     opacity: 1;
 }
+
+/* contextual label cursor */
+.cursor-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-text-color);
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+#cursor-ring.has-label {
+    width: 74px;
+    height: 74px;
+    margin: -37px 0 0 -37px;
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    backdrop-filter: none;
+    opacity: 1;
+}
+
+#cursor-ring.has-label .cursor-label {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#cursor-dot.hidden { opacity: 0; }
 
 /* -------- PAGE LOADER CINEMATIC -------- */
 #page-loader {
@@ -196,6 +231,22 @@ main, footer, header {
     content: '';
     margin: 0;
 }
+
+#loader-phrase {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 4.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+body:not(.dark-mode) #loader-phrase { color: rgba(0, 0, 0, 0.45); }
 
 /* -------- HEADER LUXE -------- */
 #main-header {

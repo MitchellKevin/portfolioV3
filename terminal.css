@@ -29,35 +29,38 @@
 }
 
 .term-eyebrow {
-    display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.28em;
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--accent-color);
+    opacity: 0.9;
     margin-bottom: 1.4rem;
     font-weight: 600;
 }
 
 .term-title {
     font-family: 'Outfit', sans-serif;
-    font-weight: 800;
+    font-weight: 200;
     font-size: clamp(2.6rem, 7vw, 5rem);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
     margin: 0 0 1.6rem;
     color: var(--secondary-color);
 }
 
 .term-title em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--text-secondary-color);
+    font-style: normal;
+    font-weight: 300;
+    color: var(--accent-color);
 }
 
 .term-lead {
     max-width: 52ch;
     color: var(--text-secondary-color);
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
     line-height: 1.7;
 }
 

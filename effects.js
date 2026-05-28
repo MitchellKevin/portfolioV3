@@ -197,7 +197,7 @@
         if (isCoarse) return;
 
         const targets = document.querySelectorAll(
-            '.feature_card, .tl-card, .sg-radar-wrap, .cert-viewer'
+            '.feature_card, .tl-card, .sg-radar-wrap, #cert-main-img, .tcta-window, .about-photo'
         );
         if (!targets.length) return;
 
