@@ -1668,6 +1668,150 @@ body.dark-mode .cert-viewer-img img {
 /* =============================================
    CONTACT — dark mode fixed
    ============================================= */
+/* =============================================
+   TERMINAL TEASER
+   ============================================= */
+#terminal-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+}
+
+#terminal-cta-corners {
+    position: relative;
+    width: 88%;
+    border: 0.5px solid var(--hero-border-color);
+    padding: 4em 2em;
+}
+
+.tcta-inner {
+    display: flex;
+    align-items: center;
+    gap: 3em;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.tcta-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.tcta-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+.tcta-text h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.6em;
+    color: var(--secondary-color);
+}
+
+.tcta-text h2 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-secondary-color);
+}
+
+.tcta-text p {
+    color: var(--text-secondary-color);
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 46ch;
+    margin: 0 0 1.6em;
+}
+
+.tcta-text code {
+    font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    font-size: 0.85em;
+    background: var(--secondary-color);
+    color: var(--bg-color);
+    padding: 0.1em 0.45em;
+    border-radius: 4px;
+}
+
+.tcta-btn {
+    display: inline-block;
+    padding: 0.8em 1.6em;
+    background: var(--accent-color);
+    color: var(--accent-text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s;
+}
+
+.tcta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -8px var(--accent-color);
+}
+
+.tcta-window {
+    flex: 1;
+    max-width: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #14130f;
+    box-shadow: 0 24px 50px -20px rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.tcta-bar {
+    display: flex;
+    gap: 0.45rem;
+    padding: 0.7rem 0.9rem;
+    background: linear-gradient(#1c1a14, #16140f);
+}
+
+.tcta-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #4a4842;
+}
+.tcta-dot:nth-child(1) { background: #ec6a5e; }
+.tcta-dot:nth-child(2) { background: #f4bf4f; }
+.tcta-dot:nth-child(3) { background: #61c554; }
+
+.tcta-screen {
+    margin: 0;
+    padding: 1.3rem 1.4rem 1.6rem;
+    font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #e9e4d6;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.tcta-prompt { color: #9ecb6e; }
+
+.tcta-cur {
+    color: var(--accent-color);
+    animation: tcta-blink 1.1s steps(1) infinite;
+}
+@keyframes tcta-blink { 50% { opacity: 0; } }
+
+@media (max-width: 860px) {
+    .tcta-inner { flex-direction: column; align-items: flex-start; gap: 2em; }
+    .tcta-window { width: 100%; max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tcta-cur { animation: none; }
+}
+
 #contact {
     display: flex;
     justify-content: center;
@@ -1904,7 +2048,8 @@ body.dark-mode .footer-social img {
 @media (max-width: 640px) {
     #main-header { padding: 0.8em 1.2em; }
     #hero-corners, #tools-corners, #feature-corners,
-    #project-corners, #timeline-corners, #cert-corners, #contact-corners {
+    #project-corners, #timeline-corners, #cert-corners, #contact-corners,
+    #terminal-cta-corners {
         width: 100% !important;
         border-left: none !important;
         border-right: none !important;

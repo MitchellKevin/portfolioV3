@@ -116,7 +116,7 @@ function scrambleText(el, finalText, delay) {
    ============================================= */
 (function initScrollReveal() {
     const targets = document.querySelectorAll(
-        '#tools, #Features, #language, #skill-graph, #projects, #Timeline, #Licenses, #contact, .project_item'
+        '#tools, #Features, #language, #skill-graph, #projects, #Timeline, #Licenses, #terminal-cta, #contact, .project_item'
     );
     targets.forEach((el, i) => {
         el.classList.add('reveal');
@@ -785,6 +785,7 @@ var init = function(){
 };
 
 var initParticleSlider = function(){
+  if (!document.getElementById('particle-slider')) return; // not on this page
   var psScript = document.createElement('script');
   psScript.onload = init;
   psScript.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/23500/ps-0.9.js';

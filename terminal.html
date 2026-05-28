@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal — Mitchell Scholte</title>
+    <meta name="description" content="Get to know Mitchell Scholte the interactive way — a playable terminal where you can explore my skills, projects and contact details by typing commands." />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-carousel.css">
+    <link rel="stylesheet" href="premium.css">
+    <link rel="stylesheet" href="terminal.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <!-- SKIP TO CONTENT (keyboard accessibility) -->
+    <a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to content</a>
+
+    <!-- CINEMATIC WEBGL BG + OVERLAYS (injected by cinematic.js as failsafe) -->
+    <canvas id="webgl-bg" aria-hidden="true"></canvas>
+    <div id="vignette" aria-hidden="true"></div>
+    <div id="spotlight" aria-hidden="true"></div>
+    <div id="scanlines" aria-hidden="true"></div>
+
+    <!-- PAGE LOADER -->
+    <div id="page-loader" aria-hidden="true"><span id="loader-count">0</span></div>
+    <!-- FILM GRAIN OVERLAY -->
+    <div id="grain-overlay" aria-hidden="true"></div>
+
+    <!-- STICKY NAVBAR -->
+    <header id="main-header">
+        <a href="index.html#hero" class="header-logo-link">
+            <img src="img/logo.png" id="logo" alt="Logo">
+            <span class="header-name">Mitchell Scholte</span>
+        </a>
+        <nav class="header-nav" id="header-nav">
+            <a href="index.html#hero" class="nav-link" data-i18n="nav.home">Home</a>
+            <a href="index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+            <a href="index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            <a href="terminal.html" class="nav-link active" data-i18n="nav.terminal">Terminal</a>
+        </nav>
+        <div class="header-right">
+            <div id="lang-toggle" class="lang-pill" role="group" aria-label="Switch language">
+                <button type="button" class="lang-pill-opt is-active" data-lang="en">EN</button>
+                <button type="button" class="lang-pill-opt" data-lang="nl">NL</button>
+                <span class="lang-pill-thumb" aria-hidden="true"></span>
+            </div>
+            <button id="light-dark-mode-toggle" type="button" role="switch" aria-checked="true" data-i18n-attr="aria-label:theme.aria" aria-label="Toggle dark and light mode" class="theme-toggle">
+                <span class="theme-toggle-track" aria-hidden="true">
+                    <span class="theme-toggle-stars">
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star"></span>
+                    </span>
+                    <span class="theme-toggle-clouds">
+                        <span class="cloud"></span>
+                        <span class="cloud"></span>
+                    </span>
+                    <span class="theme-toggle-thumb"></span>
+                </span>
+            </button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" data-i18n-attr="aria-label:menu.aria" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAV DRAWER -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="index.html#hero" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+        <a href="index.html#projects" class="mobile-nav-link" data-i18n="nav.projects">Projects</a>
+        <a href="index.html#contact" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+        <a href="terminal.html" class="mobile-nav-link" data-i18n="nav.terminal">Terminal</a>
+    </nav>
+
+    <main id="main-content" class="term-page" tabindex="-1">
+
+        <div class="term-intro">
+            <span class="term-eyebrow" data-i18n="term.eyebrow">Interactive · text-adventure</span>
+            <h1 class="term-title" data-i18n-html="term.title">Get to know me<br><em>through the terminal</em></h1>
+            <p class="term-lead" data-i18n-html="term.lead">No scrolling — just typing. Start with <code>help</code> and discover who I am, what I build and where I'm headed. There are a few easter eggs hidden in here too — good luck. 🥚</p>
+        </div>
+
+        <div class="terminal" id="terminal">
+            <div class="terminal-bar">
+                <div class="terminal-dots">
+                    <span class="t-dot t-dot--red"></span>
+                    <span class="t-dot t-dot--yellow"></span>
+                    <span class="t-dot t-dot--green"></span>
+                </div>
+                <div class="terminal-bar-title">mitchell@portfolio: ~</div>
+                <div class="terminal-bar-meta">bash</div>
+            </div>
+
+            <div class="terminal-window" id="terminal-window">
+                <div class="terminal-output" id="terminal-output"></div>
+                <div class="terminal-input-line" id="terminal-input-line" hidden>
+                    <span class="terminal-prompt">
+                        <span class="prompt-user">mitchell@portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-tail">$</span>
+                    </span>
+                    <span class="terminal-input-wrap">
+                        <input type="text" id="terminal-input" class="terminal-input"
+                               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                               aria-label="Terminal command">
+                        <span class="terminal-typed" id="terminal-typed"></span><span class="terminal-caret" id="terminal-caret">█</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <p class="term-hint" data-i18n-html="term.hint">Tip: use <kbd>Tab</kbd> to autocomplete commands and <kbd>↑</kbd>/<kbd>↓</kbd> for your history.</p>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Logo">
+                <span>Mitchell Scholte</span>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html#hero" data-i18n="nav.home">Home</a>
+                <a href="index.html#projects" data-i18n="nav.projects">Projects</a>
+                <a href="index.html#Features" data-i18n="nav.skills">Skills</a>
+                <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+                <a href="terminal.html" data-i18n="nav.terminal">Terminal</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://github.com/MitchellKevin" target="_blank" aria-label="GitHub">
+                    <img src="img/icons/github.png" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/mitchell-scholte-a10652238/" target="_blank" aria-label="LinkedIn">
+                    <img src="img/icons/linkedin.png" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom" data-i18n="footer.copyright">
+            &copy; 2025 Mitchell Scholte. All rights reserved.
+        </div>
+    </footer>
+
+    <div id="notification" style="display:none;"></div>
+    <div id="a11y-announce" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+    <!-- ACCESSIBILITY PANEL -->
+    <button id="a11y-toggle" type="button" data-i18n-attr="aria-label:a11y.open" aria-label="Open accessibility settings" aria-controls="a11y-panel" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="4" r="2"/>
+            <path d="M19 13H5"/>
+            <path d="M12 6v6"/>
+            <path d="M9 21l3-9 3 9"/>
+        </svg>
+    </button>
+    <div id="a11y-panel" role="dialog" aria-modal="true" aria-labelledby="a11y-title" aria-hidden="true">
+        <div class="a11y-panel-inner">
+            <div class="a11y-panel-header">
+                <h3 id="a11y-title" data-i18n="a11y.title">Accessibility</h3>
+                <button id="a11y-close" type="button" data-i18n-attr="aria-label:a11y.close" aria-label="Close accessibility settings">&times;</button>
+            </div>
+            <div class="a11y-options">
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.reduceMotion">Reduce motion</strong>
+                        <small data-i18n="a11y.reduceMotion.desc">Disables parallax, tilt, and reveal animations</small>
+                    </span>
+                    <input type="checkbox" id="a11y-reduce-motion">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.highContrast">High contrast</strong>
+                        <small data-i18n="a11y.highContrast.desc">Stronger borders and text contrast</small>
+                    </span>
+                    <input type="checkbox" id="a11y-high-contrast">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.largeText">Larger text</strong>
+                        <small data-i18n="a11y.largeText.desc">Increases base font size by 15%</small>
+                    </span>
+                    <input type="checkbox" id="a11y-large-text">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.noCursor">Disable custom cursor</strong>
+                        <small data-i18n="a11y.noCursor.desc">Use the system cursor instead</small>
+                    </span>
+                    <input type="checkbox" id="a11y-no-cursor">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.underlineLinks">Underline links</strong>
+                        <small data-i18n="a11y.underlineLinks.desc">Always show link underlines</small>
+                    </span>
+                    <input type="checkbox" id="a11y-underline-links">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.dyslexiaFont">Dyslexia-friendly font</strong>
+                        <small data-i18n="a11y.dyslexiaFont.desc">Switch to Atkinson Hyperlegible for easier reading</small>
+                    </span>
+                    <input type="checkbox" id="a11y-dyslexia-font">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.spacing">Wider spacing</strong>
+                        <small data-i18n="a11y.spacing.desc">Increase line height and letter spacing</small>
+                    </span>
+                    <input type="checkbox" id="a11y-spacing">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.grayscale">Reduce color</strong>
+                        <small data-i18n="a11y.grayscale.desc">Desaturate the page (helpful for migraines)</small>
+                    </span>
+                    <input type="checkbox" id="a11y-grayscale">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.strongFocus">Strong focus indicator</strong>
+                        <small data-i18n="a11y.strongFocus.desc">Larger, high-contrast focus outlines</small>
+                    </span>
+                    <input type="checkbox" id="a11y-strong-focus">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.highlightLinks">Highlight links</strong>
+                        <small data-i18n="a11y.highlightLinks.desc">Yellow background behind every link</small>
+                    </span>
+                    <input type="checkbox" id="a11y-highlight-links">
+                    <span class="a11y-switch"></span>
+                </label>
+                <label class="a11y-option">
+                    <span class="a11y-option-text">
+                        <strong data-i18n="a11y.pauseAnim">Pause animations</strong>
+                        <small data-i18n="a11y.pauseAnim.desc">Stop all looping animations (twinkles, carousels)</small>
+                    </span>
+                    <input type="checkbox" id="a11y-pause-anim">
+                    <span class="a11y-switch"></span>
+                </label>
+            </div>
+            <button id="a11y-reset" type="button" data-i18n="a11y.reset">Reset to defaults</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+    <script src="cinematic.js"></script>
+    <script src="effects.js"></script>
+    <script src="terminal.js"></script>
+</body>
+</html>

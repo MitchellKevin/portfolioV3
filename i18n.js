@@ -26,6 +26,19 @@
             'nav.timeline': 'Timeline',
             'nav.certs': 'Certs',
             'nav.contact': 'Contact',
+            'nav.terminal': 'Terminal',
+
+            /* Terminal page */
+            'term.eyebrow': 'Interactive · text-adventure',
+            'term.title': 'Get to know me<br><em>through the terminal</em>',
+            'term.lead': "No scrolling — just typing. Start with <code>help</code> and discover who I am, what I build and where I'm headed. There are a few easter eggs hidden in here too — good luck. 🥚",
+            'term.hint': 'Tip: use <kbd>Tab</kbd> to autocomplete commands and <kbd>↑</kbd>/<kbd>↓</kbd> for your history.',
+
+            /* Terminal teaser (homepage) */
+            'tcta.eyebrow': 'Interactive · easter eggs inside',
+            'tcta.title': 'Get to know me <em>through the terminal</em>',
+            'tcta.desc': 'Prefer typing over scrolling? Open the interactive terminal and explore my skills, projects and contact details by running commands. Start with <code>help</code>.',
+            'tcta.btn': 'Launch terminal →',
 
             /* Hero */
             'hero.badge': 'Available for Internship',
@@ -145,6 +158,17 @@
             'nav.timeline': 'Tijdlijn',
             'nav.certs': 'Certs',
             'nav.contact': 'Contact',
+            'nav.terminal': 'Terminal',
+
+            'term.eyebrow': 'Interactief · text-adventure',
+            'term.title': 'Leer mij kennen<br><em>via de terminal</em>',
+            'term.lead': 'Geen scrollen, maar typen. Begin met <code>help</code> en ontdek wie ik ben, wat ik bouw en waar ik naartoe wil. Er zitten ook een paar easter eggs verstopt — succes. 🥚',
+            'term.hint': "Tip: gebruik <kbd>Tab</kbd> om commando's aan te vullen en <kbd>↑</kbd>/<kbd>↓</kbd> voor je geschiedenis.",
+
+            'tcta.eyebrow': 'Interactief · easter eggs verstopt',
+            'tcta.title': 'Leer mij kennen <em>via de terminal</em>',
+            'tcta.desc': 'Liever typen dan scrollen? Open de interactieve terminal en verken mijn skills, projecten en contactgegevens met commando\'s. Begin met <code>help</code>.',
+            'tcta.btn': 'Open terminal →',
 
             'hero.badge': 'Beschikbaar voor Stage',
             'hero.line1': 'Full-Stack',
