@@ -27,6 +27,16 @@
             'nav.certs': 'Certs',
             'nav.contact': 'Contact',
             'nav.terminal': 'Terminal',
+            'nav.blog': 'Blog',
+
+            /* Blog page + homepage teaser */
+            'blog.eyebrow': 'Notes & writeups',
+            'blog.title': 'From the <em>workbench</em>',
+            'blog.lead': 'Short writeups on the things I build — WebGL, Three.js, accessibility, and the stories behind the projects in my portfolio.',
+            'blog.teaser.eyebrow': '🚧 Under construction',
+            'blog.teaser.title': 'The blog is <em>coming soon</em>',
+            'blog.teaser.desc': "I'm writing up how I build things — WebGL, hackathons, accessibility. Check back soon.",
+            'blog.teaser.btn': 'Coming soon',
 
             /* Terminal page */
             'term.eyebrow': 'Interactive · text-adventure',
@@ -71,6 +81,7 @@
             'hero.desc': "Hi, I'm Mitchell. I build smart systems that connect code, people and purpose. Java · Javascript · Hardware · Pentesting. I turn creative ideas into functional software.",
             'hero.btn.contact': 'Contact Me',
             'hero.btn.projects': 'Projects',
+            'hero.btn.cv': 'Download CV',
 
             /* Skills */
             'skills.title': 'What I Bring to the Table',
@@ -183,6 +194,16 @@
             'nav.certs': 'Certs',
             'nav.contact': 'Contact',
             'nav.terminal': 'Terminal',
+            'nav.blog': 'Blog',
+
+            /* Blog page + homepage teaser */
+            'blog.eyebrow': 'Notities & writeups',
+            'blog.title': 'Uit de <em>werkplaats</em>',
+            'blog.lead': 'Korte writeups over wat ik bouw — WebGL, Three.js, toegankelijkheid, en de verhalen achter de projecten in mijn portfolio.',
+            'blog.teaser.eyebrow': '🚧 In aanbouw',
+            'blog.teaser.title': 'De blog komt <em>binnenkort</em>',
+            'blog.teaser.desc': 'Ik schrijf op hoe ik dingen bouw — WebGL, hackathons, toegankelijkheid. Kom snel terug.',
+            'blog.teaser.btn': 'Binnenkort',
 
             'term.eyebrow': 'Interactief · text-adventure',
             'term.title': 'Leer mij kennen<br><em>via de terminal</em>',
@@ -222,6 +243,7 @@
             'hero.desc': 'Hoi, ik ben Mitchell. Ik bouw slimme systemen die code, mensen en doel verbinden. Java · Javascript · Hardware · Pentesting. Ik vertaal creatieve ideeën naar functionele software.',
             'hero.btn.contact': 'Neem Contact Op',
             'hero.btn.projects': 'Projecten',
+            'hero.btn.cv': 'Download CV',
 
             'skills.title': 'Wat ik te bieden heb',
             'skills.subtitle': 'Van concept tot uitvoering — ik combineer creativiteit met technische diepgang om dingen te bouwen die echt werken.',

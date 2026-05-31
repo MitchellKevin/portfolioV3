@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal — Mitchell Scholte</title>
-    <meta name="description" content="Get to know Mitchell Scholte the interactive way — a playable terminal where you can explore my skills, projects and contact details by typing commands." />
+    <title>Blog — Mitchell Scholte</title>
+    <meta name="description" content="Notes from Mitchell Scholte — a full-stack developer from Amsterdam — on building things with code: WebGL, Three.js, accessibility and the projects behind the portfolio." />
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="project-carousel.css">
     <link rel="stylesheet" href="premium.css">
-    <link rel="stylesheet" href="terminal.css">
+    <link rel="stylesheet" href="blog.css">
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,9 +38,9 @@
         <nav class="header-nav" id="header-nav">
             <a href="index.html#hero" class="nav-link" data-i18n="nav.home">Home</a>
             <a href="index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
-            <a href="blog.html" class="nav-link" data-i18n="nav.blog">Blog</a>
+            <a href="blog.html" class="nav-link active" data-i18n="nav.blog">Blog</a>
             <a href="index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
-            <a href="terminal.html" class="nav-link active" data-i18n="nav.terminal">Terminal</a>
+            <a href="terminal.html" class="nav-link" data-i18n="nav.terminal">Terminal</a>
         </nav>
         <div class="header-right">
             <div id="lang-toggle" class="lang-pill" role="group" aria-label="Switch language">
@@ -79,42 +79,17 @@
         <a href="terminal.html" class="mobile-nav-link" data-i18n="nav.terminal">Terminal</a>
     </nav>
 
-    <main id="main-content" class="term-page" tabindex="-1">
+    <main id="main-content" class="blog-page" tabindex="-1">
 
-        <div class="term-intro">
-            <span class="term-eyebrow" data-i18n="term.eyebrow">Interactive · text-adventure</span>
-            <h1 class="term-title" data-i18n-html="term.title">Get to know me<br><em>through the terminal</em></h1>
-            <p class="term-lead" data-i18n-html="term.lead">No scrolling — just typing. Start with <code>help</code> and discover who I am, what I build and where I'm headed. There are a few easter eggs hidden in here too — good luck. 🥚</p>
+        <div class="blog-intro">
+            <span class="blog-eyebrow" data-i18n="blog.eyebrow">Notes &amp; writeups</span>
+            <h1 data-i18n-html="blog.title">From the <em>workbench</em></h1>
+            <p class="blog-lead" data-i18n="blog.lead">Short writeups on the things I build — WebGL, Three.js, accessibility, and the stories behind the projects in my portfolio.</p>
         </div>
 
-        <div class="terminal" id="terminal">
-            <div class="terminal-bar">
-                <div class="terminal-dots">
-                    <span class="t-dot t-dot--red"></span>
-                    <span class="t-dot t-dot--yellow"></span>
-                    <span class="t-dot t-dot--green"></span>
-                </div>
-                <div class="terminal-bar-title">mitchell@portfolio: ~</div>
-                <div class="terminal-bar-meta">bash</div>
-            </div>
-
-            <div class="terminal-window" id="terminal-window">
-                <div class="terminal-output" id="terminal-output"></div>
-                <div class="terminal-input-line" id="terminal-input-line" hidden>
-                    <span class="terminal-prompt">
-                        <span class="prompt-user">mitchell@portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-tail">$</span>
-                    </span>
-                    <span class="terminal-input-wrap">
-                        <input type="text" id="terminal-input" class="terminal-input"
-                               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                               aria-label="Terminal command">
-                        <span class="terminal-typed" id="terminal-typed"></span><span class="terminal-caret" id="terminal-caret">█</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <p class="term-hint" data-i18n-html="term.hint">Tip: use <kbd>Tab</kbd> to autocomplete commands and <kbd>↑</kbd>/<kbd>↓</kbd> for your history.</p>
+        <!-- Populated by blog.js: list of posts, or a single article when ?slug= is present -->
+        <div class="blog-list" id="blog-list" hidden></div>
+        <article class="blog-article" id="blog-article" hidden></article>
 
     </main>
 
@@ -128,9 +103,9 @@
             <nav class="footer-nav">
                 <a href="index.html#hero" data-i18n="nav.home">Home</a>
                 <a href="index.html#projects" data-i18n="nav.projects">Projects</a>
+                <a href="blog.html" data-i18n="nav.blog">Blog</a>
                 <a href="index.html#Features" data-i18n="nav.skills">Skills</a>
                 <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
-                <a href="blog.html" data-i18n="nav.blog">Blog</a>
                 <a href="terminal.html" data-i18n="nav.terminal">Terminal</a>
             </nav>
             <div class="footer-social">
@@ -265,6 +240,6 @@
     <script src="script.js"></script>
     <script src="cinematic.js"></script>
     <script src="effects.js"></script>
-    <script src="terminal.js"></script>
+    <script src="blog.js"></script>
 </body>
 </html>

@@ -1,0 +1,284 @@
+/* =============================================
+   BLOG — list + article styling
+   Uses the site's design tokens from styles.css
+   ============================================= */
+
+.blog-page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 140px 1.5rem 6rem;
+    position: relative;
+    z-index: 2;
+}
+
+.blog-intro {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+}
+
+.blog-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 0.9rem;
+}
+
+.blog-intro h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.05;
+    margin: 0 0 1rem;
+    color: var(--secondary-color);
+}
+
+.blog-intro h1 em {
+    font-style: normal;
+    color: var(--accent-color);
+}
+
+.blog-lead {
+    color: var(--text-secondary-color);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ---------- LIST ---------- */
+.blog-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.6rem;
+}
+
+.blog-card {
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(.22,1,.36,1), box-shadow 0.25s, border-color 0.25s;
+    backdrop-filter: blur(6px);
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+}
+
+.blog-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.blog-cover {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--card-border);
+}
+
+.blog-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+}
+
+.blog-card:hover .blog-cover img {
+    transform: scale(1.05);
+}
+
+.blog-cover--gradient {
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 1.2rem;
+    background:
+        radial-gradient(120% 120% at 0% 0%, var(--accent-color) 0%, transparent 55%),
+        linear-gradient(135deg, var(--card-border), var(--bg-color));
+}
+
+.blog-cover--gradient span {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    opacity: 0.75;
+}
+
+.blog-card-body {
+    padding: 1.3rem 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary-color);
+    margin-bottom: 0.6rem;
+}
+
+.blog-dot { opacity: 0.5; }
+
+.blog-card-title {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    color: var(--secondary-color);
+}
+
+.blog-card-excerpt {
+    color: var(--text-secondary-color);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0 0 1rem;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.blog-tag {
+    font-size: 0.72rem;
+    padding: 0.28em 0.7em;
+    border-radius: 99px;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    letter-spacing: 0.02em;
+}
+
+.blog-readmore {
+    margin-top: auto;
+    font-weight: 600;
+    color: var(--accent-color);
+    font-size: 0.92rem;
+}
+
+.blog-empty {
+    text-align: center;
+    color: var(--text-secondary-color);
+    padding: 3rem 0;
+}
+
+/* ---------- SINGLE ARTICLE ---------- */
+.blog-article {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.blog-back {
+    display: inline-block;
+    color: var(--text-secondary-color);
+    text-decoration: none;
+    font-size: 0.92rem;
+    margin-bottom: 2rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.blog-back:hover {
+    color: var(--accent-color);
+    transform: translateX(-3px);
+}
+
+.blog-back--bottom {
+    margin: 3rem 0 0;
+}
+
+.blog-article-head {
+    margin-bottom: 1.8rem;
+}
+
+.blog-article-title {
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    line-height: 1.1;
+    margin: 0.6rem 0 1rem;
+    color: var(--secondary-color);
+}
+
+.blog-cover--lg {
+    aspect-ratio: 16 / 8;
+    border-radius: 18px;
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--card-border);
+}
+
+.blog-article-body {
+    color: var(--text-color);
+    font-size: 1.08rem;
+    line-height: 1.75;
+}
+
+.blog-article-body h2 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin: 2.2rem 0 0.8rem;
+}
+
+.blog-article-body p { margin: 0 0 1.2rem; }
+
+.blog-article-body ul {
+    margin: 0 0 1.4rem;
+    padding-left: 1.3rem;
+}
+
+.blog-article-body li { margin-bottom: 0.5rem; }
+
+.blog-article-body code {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.88em;
+    padding: 0.12em 0.4em;
+    border-radius: 6px;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+}
+
+.blog-article-body a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .blog-page { padding-top: 110px; }
+    .blog-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- HOMEPAGE TEASER ---------- */
+#blog-teaser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+}
+
+#blog-teaser-corners {
+    position: relative;
+    width: 88%;
+    border: 0.5px solid var(--hero-border-color);
+    padding: 4em 2em;
+}
+
+/* The teaser reuses the terminal-CTA classes (.tcta-*) so it matches the
+   other homepage sections. Only the disabled "coming soon" button differs. */
+.tcta-btn--disabled {
+    background: transparent;
+    border: 1px dashed var(--accent-color);
+    color: var(--accent-color);
+    cursor: not-allowed;
+}
+
+.tcta-btn--disabled:hover {
+    transform: none;
+    box-shadow: none;
+}

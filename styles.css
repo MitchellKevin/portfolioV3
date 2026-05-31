@@ -703,6 +703,22 @@ body.a11y-reduce-motion .theme-toggle-stars .star { animation: none; }
     color: var(--text-color);
 }
 
+#cv-button {
+    background: transparent;
+    color: var(--text-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#cv-button svg {
+    transition: transform 0.2s ease;
+}
+
+#cv-button:hover svg {
+    transform: translateY(2px);
+}
+
 #hero-border-wrapper button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0,0,0,0.12);

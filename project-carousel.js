@@ -67,18 +67,18 @@ SLIDES.push(...[
   {
     name: "CMD Casino",
     name_nl: "CMD Casino",
-    description: "My first full-stack application — a casino site built with REST APIs, the Mollie payments API, and a MongoDB database.",
-    description_nl: "Voor het eerst een volledige full-stack applicatie gemaakt — een casino site met REST API's, Mollie API voor payments en een MongoDB database erachter.",
-    url: "https://wdd-api-scholte.onrender.com/",
+    description: "My first full-stack application — a multiplayer casino with real-time WebSocket games, the Mollie payments API, and a MongoDB database. Read the full case study.",
+    description_nl: "Voor het eerst een volledige full-stack applicatie gemaakt — een multiplayer casino met realtime WebSocket-spellen, Mollie API voor payments en een MongoDB database. Lees de volledige case study.",
+    url: "cmd-casino.html",
     color: "#f5f2eb",
     image: "project-images/CMD-casino.png"
   },
   {
-    name: "HCD",
-    name_nl: "HCD",
-    description: "Designing for a single user — learning to listen carefully to the problems of one unique user, plus building Chrome extensions and integrating TTS APIs.",
-    description_nl: "Ontwerpen vanuit 1 gebruiker, leren om goed te luisteren naar problemen van een unieke gebruiker en verder geleerd om Chrome-extensions te maken en TTS API's te gebruiken.",
-    url: "https://mitchellkevin.github.io/HCD/",
+    name: "HCD — VoiceReader",
+    name_nl: "HCD — VoiceReader",
+    description: "Designing for a single user — a Chrome extension that gives a screen reader emotional, genre-aware voices, built hand-in-hand with a blind user. Read the full case study.",
+    description_nl: "Ontwerpen vanuit één gebruiker — een Chrome-extensie die een screenreader emotionele, genrebewuste stemmen geeft, gebouwd samen met een blinde gebruiker. Lees de volledige case study.",
+    url: "hcd.html",
     color: "#f5f2eb",
     image: "project-images/HCD.png"
   },
