@@ -69,13 +69,6 @@
     /* a few "city" dots for life */
     const CITIES = [
         [52.37,   4.90],  // Amsterdam (home)
-        [51.51,  -0.13],  // London
-        [40.71, -74.01],  // New York
-        [35.68, 139.69],  // Tokyo
-        [37.77,-122.42],  // San Francisco
-        [-33.87,151.21],  // Sydney
-        [1.35,  103.82],  // Singapore
-        [48.85,   2.35],  // Paris
     ];
     const dotMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.7 });
     CITIES.forEach(([la, lo]) => {
