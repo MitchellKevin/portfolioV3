@@ -38,7 +38,7 @@ function scrambleText(el, finalText, delay) {
             if (!el) return;
             setTimeout(() => {
                 el.classList.add('is-visible');
-                if (el === badge) scrambleText(el, 'Available for Internship', 80);
+                if (el === badge) scrambleText(el, 'Available for Part-time job', 80);
             }, delay + i * 120);
         });
     }

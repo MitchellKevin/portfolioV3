@@ -53,7 +53,7 @@
             /* 3D globe */
             'globe.eyebrow': "Where I'm at",
             'globe.title': 'Based in <em>Amsterdam</em><br>open to the world',
-            'globe.desc': 'Available for internships and freelance work — remote or on-site. This little wireframe globe is a nod to the 3D globe I built for a hackathon with Three.js.',
+            'globe.desc': 'Available for part-time jobs and freelance work — remote or on-site. This little wireframe globe is a nod to the 3D globe I built for a hackathon with Three.js.',
             'globe.location': 'Amsterdam, NL',
             'globe.cta': "Let's talk →",
             'globe.hint': 'drag to spin',
@@ -70,12 +70,12 @@
             'about.now.building': 'Building',
             'about.now.building.v': 'Data visualization site for the Visdeurbel.nl',
             'about.now.status': 'Status',
-            'about.now.status.v': 'available for an internship',
+            'about.now.status.v': 'available for an part-time job',
             'about.now.fuel': 'Fuel',
             'about.now.fuel.v': 'probably coffee ☕',
 
             /* Hero */
-            'hero.badge': 'Available for Internship',
+            'hero.badge': 'Available for Part-Time Job',
             'hero.line1': 'Full-Stack',
             'hero.line2': 'Engineer',
             'hero.desc': "Hi, I'm Mitchell. I build smart systems that connect code, people and purpose. Java · Javascript · Hardware · Pentesting. I turn creative ideas into functional software.",
@@ -140,7 +140,7 @@
 
             /* Contact */
             'contact.title': "Let's Work Together",
-            'contact.subtitle': 'Available for internships and freelance projects.',
+            'contact.subtitle': 'Available for part-time job and freelance projects.',
             'form.name': 'Name',
             'form.email': 'Email',
             'form.message': 'Message',
