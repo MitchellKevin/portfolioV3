@@ -132,6 +132,7 @@
             'tl.7.text': 'Ethical Hacking with Open Source Tools',
             'tl.8.text': 'Minor Business Law',
             'tl.9.text': 'Minor Web Design & Development',
+            'tl.10.text': 'Front-end Development Internship',
 
             /* Certs */
             'cert.cta': 'View Certificate ↗',
@@ -290,6 +291,7 @@
             'tl.7.text': 'Ethical Hacking met Open Source Tools',
             'tl.8.text': 'Minor Ondernemingsrecht',
             'tl.9.text': 'Minor Web Design & Development',
+            'tl.10.text': 'Front-end Ontwikkeling Stage',
 
             'cert.cta': 'Bekijk Certificaat ↗',
             'cert.prev': 'Vorige',

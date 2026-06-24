@@ -82,6 +82,15 @@ SLIDES.push(...[
     color: "#f5f2eb",
     image: "project-images/HCD.png"
   },
+  {
+    name: "Datavisualization Visdeurbel.nl",
+    name_nl: "Datavisualisatie Visdeurbel.nl",
+    description: "A scrolling data visualization of the Visdeurbel (fish doorbell) visitor data — built in React + D3 on a Python pipeline that crunches a 288 MB event log down to 40 KB. Read the full case study.",
+    description_nl: "Een scrollende datavisualisatie van de bezoekersdata van de Visdeurbel — gebouwd in React + D3 op een Python-pijplijn die een eventlog van 288 MB terugbrengt tot 40 KB. Lees de volledige case study.",
+    url: "visdeurbel.html",
+    color: "#f5f2eb",
+    image: "project-images/visdeurbel.png"
+  },
   //   {
   //   name: "WasteLess",
   //   description: "Ontwerpen om voedselverspilling tegen te gaan, door een app te maken die gebruikers helpt bij het plannen van maaltijden en het beheren van hun voorraad.",
